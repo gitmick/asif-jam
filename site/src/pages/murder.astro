@@ -28,9 +28,11 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
   <div class="mt-8 rounded border border-line bg-panel p-5 font-mono text-[12.5px] leading-relaxed text-muted">
     <p class="text-ink">Run it yourself</p>
     <pre class="mt-2 overflow-x-auto whitespace-pre">cp -r examples/murder work/yourname-murder</pre>
-    <p class="mt-2">Open <span class="text-ink">work/yourname-murder</span> in RStudio and work down
-    the chunks in <span class="text-ink">analysis.Rmd</span>, or run
-    <span class="text-ink">analysis.R</span> for all of it at once.</p>
+    <p class="mt-2">Then open <span class="text-ink">work/yourname-murder/murder.Rproj</span> — the
+    folder is self-contained, with the data already in <span class="text-ink">inputs/</span>. Work
+    down the chunks in <span class="text-ink">analysis.Rmd</span>, or run
+    <span class="text-ink">analysis.R</span> for all of it at once; either way the figures and
+    tables land in <span class="text-ink">out/</span>.</p>
   </div>
 
   <article class="prose mt-10"><Murder /></article>

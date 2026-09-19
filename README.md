@@ -12,7 +12,8 @@ Hallein, Austria · 16–26 September 2026 · [at Schmiede](https://schmiedehall
 ```
 datasets/     eleven datasets: source, licence, how to fetch, and which trap each one sets
 data/         the bytes, already fetched, so the whole team starts from the same ones
-examples/     three worked starting points — fog, quakes, and the murder example
+examples/     three worked starting points, each self-contained: TASK.md, analysis.Rmd,
+              analysis.R, an .Rproj, and its data already in inputs/
 work/         yours; one folder per idea
 site/         the front page — Astro + Tailwind, content in markdown
 docs/         the built site, which GitHub Pages serves
@@ -26,9 +27,9 @@ cd asif-jam
 cp -r examples/murder work/yourname-murder
 ```
 
-Open `work/yourname-murder` in RStudio or Positron and work down the chunks in `analysis.Rmd`, or
-run `analysis.R` for all of it at once. The scripts find their own directory, so `inputs/` and
-`out/` resolve whether you run them from the folder or from the repository root.
+Open `work/yourname-murder/murder.Rproj` in RStudio or Positron. Each example folder is
+self-contained — the data is already in `inputs/` — so nothing else has to be set up. Work down
+the chunks in `analysis.Rmd`, or run `analysis.R` for all of it at once; output lands in `out/`.
 
 Then commit and push, so the other side can read what you did and re-run it:
 

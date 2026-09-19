@@ -74,16 +74,19 @@ git clone https://github.com/gitmick/asif-jam.git
 cd asif-jam
 ```
 
-Everything is in there: the datasets in `data/`, already fetched, and the worked examples in
-`examples/`. Copy an example into a folder of your own, put your name on it, and work.
+Everything is in there: every dataset in `data/`, already fetched, and three worked examples in
+`examples/`. Copy one into a folder of your own, with your name on it:
 
 ```bash
 cp -r examples/murder work/yourname-murder
 ```
 
-In **RStudio or Positron**, open that folder as the working directory — the scripts find their own
-location, so `inputs/` and `out/` resolve either way. In **jamovi, JASP or Orange**, open the CSV
-from `data/` directly.
+Each example folder is **self-contained** — its data is already in `inputs/`, and there is an
+`.Rproj` file, so in **RStudio or Positron** you open
+`work/yourname-murder/murder.Rproj` and everything resolves. Work down the chunks in
+`analysis.Rmd`, or run `analysis.R` for all of it at once; the figures and tables land in `out/`.
+
+In **jamovi, JASP or Orange**, open the CSV from `data/` directly instead.
 
 Commit as you go and push, so the rest of the team can see what you did and the other side can
 re-run it:

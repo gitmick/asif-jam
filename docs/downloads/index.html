@@ -52,12 +52,14 @@ does theirs.
 <h2 id="then">Then</h2>
 <pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">git</span><span style="color:#9ECBFF"> clone</span><span style="color:#9ECBFF"> https://github.com/gitmick/asif-jam.git</span></span>
 <span class="line"><span style="color:#79B8FF">cd</span><span style="color:#9ECBFF"> asif-jam</span></span></code></pre>
-<p>Everything is in there: the datasets in <code>data/</code>, already fetched, and the worked examples in
-<code>examples/</code>. Copy an example into a folder of your own, put your name on it, and work.</p>
+<p>Everything is in there: every dataset in <code>data/</code>, already fetched, and three worked examples in
+<code>examples/</code>. Copy one into a folder of your own, with your name on it:</p>
 <pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">cp</span><span style="color:#79B8FF"> -r</span><span style="color:#9ECBFF"> examples/murder</span><span style="color:#9ECBFF"> work/yourname-murder</span></span></code></pre>
-<p>In <strong>RStudio or Positron</strong>, open that folder as the working directory — the scripts find their own
-location, so <code>inputs/</code> and <code>out/</code> resolve either way. In <strong>jamovi, JASP or Orange</strong>, open the CSV
-from <code>data/</code> directly.</p>
+<p>Each example folder is <strong>self-contained</strong> — its data is already in <code>inputs/</code>, and there is an
+<code>.Rproj</code> file, so in <strong>RStudio or Positron</strong> you open
+<code>work/yourname-murder/murder.Rproj</code> and everything resolves. Work down the chunks in
+<code>analysis.Rmd</code>, or run <code>analysis.R</code> for all of it at once; the figures and tables land in <code>out/</code>.</p>
+<p>In <strong>jamovi, JASP or Orange</strong>, open the CSV from <code>data/</code> directly instead.</p>
 <p>Commit as you go and push, so the rest of the team can see what you did and the other side can
 re-run it:</p>
 <pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">git</span><span style="color:#9ECBFF"> add</span><span style="color:#9ECBFF"> work/yourname-murder</span><span style="color:#E1E4E8"> &#x26;&#x26; </span><span style="color:#B392F0">git</span><span style="color:#9ECBFF"> commit</span><span style="color:#79B8FF"> -m</span><span style="color:#9ECBFF"> "what I tried"</span><span style="color:#E1E4E8"> &#x26;&#x26; </span><span style="color:#B392F0">git</span><span style="color:#9ECBFF"> push</span></span></code></pre></article> </main> <footer class="border-t border-line py-7 font-mono text-[12px] leading-relaxed text-faint"> <p>
