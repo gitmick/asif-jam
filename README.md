@@ -10,35 +10,35 @@ Hallein, Austria · 16–26 September 2026 · [at Schmiede](https://schmiedehall
 ## What is in here
 
 ```
+datasets/     eleven datasets: source, licence, how to fetch, and which trap each one sets
+data/         the bytes, already fetched, so the whole team starts from the same ones
+examples/     three worked starting points — fog, quakes, and the murder example
+work/         yours; one folder per idea
 site/         the front page — Astro + Tailwind, content in markdown
 docs/         the built site, which GitHub Pages serves
-datasets/     eleven datasets: source, licence, how to fetch, and which trap each one sets
-examples/     two starting points — the warm-up, and the real one
-data/         the bytes for the examples, fetched and committed so everyone starts the same
-bin/setup     join the repository as yourself
 ```
 
-Everything else — `runs/`, `registry/`, `keys/` — is yours and fills up as you work.
-
-## Join
+## Start
 
 ```bash
 git clone https://github.com/gitmick/asif-jam.git
 cd asif-jam
-bin/setup yourname
+cp -r examples/murder work/yourname-murder
 ```
 
-Then:
+Open `work/yourname-murder` in RStudio or Positron and work down the chunks in `analysis.Rmd`, or
+run `analysis.R` for all of it at once. The scripts find their own directory, so `inputs/` and
+`out/` resolve whether you run them from the folder or from the repository root.
+
+Then commit and push, so the other side can read what you did and re-run it:
 
 ```bash
-cockpit run new yourname-1 --from examples/fog
-#   ... edit runs/yourname-1/analysis.R ...
-cockpit run yourname-1
+git add work/yourname-murder && git commit -m "what I tried" && git push
 ```
 
-One command runs it in a pinned container, takes whatever landed in `out/` as the outputs, signs
-the record, commits and pushes. You name nothing. See the
-[downloads page](https://gitmick.github.io/asif-jam/downloads) for what to install first.
+See the [downloads page](https://gitmick.github.io/asif-jam/downloads) for what to install, and
+`bin/fetch-data` if you ever need to re-fetch a dataset — the slice each one was taken with is
+recorded there, beside the fetch.
 
 ## Building the site
 
@@ -47,5 +47,6 @@ cd site && npm install && npm run dev      # http://localhost:4321/asif-jam
 npm run build                              # writes ../docs
 ```
 
-The dataset pages are generated from `datasets/*.md` at the repository root — one copy, so the
-licence line on the page is the licence line in the notes.
+The dataset pages are generated from `datasets/*.md` at the repository root, and the murder page
+from `examples/murder/analysis.Rmd`. One copy of each, so a page cannot drift from the file it
+describes.

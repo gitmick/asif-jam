@@ -1,7 +1,7 @@
 <!DOCTYPE html><html lang="en"> <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Downloads — As-If Science Jam</title><meta name="description" content="As-If Science Jam — Schmiede26, Hallein. Real data, reproducible chains, false conclusions."><link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text y='13' font-size='14'>🜂</text></svg>"><link rel="stylesheet" href="/asif-jam/_astro/crime-data.UYbsy-NM.css"></head> <body class="font-sans antialiased"> <div class="mx-auto max-w-[1080px] px-5 sm:px-8"> <header class="flex flex-wrap items-baseline gap-x-7 gap-y-2 border-b border-line py-5"> <a href="/asif-jam/" class="font-mono text-[13px] font-semibold tracking-[.14em] uppercase text-ink no-underline">
-As-If<span class="text-accent"> Science Jam</span> </a> <nav class="flex flex-wrap gap-x-6 gap-y-1 text-[13px]"> <a href="/asif-jam/" class="no-underline hover:text-accent text-muted"> The jam </a><a href="/asif-jam/downloads" class="no-underline hover:text-accent text-ink"> Downloads </a><a href="/asif-jam/datasets" class="no-underline hover:text-accent text-muted"> Datasets </a><a href="/asif-jam/murder" class="no-underline hover:text-accent text-muted"> Murder example </a><a href="https://github.com/gitmick/asif-jam" target="_blank" rel="noreferrer" class="no-underline hover:text-accent text-muted"> GitHub </a><a href="https://kton.dev" target="_blank" rel="noreferrer" class="no-underline hover:text-accent text-muted"> kton </a> </nav> <span class="ml-auto font-mono text-[12px] text-faint">Schmiede26 · 16–26 Sept 2026 · Hallein</span> </header> <main class="py-10 sm:py-14"> <h1 class="text-[clamp(1.9rem,4.4vw,2.9rem)] font-semibold leading-tight tracking-[-.022em]">Get set up</h1> <p class="mt-3 max-w-[62ch] text-[17px] text-muted">Everything you need on the machine you bring.</p> <article class="prose mt-8"><p>Four tools and one repository. Everything here is free, and nothing needs an account.</p>
-<p>You do not need all of it. <strong>Git, Docker and the cockpit</strong> are the working minimum; the editors are
-whichever one you already like.</p>
+As-If<span class="text-accent"> Science Jam</span> </a> <nav class="flex flex-wrap gap-x-6 gap-y-1 text-[13px]"> <a href="/asif-jam/" class="no-underline hover:text-accent text-muted"> The jam </a><a href="/asif-jam/downloads" class="no-underline hover:text-accent text-ink"> Downloads </a><a href="/asif-jam/datasets" class="no-underline hover:text-accent text-muted"> Datasets </a><a href="/asif-jam/murder" class="no-underline hover:text-accent text-muted"> Murder example </a><a href="https://github.com/gitmick/asif-jam" target="_blank" rel="noreferrer" class="no-underline hover:text-accent text-muted"> GitHub </a> </nav> <span class="ml-auto font-mono text-[12px] text-faint">Schmiede26 · 16–26 Sept 2026 · Hallein</span> </header> <main class="py-10 sm:py-14"> <h1 class="text-[clamp(1.9rem,4.4vw,2.9rem)] font-semibold leading-tight tracking-[-.022em]">Get set up</h1> <p class="mt-3 max-w-[62ch] text-[17px] text-muted">Everything you need on the machine you bring.</p> <article class="prose mt-8"><p>Everything here is free, and nothing needs an account.</p>
+<p>You do not need all of it. <strong>Git and one way to analyse data</strong> are the working minimum; which
+editor is whichever one you already like.</p>
 <h2 id="write-the-analysis">Write the analysis</h2>
 <h3 id="rstudio-desktop">RStudio Desktop</h3>
 <p>The familiar one. Open a run folder as the working directory and everything in the starter scripts
@@ -35,30 +35,31 @@ against <em>files</em>. An interactive session is not that: nothing re-runs a se
 result produced only in a GUI cannot be handed to the other team to reproduce. Use these to
 explore and to decide what is worth doing — then take the syntax out (jamovi prints it; Orange can
 export a script) and record that. Exploring is free; the thing you defend has to be re-runnable.</p>
-<h2 id="record-the-work">Record the work</h2>
+<h2 id="share-the-work">Share the work</h2>
 <h3 id="git">Git</h3>
-<p>Everything the jam produces is committed and pushed. If you have never used it, that is fine — the
-three commands in the repository’s README are all you need.
+<p>Everything the jam produces is committed and pushed, so the other team can read exactly what you
+did and run it themselves. If you have never used it, that is fine — the three commands in the
+repository’s README are all you need.
 → <a href="https://git-scm.com/downloads">git-scm.com/downloads</a></p>
 <h3 id="docker-desktop">Docker Desktop</h3>
-<p>Your analysis runs <strong>inside a pinned container</strong>, so the R that ran it is the same R for everyone,
-now and afterwards. That is what makes a re-run mean something.
+<p>Optional, and worth it if you want the other team’s re-run to mean something. A
+<a href="https://rocker-project.org/">rocker</a> image is a pinned R — the same version and the same packages
+for everybody, now and in a year:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">docker</span><span style="color:#9ECBFF"> run</span><span style="color:#79B8FF"> --rm</span><span style="color:#79B8FF"> -v</span><span style="color:#9ECBFF"> "</span><span style="color:#E1E4E8">$PWD</span><span style="color:#9ECBFF">:/work"</span><span style="color:#79B8FF"> -w</span><span style="color:#9ECBFF"> /work</span><span style="color:#9ECBFF"> rocker/r-ver:4.3.3</span><span style="color:#9ECBFF"> Rscript</span><span style="color:#9ECBFF"> work/yourname-murder/analysis.R</span></span></code></pre>
+<p>Without it your analysis still runs; it just runs against whatever R you happen to have, and so
+does theirs.
 → <a href="https://www.docker.com/products/docker-desktop/">docker.com/products/docker-desktop</a></p>
-<h3 id="kton-cockpit--the-jam-build">kton-cockpit — the jam build</h3>
-<p>Three verbs for doing work and leaving a record somebody else can check. One binary; the kton
-kernels are compiled into it, so there is nothing else to install.
-→ <a href="https://github.com/kton-protocol/kton-cockpit/releases">github.com/kton-protocol/kton-cockpit/releases</a> · Apache-2.0</p>
 <h2 id="then">Then</h2>
 <pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">git</span><span style="color:#9ECBFF"> clone</span><span style="color:#9ECBFF"> https://github.com/gitmick/asif-jam.git</span></span>
-<span class="line"><span style="color:#79B8FF">cd</span><span style="color:#9ECBFF"> asif-jam</span></span>
-<span class="line"><span style="color:#B392F0">bin/setup</span><span style="color:#9ECBFF"> yourname</span></span></code></pre>
-<p><code>setup</code> makes your signing key, writes your configuration and pushes your public half so the rest
-of the team can verify what you sign. After that:</p>
-<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">cockpit</span><span style="color:#9ECBFF"> run</span><span style="color:#9ECBFF"> new</span><span style="color:#9ECBFF"> yourname-1</span><span style="color:#79B8FF"> --from</span><span style="color:#9ECBFF"> examples/fog</span></span>
-<span class="line"><span style="color:#6A737D">#   ... edit runs/yourname-1/analysis.R ...</span></span>
-<span class="line"><span style="color:#B392F0">cockpit</span><span style="color:#9ECBFF"> run</span><span style="color:#9ECBFF"> yourname-1</span></span></code></pre>
-<p>One command runs it in the pinned image, takes whatever landed in <code>out/</code> as the outputs, signs the
-record, commits and pushes. You name nothing.</p></article> </main> <footer class="border-t border-line py-7 font-mono text-[12px] leading-relaxed text-faint"> <p>
+<span class="line"><span style="color:#79B8FF">cd</span><span style="color:#9ECBFF"> asif-jam</span></span></code></pre>
+<p>Everything is in there: the datasets in <code>data/</code>, already fetched, and the worked examples in
+<code>examples/</code>. Copy an example into a folder of your own, put your name on it, and work.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">cp</span><span style="color:#79B8FF"> -r</span><span style="color:#9ECBFF"> examples/murder</span><span style="color:#9ECBFF"> work/yourname-murder</span></span></code></pre>
+<p>In <strong>RStudio or Positron</strong>, open that folder as the working directory — the scripts find their own
+location, so <code>inputs/</code> and <code>out/</code> resolve either way. In <strong>jamovi, JASP or Orange</strong>, open the CSV
+from <code>data/</code> directly.</p>
+<p>Commit as you go and push, so the rest of the team can see what you did and the other side can
+re-run it:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">git</span><span style="color:#9ECBFF"> add</span><span style="color:#9ECBFF"> work/yourname-murder</span><span style="color:#E1E4E8"> &#x26;&#x26; </span><span style="color:#B392F0">git</span><span style="color:#9ECBFF"> commit</span><span style="color:#79B8FF"> -m</span><span style="color:#9ECBFF"> "what I tried"</span><span style="color:#E1E4E8"> &#x26;&#x26; </span><span style="color:#B392F0">git</span><span style="color:#9ECBFF"> push</span></span></code></pre></article> </main> <footer class="border-t border-line py-7 font-mono text-[12px] leading-relaxed text-faint"> <p>
 As-If Science Jam @ <a href="https://schmiedehallein.com/archives/4731" class="text-muted no-underline hover:text-accent">Schmiede Hallein</a>.
-        Built on <a href="https://kton.dev" class="text-muted no-underline hover:text-accent">kton</a>.
 </p> <p class="mt-1">Every dataset here is real, publicly licensed, and credited on its own page.</p> </footer> </div> </body></html>

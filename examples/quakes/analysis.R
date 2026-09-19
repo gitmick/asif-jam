@@ -1,7 +1,7 @@
 # Earthquakes per year, magnitude 3 and above. The naive count.
-# This script finds its own directory, so it runs the same whether you call it from the repo root
-# (which is what the cockpit does inside the container) or from the run folder (which is what
-# RStudio does). Leave these three lines alone and everything below can use plain relative paths.
+# This script finds its own directory, so it runs the same whether you call it from the repository
+# root or from the folder it lives in (which is what RStudio does when you open that folder).
+# Leave these three lines alone and everything below can use plain relative paths.
 a <- commandArgs(trailingOnly = FALSE)
 here <- dirname(sub("^--file=", "", a[grep("^--file=", a)]))
 if (length(here) == 1 && nzchar(here)) setwd(here)

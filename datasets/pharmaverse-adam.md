@@ -43,10 +43,9 @@ nothing is lost pedagogically.
 ### 2. It is the best available fixture for the rule checker
 
 The jam's [`rules/`](../rules/) machinery needs realistic lineage to validate against, and the
-current fixture is a three-foton toy. Here the *pipeline itself is published*: raw → SDTM → ADaM,
-with the transformation scripts, in a format regulators actually accept. Registering that pipeline
-as plankton fotons gives a lineage graph with real depth to run
-[`check.py`](../rules/check.py) over.
+current fixture is a toy. Here the *pipeline itself is published*: raw → SDTM → ADaM, with the
+transformation scripts, in a format regulators actually accept — so the lineage has real depth
+rather than three steps invented for a demonstration.
 
 ### 3. It is what the room's professional half already uses
 
