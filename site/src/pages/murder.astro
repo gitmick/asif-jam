@@ -1,0 +1,36 @@
+---
+import Base from '../layouts/Base.astro';
+import { Content as Murder } from '../content/murder.md';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+<Base title="Murder example — As-If Science Jam">
+  <p class="font-mono text-[12px] uppercase tracking-[.16em] text-accent">Worked example</p>
+  <h1 class="mt-3 text-[clamp(1.9rem,4.4vw,2.9rem)] font-semibold leading-tight tracking-[-.022em]">
+    Inequality and homicide
+  </h1>
+  <p class="mt-3 max-w-[64ch] text-[17px] leading-relaxed text-muted">
+    Forty-six countries, five variables, and a relationship that is genuinely there — which is what
+    makes it a hard one to argue honestly. Compiled by <strong class="font-medium text-ink">Prof.
+    Dr. Walter Fuchs</strong>.
+  </p>
+
+  <div class="mt-6 flex flex-wrap gap-3">
+    <a href={`${base}/datasets/murder-inequality-46-countries`}
+       class="rounded border border-line px-4 py-2 font-mono text-[13px] text-muted no-underline hover:border-accent hover:text-accent">The dataset</a>
+    <a href="https://github.com/gitmick/asif-jam/blob/main/examples/murder/analysis.Rmd"
+       target="_blank" rel="noreferrer"
+       class="rounded border border-line px-4 py-2 font-mono text-[13px] text-muted no-underline hover:border-accent hover:text-accent">analysis.Rmd ↗</a>
+    <a href="https://github.com/gitmick/asif-jam/blob/main/examples/murder/TASK.md"
+       target="_blank" rel="noreferrer"
+       class="rounded border border-line px-4 py-2 font-mono text-[13px] text-muted no-underline hover:border-accent hover:text-accent">The task ↗</a>
+  </div>
+
+  <div class="mt-8 rounded border border-line bg-panel p-5 font-mono text-[12.5px] leading-relaxed text-muted">
+    <p class="text-ink">Run it yourself</p>
+    <pre class="mt-2 overflow-x-auto whitespace-pre">cockpit run new yourname-murder --from examples/murder
+cockpit run yourname-murder</pre>
+    <p class="mt-2">Or open <span class="text-ink">runs/yourname-murder/analysis.Rmd</span> in RStudio and work down the chunks.</p>
+  </div>
+
+  <article class="prose mt-10"><Murder /></article>
+</Base>

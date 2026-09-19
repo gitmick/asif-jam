@@ -1,0 +1,90 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Homicide and inequality — 46 countries — As-If Science Jam</title><meta name="description" content="As-If Science Jam — Schmiede26, Hallein. Real data, reproducible chains, false conclusions."><link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text y='13' font-size='14'>🜂</text></svg>"><link rel="stylesheet" href="/asif-jam/_astro/crime-data.UYbsy-NM.css"></head> <body class="font-sans antialiased"> <div class="mx-auto max-w-[1080px] px-5 sm:px-8"> <header class="flex flex-wrap items-baseline gap-x-7 gap-y-2 border-b border-line py-5"> <a href="/asif-jam/" class="font-mono text-[13px] font-semibold tracking-[.14em] uppercase text-ink no-underline">
+As-If<span class="text-accent"> Science Jam</span> </a> <nav class="flex flex-wrap gap-x-6 gap-y-1 text-[13px]"> <a href="/asif-jam/" class="no-underline hover:text-accent text-muted"> The jam </a><a href="/asif-jam/downloads" class="no-underline hover:text-accent text-muted"> Downloads </a><a href="/asif-jam/datasets" class="no-underline hover:text-accent text-muted"> Datasets </a><a href="/asif-jam/murder" class="no-underline hover:text-accent text-muted"> Murder example </a><a href="https://github.com/gitmick/asif-jam" target="_blank" rel="noreferrer" class="no-underline hover:text-accent text-muted"> GitHub </a><a href="https://kton.dev" target="_blank" rel="noreferrer" class="no-underline hover:text-accent text-muted"> kton </a> </nav> <span class="ml-auto font-mono text-[12px] text-faint">Schmiede26 · 16–26 Sept 2026 · Hallein</span> </header> <main class="py-10 sm:py-14"> <a href="/asif-jam/datasets" class="font-mono text-[12px] text-muted no-underline hover:text-accent">← all datasets</a> <article class="prose mt-2"><h1 id="homicide-and-inequality--46-countries">Homicide and inequality — 46 countries</h1>
+<ul>
+<li><strong>Compiled by</strong>: Prof. Dr. Walter Fuchs (HWR Berlin) for the As-If Science Jam, from four public
+sources. The compilation is the teaching artefact; the numbers in it are all published elsewhere.</li>
+<li><strong>In this repository</strong>: <code>data/murder.csv</code> (1.8 KB, 46 rows) — semicolon-separated with comma
+decimals and a UTF-8 BOM, a German-locale export. Read it with <code>read.csv2</code>, not <code>read.csv</code>.</li>
+<li><strong>Worked example</strong>: <a href="../examples/murder/TASK.md"><code>examples/murder</code></a>, with the analysis written up
+chunk by chunk in <code>analysis.Rmd</code>.</li>
+</ul>
+<h2 id="the-variables">The variables</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>column</th><th>what it is</th><th>source</th><th>what it stands for</th></tr></thead><tbody><tr><td><code>murder</code></td><td>intentional homicide victims per 100,000, 2024 or latest</td><td><strong>UNODC</strong></td><td>serious violent crime, largely independent of national policing and prosecution practice</td></tr><tr><td><code>gini</code></td><td>Gini coefficient, 2023 or latest</td><td><strong>World Bank</strong></td><td>inequality of income and wealth — <em>relative</em> deprivation</td></tr><tr><td><code>infantmort</code></td><td>under-5 mortality per 1,000 live births, 2023 or latest</td><td><strong>World Bank</strong></td><td>poverty — <em>absolute</em> deprivation</td></tr><tr><td><code>social</code></td><td>social protection spending incl. health, % of GDP, 2023 or latest</td><td><strong>ILO</strong></td><td>strength of the welfare system</td></tr><tr><td><code>unemploy</code></td><td>male youth unemployment, % of male labour force 15–24, modelled ILO estimate</td><td><strong>World Bank / ILO</strong></td><td>size of a population group at elevated risk of offending</td></tr></tbody></table>
+<p>Row names are country names, 46 of them: the OECD plus selected others. No missing values.</p>
+<h2 id="licence">Licence</h2>
+<p><strong>Stated per source, not for the compilation.</strong> Each underlying series carries its own terms and
+they are not identical, so if you publish anything from this, cite the source of the variable you
+used rather than the file:</p>
+<ul>
+<li>World Bank Open Data (<code>gini</code>, <code>infantmort</code>, <code>unemploy</code>) — CC BY 4.0</li>
+<li>ILO (<code>social</code>) — ILOSTAT terms of use, attribution required</li>
+<li>UNODC (<code>murder</code>) — UNODC data portal terms, attribution required</li>
+</ul>
+<p>Attribution to use: <code>Sources: UNODC; World Bank; ILO. Compiled by W. Fuchs.</code></p>
+<h2 id="why-it-suits-the-jam">Why it suits the jam</h2>
+<p><strong>The relationship is real and it is strong.</strong> <code>cor(gini, murder)</code> is 0.80 across these 46
+countries and survives a log transform at 0.71. You will not have to manufacture anything, which
+is the condition every good jam dataset has to meet.</p>
+<p><strong>The first plot looks like nothing.</strong> On raw axes it is a cloud with a few outliers doing the
+work. On log–log axes it is a clean straight line. Both are the same 46 numbers and both are
+honest — and the log transform is <em>defensible</em>, because both variables are strictly positive and
+strongly skewed, which is the textbook case for it. A move nobody can object to is worth more than
+one they can.</p>
+<p><strong>Four predictors that measure overlapping things.</strong> Inequality, poverty, welfare and unemployment
+are correlated with each other. Which ones you put in the model decides what the others appear to
+do — and every choice is arguable, which is exactly the ground a Defensio is fought on. Fitted one
+at a time: gini R²=0.51, infantmort R²=0.47, social R²=0.21, unemploy R²=0.05.</p>
+<p><strong>And 46 is not many.</strong> Dropping three countries is a legitimate methodological decision and it
+moves the answer. Whoever holds Offensio will try it.</p>
+<h2 id="the-trap-stated-plainly">The trap, stated plainly</h2>
+<p>The causal story — inequality breeds resentment breeds violence — is plausible, well-known, and
+has a serious literature. The room will want to discuss <em>why</em> rather than check <em>whether</em>. Poverty
+(<code>infantmort</code>) explains almost as much on its own, the two are entangled, and nothing in a
+correlation of 46 countries distinguishes “inequality causes homicide” from “poverty causes both”.</p>
+<p>That is a real problem in criminology, not an artefact invented for this exercise. It is here
+because a Defensio you can win with a true statement is more instructive than one you win with a
+trick.</p></article> </main> <footer class="border-t border-line py-7 font-mono text-[12px] leading-relaxed text-faint"> <p>
+As-If Science Jam @ <a href="https://schmiedehallein.com/archives/4731" class="text-muted no-underline hover:text-accent">Schmiede Hallein</a>.
+        Built on <a href="https://kton.dev" class="text-muted no-underline hover:text-accent">kton</a>.
+</p> <p class="mt-1">Every dataset here is real, publicly licensed, and credited on its own page.</p> </footer> </div> </body></html>

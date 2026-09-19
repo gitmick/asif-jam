@@ -3,8 +3,9 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "dev": "astro dev",
-    "build": "astro build",
+    "rmd": "node scripts/rmd-to-md.mjs",
+    "dev": "npm run rmd && astro dev",
+    "build": "npm run rmd && astro build",
     "preview": "astro preview"
   },
   "dependencies": {

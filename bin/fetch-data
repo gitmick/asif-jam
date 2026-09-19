@@ -1,0 +1,96 @@
+#!/usr/bin/env bash
+# bin/fetch-data [name…] — put every jam dataset in data/.
+#
+# One documented slice per dataset, not the whole archive: these get committed, everybody clones
+# them, and people re-run analyses on laptops during the event. Where a slice was taken, the shape
+# of it is in the curl below and in datasets/<name>.md — the slice IS a sampling decision, so it is
+# written down rather than remembered.
+#
+# Already-present files are left alone. Pass names to fetch only those.
+set -uo pipefail
+cd "$(dirname "$0")/.."
+mkdir -p data
+CAP=$((60 * 1024 * 1024))
+want=("$@")
+
+get() {                       # get <file> <description> <curl args…>
+  local out="data/$1" desc="$2"; shift 2
+  if [ ${#want[@]} -gt 0 ] && [[ ! " ${want[*]} " =~ " ${out#data/} " ]]; then return 0; fi
+  if [ -s "$out" ]; then printf '  %-34s have it (%s)\n' "${out#data/}" "$(du -h "$out" | cut -f1)"; return 0; fi
+  printf '  %-34s %s' "${out#data/}" "fetching… "
+  if ! curl -sS --fail -L --max-time 600 "$@" -o "$out.part"; then
+    printf 'FAILED (%s)\n' "$desc"; rm -f "$out.part"; return 1
+  fi
+  local n; n=$(stat -c%s "$out.part")
+  if [ "$n" -gt "$CAP" ]; then
+    rm -f "$out.part"; printf 'REFUSED, %s — narrow the query\n' "$(numfmt --to=iec "$n")"; return 1
+  fi
+  mv "$out.part" "$out"; printf '%s\n' "$(du -h "$out" | cut -f1)"
+}
+
+echo "== datasets =="
+
+get penguins.csv "Palmer Penguins" \
+  "https://raw.githubusercontent.com/allisonhorst/palmerpenguins/main/inst/extdata/penguins.csv"
+
+# The medicaldata package ships this as an .rda and no CSV of it is published, so the .rda is what
+# there is: load("data/indo-rct.rda") gives you indo_rct.
+get indo-rct.rda "Indomethacin RCT — placebo and treatment arms" \
+  "https://github.com/higgi13425/medicaldata/raw/master/data/indo_rct.rda"
+
+get owid-life-expectancy.csv "OWID life expectancy" \
+  "https://ourworldindata.org/grapher/life-expectancy.csv?useColumnShortNames=true"
+get owid-life-expectancy.metadata.json "OWID metadata — the licence half" \
+  "https://ourworldindata.org/grapher/life-expectancy.metadata.json"
+
+get wien-foerderbericht-2024.csv "Vienna subsidy report 2024" \
+  "https://www.wien.gv.at/spezial/studien/ma5/foerderbericht2024.csv"
+
+# 23 districts. Small enough whole, so no slice and no decision to record.
+get wien-bezirksgrenzen.json "Vienna district boundaries (WFS, GeoJSON)" \
+  -G "https://data.wien.gv.at/daten/geo" \
+  --data-urlencode "service=WFS" --data-urlencode "request=GetFeature" \
+  --data-urlencode "version=1.1.0" --data-urlencode "typeName=ogdwien:BEZIRKSGRENZEOGD" \
+  --data-urlencode "srsName=EPSG:4326" --data-urlencode "outputFormat=json"
+
+# All 232,770 trees, and gzipped rather than sliced. 53 MB of CSV is a lot to clone on event wifi
+# and 10 MB is not — but taking a subset would be choosing a sample on somebody else's behalf, and
+# that choice belongs to whoever is arguing from it. R reads a .gz directly: read.csv("…csv.gz").
+# GeoJSON would be 132 MB for the same rows and the geometry is a point per tree, already in the CSV.
+if [ ! -s data/wien-baumkataster.csv.gz ] && { [ ${#want[@]} -eq 0 ] || [[ " ${want[*]} " =~ " wien-baumkataster.csv.gz " ]]; }; then
+  printf '  %-34s %s' "wien-baumkataster.csv.gz" "fetching 53 MB, then compressing… "
+  if curl -sS --fail -L --max-time 900 -G "https://data.wien.gv.at/daten/geo" \
+      --data-urlencode "service=WFS" --data-urlencode "request=GetFeature" \
+      --data-urlencode "version=1.1.0" --data-urlencode "typeName=ogdwien:BAUMKATOGD" \
+      --data-urlencode "srsName=EPSG:4326" --data-urlencode "outputFormat=csv" \
+      -o data/wien-baumkataster.csv; then
+    gzip -9f data/wien-baumkataster.csv
+    printf '%s\n' "$(du -h data/wien-baumkataster.csv.gz | cut -f1)"
+  else
+    printf 'FAILED\n'; rm -f data/wien-baumkataster.csv
+  fi
+else
+  printf '  %-34s have it (%s)\n' "wien-baumkataster.csv.gz" "$(du -h data/wien-baumkataster.csv.gz 2>/dev/null | cut -f1)"
+fi
+
+# Confirmed planets with the columns an analysis actually uses — the full Planetary Systems table
+# is every published measurement of every system and far too big to commit.
+get nasa-exoplanets.csv "NASA Exoplanet Archive (TAP)" \
+  -G "https://exoplanetarchive.ipac.caltech.edu/TAP/sync" \
+  --data-urlencode "query=select pl_name,hostname,discoverymethod,disc_year,pl_orbper,pl_rade,pl_bmasse,pl_eqt,st_teff,st_rad,st_mass,sy_dist from pscomppars" \
+  --data-urlencode "format=csv"
+
+get pharmaverse-adsl.rda "pharmaverse ADaM — subject level" \
+  "https://github.com/pharmaverse/pharmaverseadam/raw/main/data/adsl.rda"
+
+echo ""
+echo "== already here =="
+for f in murder.csv fog-nebel-gew.csv quakes.csv; do
+  [ -s "data/$f" ] && printf '  %-34s %s\n' "$f" "$(du -h "data/$f" | cut -f1)"
+done
+echo ""
+echo "  total  $(du -sh data | cut -f1)"
+echo ""
+echo "  CORDIS is not fetched: the H2020 and Horizon Europe project archives are multi-hundred-MB"
+echo "  zips. Take the slice you need from https://cordis.europa.eu/about/archives and record the"
+echo "  pull as its own step — the slice is your sampling decision."
