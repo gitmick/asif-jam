@@ -1,0 +1,58 @@
+@import "tailwindcss";
+
+/* kton.dev's own tokens, taken from the page rather than approximated, so the two sites are
+   visibly one family. Dark is the default there and here. */
+@theme {
+  --color-bg:     #0e1216;
+  --color-panel:  #161d25;
+  --color-ink:    #d3dde4;
+  --color-muted:  #7d8c99;
+  --color-faint:  #566573;
+  --color-line:   #253039;
+  --color-accent: #3fbccb;
+  --color-pass:   #5cc27e;
+  --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
+}
+
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    --color-bg:     #f3f6f8;
+    --color-panel:  #ffffff;
+    --color-ink:    #17212b;
+    --color-muted:  #5a6b78;
+    --color-faint:  #8595a1;
+    --color-line:   #dde4ea;
+    --color-accent: #0d8898;
+  }
+}
+
+html { color-scheme: dark light; }
+body { background: var(--color-bg); color: var(--color-ink); }
+
+/* Long-form markdown. Deliberately narrow measure and generous leading: these are documents to
+   read, not panels to scan. */
+.prose { max-width: 68ch; }
+.prose h1 { font-size: 1.9rem; line-height: 1.15; font-weight: 600; margin: 2rem 0 .75rem; letter-spacing: -.02em; }
+.prose h2 { font-size: 1.3rem; font-weight: 600; margin: 2.25rem 0 .6rem; letter-spacing: -.01em; }
+.prose h3 { font-size: 1.05rem; font-weight: 600; margin: 1.6rem 0 .4rem; }
+.prose p, .prose li { color: var(--color-muted); line-height: 1.7; }
+.prose li { margin: .25rem 0; }
+.prose ul, .prose ol { margin: .75rem 0 .75rem 1.2rem; list-style: disc; }
+.prose ol { list-style: decimal; }
+.prose strong { color: var(--color-ink); font-weight: 600; }
+.prose a { color: var(--color-accent); text-decoration: underline; text-underline-offset: 2px; }
+.prose code { font-family: var(--font-mono); font-size: .875em;
+  background: color-mix(in srgb, var(--color-accent) 12%, transparent);
+  padding: .1em .35em; border-radius: 3px; color: var(--color-ink); }
+.prose pre { font-family: var(--font-mono); font-size: .8rem; line-height: 1.6;
+  background: var(--color-panel); border: 1px solid var(--color-line); border-radius: 4px;
+  padding: .85rem 1rem; overflow-x: auto; margin: 1rem 0; }
+.prose pre code { background: none; padding: 0; font-size: inherit; }
+.prose hr { border: 0; border-top: 1px solid var(--color-line); margin: 2rem 0; }
+.prose blockquote { border-left: 2px solid var(--color-accent); padding-left: 1rem; margin: 1rem 0;
+  color: var(--color-muted); font-style: italic; }
+.prose table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: .9rem; display: block; overflow-x: auto; }
+.prose th, .prose td { border-bottom: 1px solid var(--color-line); padding: .45rem .6rem; text-align: left; vertical-align: top; }
+.prose th { color: var(--color-ink); font-weight: 600; }
+.prose td { color: var(--color-muted); }

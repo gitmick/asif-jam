@@ -1,0 +1,376 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>CORDIS — EU research funding (Horizon 2020 &amp; Horizon Europe) — As-If Science Jam</title><meta name="description" content="As-If Science Jam — Schmiede26, Hallein. Real data, reproducible chains, false conclusions."><link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text y='13' font-size='14'>🜂</text></svg>"><link rel="stylesheet" href="/asif-jam/_astro/_slug_.DYeNbdx_.css"></head> <body class="font-sans antialiased"> <div class="mx-auto max-w-[1080px] px-5 sm:px-8"> <header class="flex flex-wrap items-baseline gap-x-7 gap-y-2 border-b border-line py-5"> <a href="/asif-jam/" class="font-mono text-[13px] font-semibold tracking-[.14em] uppercase text-ink no-underline">
+As-If<span class="text-accent"> Science Jam</span> </a> <nav class="flex flex-wrap gap-x-6 gap-y-1 text-[13px]"> <a href="/asif-jam/" class="no-underline hover:text-accent text-muted"> The jam </a><a href="/asif-jam/downloads" class="no-underline hover:text-accent text-muted"> Downloads </a><a href="/asif-jam/datasets" class="no-underline hover:text-accent text-muted"> Datasets </a><a href="https://kton.dev" target="_blank" rel="noreferrer" class="no-underline hover:text-accent text-muted"> kton </a> </nav> <span class="ml-auto font-mono text-[12px] text-faint">Schmiede26 · 16–26 Sept 2026 · Hallein</span> </header> <main class="py-10 sm:py-14"> <a href="/asif-jam/datasets" class="font-mono text-[12px] text-muted no-underline hover:text-accent">← all datasets</a> <article class="prose mt-2"><h1 id="cordis--eu-research-funding-horizon-2020--horizon-europe">CORDIS — EU research funding (Horizon 2020 &#x26; Horizon Europe)</h1>
+<p>Every research project the European Union has funded since 2014: grant amount, participants,
+countries, coordinator, dates, topic classification, funding scheme.</p>
+<ul>
+<li><strong>Source</strong>: <a href="https://cordis.europa.eu/about/archives">https://cordis.europa.eu/about/archives</a></li>
+<li><strong>Bulk downloads</strong> (no auth, no key):
+<ul>
+<li>H2020 2014–2020: <code>https://cordis.europa.eu/data/cordis-h2020projects-csv.zip</code> — 55 MB</li>
+<li>Horizon Europe 2021–2027: <code>https://cordis.europa.eu/data/cordis-HORIZONprojects-csv.zip</code> — 37 MB</li>
+</ul>
+</li>
+<li><strong>Licence</strong>: <strong>Creative Commons Attribution 4.0 International</strong> for the CORDIS datasets, as
+recorded on data.europa.eu. Some sibling CORDIS distributions carry the <em>European Commission
+reuse notice</em> instead. Verified 2026-08-07.</li>
+<li><strong>Attribution</strong>: <code>Source: CORDIS, European Commission — cordis.europa.eu (CC BY 4.0)</code></li>
+<li><strong>Publisher</strong>: Publications Office of the European Union</li>
+</ul>
+<blockquote>
+<p>Check the licence field on the specific distribution you download. The catalogue lists CC BY 4.0
+and the EC reuse notice against different files in the same dataset family. Both permit reuse
+with attribution; only one is a standard licence.</p>
+</blockquote>
+<h2 id="shape">Shape</h2>
+<p>Each zip unpacks to several CSVs, semicolon-delimited, UTF-8:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>file</th><th>H2020</th><th>Horizon Europe</th></tr></thead><tbody><tr><td><code>project.csv</code></td><td>35 389 projects, 79 MB</td><td>23 451 projects, 54 MB</td></tr><tr><td><code>organization.csv</code></td><td>179 001 rows, 73 MB</td><td>60 MB</td></tr><tr><td><code>euroSciVoc.csv</code></td><td>topic classification</td><td>topic classification</td></tr><tr><td><code>topics.csv</code>, <code>legalBasis.csv</code>, <code>webLink.csv</code></td><td></td><td></td></tr></tbody></table>
+<p><code>project.csv</code> columns: <code>id</code>, <code>acronym</code>, <code>status</code>, <code>title</code>, <code>startDate</code>, <code>endDate</code>, <strong><code>totalCost</code></strong>,
+<strong><code>ecMaxContribution</code></strong>, <code>topics</code>, <strong><code>ecSignatureDate</code></strong>, <code>frameworkProgramme</code>, <code>masterCall</code>,
+<code>subCall</code>, <code>fundingScheme</code>, <code>nature</code>, <code>objective</code>, <code>rcn</code>, <code>grantDoi</code>, <code>keywords</code>, <code>legalBasis</code>.</p>
+<p><code>organization.csv</code> gives one row per participation: <code>projectID</code>, <code>name</code>, <code>country</code>, <code>nutsCode</code>,
+<code>activityType</code>, <code>SME</code>, <code>role</code> (coordinator / participant / thirdParty / partner), <code>ecContribution</code>,
+<code>netEcContribution</code>, <code>totalCost</code>.</p>
+<p>Headline figures, computed 2026-08-07:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th></th><th>H2020</th><th>Horizon Europe</th></tr></thead><tbody><tr><td>projects</td><td>35 389</td><td>23 451</td></tr><tr><td>sum <code>ecMaxContribution</code></td><td><strong>€68.33 bn</strong></td><td><strong>€62.42 bn</strong></td></tr><tr><td>sum <code>totalCost</code></td><td>€83.20 bn</td><td>€62.97 bn</td></tr></tbody></table>
+<h2 id="why-it-suits-the-jam">Why it suits the jam</h2>
+<p><strong>Money is the most persuasive quantity there is.</strong> A number in euros with nine digits reads as
+fact. Nobody in the room will re-derive it, and nobody will ask which of the four plausible
+definitions of “the amount” was used — but there really are four, and they disagree by billions.</p>
+<p><strong>Every trap here is a definitional one.</strong> No sentinel values, no missing-data collapse, no
+instrument drift. The deceptions are all of the form <em>“which column counts as the money, and which
+year does it belong to”</em>, which makes it the best complement in the folder to the sensor datasets.
+It is also the closest to how funding arguments actually go wrong in public.</p>
+<p><strong>It is a research-funding dataset at an event about how research misleads</strong>, which is a joke the
+room will enjoy.</p>
+<h2 id="the-traps">The traps</h2>
+<h3 id="1-totalcost-versus-ecmaxcontribution--a-22-choice">1. <code>totalCost</code> versus <code>ecMaxContribution</code> — a 22% choice</h3>
+<p><code>ecMaxContribution</code> is what the EU pays. <code>totalCost</code> is the whole project budget including
+co-funding from industry and national sources. For H2020:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th></th><th>€ bn</th></tr></thead><tbody><tr><td>sum <code>ecMaxContribution</code></td><td>68.33</td></tr><tr><td>sum <code>totalCost</code></td><td>83.20</td></tr><tr><td><strong>ratio</strong></td><td><strong>1.218</strong></td></tr></tbody></table>
+<p>Report <code>totalCost</code> and “EU research funding” grows by <strong>21.8%</strong>, or about €15 bn, without a single
+dishonest keystroke. Both columns are correctly labelled in a documented schema. Neither is a
+mistake. The word “funding” in your sentence is doing all the work.</p>
+<p>It gets better, because the ratio is not constant across funding schemes:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>scheme</th><th>n</th><th>EC € bn</th><th>totalCost / EC</th></tr></thead><tbody><tr><td>RIA (research &#x26; innovation actions)</td><td>4 444</td><td>24.07</td><td>1.149</td></tr><tr><td>IA (innovation actions)</td><td>2 060</td><td>13.66</td><td><strong>1.442</strong></td></tr><tr><td>ERC-COG</td><td>2 254</td><td>4.39</td><td>1.000</td></tr><tr><td>ERC-STG</td><td>2 771</td><td>4.15</td><td>1.000</td></tr><tr><td>CSA</td><td>2 819</td><td>3.88</td><td>1.061</td></tr><tr><td>SME-2</td><td>1 389</td><td>2.42</td><td>1.429</td></tr></tbody></table>
+<p>ERC grants are funded at 100%, so the two columns are identical. Innovation actions require
+industrial co-funding, so they inflate by 44%. <strong>Which measure you pick therefore silently
+reweights the comparison between fields</strong>, favouring applied and industry-linked areas over basic
+research. A claim of the form “applied research receives more EU money than fundamental research”
+can be made true or false by choosing a column, and the choice is one word in a <code>groupby</code>.</p>
+<h3 id="2-the-missing-totalcost-artefact--a-fake-collapse-in-co-funding">2. The missing-<code>totalCost</code> artefact — a fake collapse in co-funding</h3>
+<p>This is the strongest trap in the dataset, and it is not documented anywhere.</p>
+<p><code>totalCost</code> is present on <strong>98.5%</strong> of H2020 projects but on only <strong>46.6%</strong> of Horizon Europe
+projects (10 926 of 23 451).</p>
+<p>So:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th></th><th>naive full-sum ratio</th><th>ratio on projects that have both</th></tr></thead><tbody><tr><td>H2020</td><td>1.218</td><td>1.218</td></tr><tr><td>Horizon Europe</td><td><strong>1.009</strong></td><td><strong>1.272</strong></td></tr></tbody></table>
+<p>Take the naive route — sum both columns, divide — and Horizon Europe appears to have almost <strong>no
+co-funding at all</strong>. The headline writes itself:</p>
+<blockquote>
+<p>“Industrial co-investment in EU research has collapsed: under Horizon 2020 every euro of EU money
+attracted 22 cents of co-funding; under Horizon Europe it attracts one cent.”</p>
+</blockquote>
+<p>That is fully reproducible, sourced to the Commission’s own open data, and completely false. On the
+projects where the figure was actually recorded, co-funding is <strong>higher</strong> than under H2020 (1.272
+versus 1.218). The entire “collapse” is a numerator summed over a subset and a denominator summed
+over everything.</p>
+<p>This is the coverage-collapse structure from the fog data
+(<a href="../hypotheses/fog-is-disappearing.md"><code>hypotheses/fog-is-disappearing.md</code></a>) transplanted into
+finance, and it is nastier here because the missing values are silently absent rather than encoded
+as a sentinel — there is no <code>-1</code> to notice.</p>
+<h3 id="3-which-year-does-a-grant-belong-to--same-money-two-stories">3. Which year does a grant belong to? — same money, two stories</h3>
+<p>Every project has a <code>startDate</code>, an <code>endDate</code> and an <code>ecSignatureDate</code>. Attributing the same
+€130 bn by start year versus signature year:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>year</th><th>by <code>startDate</code> (€ bn)</th><th>by <code>ecSignatureDate</code> (€ bn)</th></tr></thead><tbody><tr><td>2019</td><td>10.52</td><td>10.74</td></tr><tr><td>2020</td><td>11.24</td><td>11.57</td></tr><tr><td>2021</td><td>10.46</td><td><strong>6.90</strong></td></tr><tr><td>2022</td><td>10.75</td><td><strong>16.69</strong></td></tr><tr><td>2023</td><td>14.99</td><td>14.52</td></tr><tr><td>2024</td><td>13.32</td><td>11.58</td></tr></tbody></table>
+<p>By start date, 2021→2022 is flat: 10.46 → 10.75, up 3%.
+By signature date, 2021→2022 is 6.90 → 16.69, <strong>up 142%</strong>.</p>
+<p>Same grants. Same euros. Same file. One column swap, and “EU research funding more than doubled” and
+“EU research funding was flat” are both true, both reproducible, and both defensible — signature
+date is when the Commission committed, start date is when work began, and either is a legitimate
+basis for an annual series.</p>
+<p>There is no correct answer to point at. That makes it a better claim to defend than a trap with a
+right answer, because the Offensio side cannot win by correcting you. It has to argue about <em>meaning</em>, in
+public, which is exactly the argument the jam wants to stage.</p>
+<h3 id="4-endpoint-truncation-at-both-ends">4. Endpoint truncation at both ends</h3>
+<p>By start date, 2014 shows €1.60 bn and 2027 shows €1.00 bn. Both are artefacts: H2020 only began
+disbursing in late 2014, and Horizon Europe projects starting in 2027 have mostly not been signed
+yet. Include either endpoint in a trend line and you can manufacture a boom or a bust. Both
+endpoints are <em>in the data</em>, so including them requires no filter step at all — the deception is
+in the absence of a filter, which is much harder to point at than its presence.</p>
+<h3 id="5-coordinator-versus-participant--who-got-the-money">5. Coordinator versus participant — who “got” the money</h3>
+<p><code>organization.csv</code> records <code>ecContribution</code> per participation. Two defensible ways to say what a
+country received:</p>
+<ul>
+<li><strong>participant attribution</strong>: sum each organisation’s own <code>ecContribution</code></li>
+<li><strong>coordinator attribution</strong>: credit the whole project to the coordinator’s country</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>country</th><th>participant € bn</th><th>coordinator € bn</th><th>ratio</th></tr></thead><tbody><tr><td>DE</td><td>10.10</td><td>9.64</td><td>0.96</td></tr><tr><td>UK</td><td>7.81</td><td>6.95</td><td><strong>0.89</strong></td></tr><tr><td>FR</td><td>7.49</td><td>8.01</td><td>1.07</td></tr><tr><td>ES</td><td>6.37</td><td>8.12</td><td><strong>1.27</strong></td></tr><tr><td>IT</td><td>5.68</td><td>5.85</td><td>1.03</td></tr><tr><td>NL</td><td>5.36</td><td>5.83</td><td>1.09</td></tr><tr><td><strong>AT</strong></td><td><strong>1.96</strong></td><td><strong>2.11</strong></td><td><strong>1.08</strong></td></tr><tr><td>EL</td><td>1.72</td><td>2.21</td><td><strong>1.29</strong></td></tr></tbody></table>
+<p>Spain gains 27% and Greece 29% by being credited as coordinators; the UK loses 11%. National
+league tables of research success are published on exactly this choice. <strong>Selective agreement</strong> —
+the normaliser deciding what “a country’s funding” means — with a national newspaper story attached.</p>
+<p>Austria: €1.96 bn or €2.11 bn, 2.88% or 3.09% of the EU total. Pick the one that suits the
+argument.</p>
+<h3 id="6-further-handles">6. Further handles</h3>
+<ul>
+<li><strong><code>euroSciVoc.csv</code> is multi-label.</strong> Projects carry several topic classifications, so summing
+money by field double-counts. Any “which discipline gets the most” chart depends on whether you
+divided the grant across labels, assigned it to the first, or double-counted.</li>
+<li><strong><code>status</code></strong> distinguishes signed, ongoing and closed projects. Filtering to closed is
+defensible and preferentially drops recent years.</li>
+<li><strong>Nominal euros.</strong> No deflator anywhere. A 2014→2026 nominal series across the 2022 inflation
+spike overstates real growth substantially, and <em>not</em> deflating requires no code at all.</li>
+<li><strong><code>endOfParticipation</code> and <code>active</code> in <code>organization.csv</code></strong> record participants who dropped out —
+including, notably, UK organisations around Brexit.</li>
+</ul>
+<h2 id="sensitivity">Sensitivity</h2>
+<p><strong>Moderate — political, not personal.</strong> Nobody is individually harmed, but “the EU wastes money on
+research” and “country X is a net loser” are live political claims with existing constituencies. A
+polished poster arguing either, sourced to the Commission’s own data, is repeatable.</p>
+<p>Keep claims about <em>definitions and measurement</em> rather than about <em>desert</em>: “EU research funding
+doubled in 2022” is a good jam claim because the refutation is technical and the topic is dry.
+“Country X freeloads on EU research money” is a bad one because the refutation is political and the
+poster will be screenshotted. <code>F2</code> labelling matters here.</p></article> </main> <footer class="border-t border-line py-7 font-mono text-[12px] leading-relaxed text-faint"> <p>
+As-If Science Jam @ <a href="https://schmiedehallein.com/archives/4731" class="text-muted no-underline hover:text-accent">Schmiede Hallein</a>.
+        Built on <a href="https://kton.dev" class="text-muted no-underline hover:text-accent">kton</a>.
+</p> <p class="mt-1">Every dataset here is real, publicly licensed, and credited on its own page.</p> </footer> </div> </body></html>

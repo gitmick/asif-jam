@@ -1,0 +1,34 @@
+---
+import Base from '../layouts/Base.astro';
+import { Content as Home } from '../content/home.md';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+<Base title="As-If Science Jam — Schmiede26">
+  <section class="border-b border-line pb-10">
+    <p class="font-mono text-[12px] uppercase tracking-[.16em] text-accent">Schmiede26 · Hallein, Austria</p>
+    <h1 class="mt-4 text-[clamp(2.1rem,5.2vw,3.6rem)] font-semibold leading-[1.04] tracking-[-.025em]">
+      As-If Science Jam
+    </h1>
+    <p class="mt-4 max-w-[62ch] text-[clamp(1.05rem,2.1vw,1.45rem)] leading-snug text-accent">
+      When Science Becomes Play — and Suddenly Makes Sense
+    </p>
+    <div class="mt-7 flex flex-wrap gap-3">
+      <a href={`${base}/downloads`}
+         class="rounded border border-accent bg-accent/10 px-4 py-2 font-mono text-[13px] text-accent no-underline hover:bg-accent/20">Get set up →</a>
+      <a href={`${base}/datasets`}
+         class="rounded border border-line px-4 py-2 font-mono text-[13px] text-muted no-underline hover:border-accent hover:text-accent">The datasets</a>
+      <a href="https://schmiedehallein.com/archives/4731" target="_blank" rel="noreferrer"
+         class="rounded border border-line px-4 py-2 font-mono text-[13px] text-muted no-underline hover:border-accent hover:text-accent">At Schmiede ↗</a>
+    </div>
+    <dl class="mt-9 grid grid-cols-2 gap-x-8 gap-y-5 sm:grid-cols-4">
+      {[['16–26 Sep','2026'],['Hallein','Schmiede, Austria'],['11','datasets, all licensed'],['subnet','a format by Michael Hackl']].map(([a,b]) => (
+        <div>
+          <dt class="text-[1.45rem] font-semibold leading-tight tracking-[-.01em]">{a}</dt>
+          <dd class="font-mono text-[11px] uppercase tracking-[.09em] text-faint">{b}</dd>
+        </div>
+      ))}
+    </dl>
+  </section>
+
+  <article class="prose mt-10"><Home /></article>
+</Base>

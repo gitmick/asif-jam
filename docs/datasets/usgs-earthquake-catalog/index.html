@@ -1,0 +1,191 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>USGS Earthquake Catalog (ComCat) — As-If Science Jam</title><meta name="description" content="As-If Science Jam — Schmiede26, Hallein. Real data, reproducible chains, false conclusions."><link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text y='13' font-size='14'>🜂</text></svg>"><link rel="stylesheet" href="/asif-jam/_astro/_slug_.DYeNbdx_.css"></head> <body class="font-sans antialiased"> <div class="mx-auto max-w-[1080px] px-5 sm:px-8"> <header class="flex flex-wrap items-baseline gap-x-7 gap-y-2 border-b border-line py-5"> <a href="/asif-jam/" class="font-mono text-[13px] font-semibold tracking-[.14em] uppercase text-ink no-underline">
+As-If<span class="text-accent"> Science Jam</span> </a> <nav class="flex flex-wrap gap-x-6 gap-y-1 text-[13px]"> <a href="/asif-jam/" class="no-underline hover:text-accent text-muted"> The jam </a><a href="/asif-jam/downloads" class="no-underline hover:text-accent text-muted"> Downloads </a><a href="/asif-jam/datasets" class="no-underline hover:text-accent text-muted"> Datasets </a><a href="https://kton.dev" target="_blank" rel="noreferrer" class="no-underline hover:text-accent text-muted"> kton </a> </nav> <span class="ml-auto font-mono text-[12px] text-faint">Schmiede26 · 16–26 Sept 2026 · Hallein</span> </header> <main class="py-10 sm:py-14"> <a href="/asif-jam/datasets" class="font-mono text-[12px] text-muted no-underline hover:text-accent">← all datasets</a> <article class="prose mt-2"><h1 id="usgs-earthquake-catalog-comcat">USGS Earthquake Catalog (ComCat)</h1>
+<p>Every earthquake the United States Geological Survey has catalogued, worldwide, with time,
+location, depth, magnitude, magnitude type, and the network that reported it.</p>
+<ul>
+<li><strong>Source</strong>: <a href="https://earthquake.usgs.gov/earthquakes/search/">https://earthquake.usgs.gov/earthquakes/search/</a></li>
+<li><strong>API</strong>: <code>https://earthquake.usgs.gov/fdsnws/event/1/query</code> — FDSN standard, no auth, no key</li>
+<li><strong>Docs</strong>: <a href="https://earthquake.usgs.gov/fdsnws/event/1/">https://earthquake.usgs.gov/fdsnws/event/1/</a></li>
+<li><strong>Licence</strong>: <strong>U.S. Public Domain.</strong> USGS-authored data and information are public domain.
+Verified 2026-08-07 against the USGS copyright policy.</li>
+<li><strong>Requested credit</strong>: <code>U.S. Geological Survey, Department of the Interior/USGS</code></li>
+<li><strong>Publisher</strong>: U.S. Geological Survey</li>
+</ul>
+<p>Public domain is worth noting: this is the only dataset in this folder with <strong>no attribution
+obligation at all</strong>. Credit it anyway, but a team that forgets has broken no licence.</p>
+<h2 id="shape">Shape</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th></th><th></th></tr></thead><tbody><tr><td>events, M≥4.5, 1970–2025</td><td><strong>290 432</strong></td></tr><tr><td>query cap</td><td>20 000 events per request — you must chunk</td></tr><tr><td>formats</td><td><code>csv</code>, <code>geojson</code>, <code>quakeml</code>, <code>text</code></td></tr><tr><td>columns</td><td>time, latitude, longitude, depth, mag, magType, nst, gap, dmin, rms, net, id, updated, place, type, and five uncertainty columns</td></tr></tbody></table>
+<p>Two endpoints matter:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#6A737D"># how many events match? — free, instant, no cap</span></span>
+<span class="line"><span style="color:#B392F0">curl</span><span style="color:#9ECBFF"> "https://earthquake.usgs.gov/fdsnws/event/1/count?format=geojson</span><span style="color:#79B8FF">\</span></span>
+<span class="line"><span style="color:#9ECBFF">&#x26;starttime=1970-01-01&#x26;endtime=2026-01-01&#x26;minmagnitude=4.5"</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D"># the events themselves — chunk to stay under 20 000</span></span>
+<span class="line"><span style="color:#B392F0">curl</span><span style="color:#9ECBFF"> "https://earthquake.usgs.gov/fdsnws/event/1/query?format=csv</span><span style="color:#79B8FF">\</span></span>
+<span class="line"><span style="color:#9ECBFF">&#x26;starttime=2020-01-01&#x26;endtime=2021-01-01&#x26;minmagnitude=4.5&#x26;orderby=time-asc"</span><span style="color:#79B8FF"> -o</span><span style="color:#9ECBFF"> quakes-2020.csv</span></span></code></pre>
+<p>The <code>count</code> endpoint is the whole dataset for the purposes below, and it returns in under a second.</p>
+<h2 id="why-it-suits-the-jam">Why it suits the jam</h2>
+<p><strong>It contains the single cleanest example of detection bias in public data.</strong> Most sampling traps
+require you to build them. This one is already built, it is enormous, it is famous among
+seismologists and unknown to everyone else, and it produces a genuinely alarming false conclusion
+from a completely honest query.</p>
+<p><strong>The absurd conclusion is obviously a game.</strong> “Earthquakes have tripled since the 1970s” sounds
+frightening for about four seconds, and then everybody remembers that the Earth does not work like
+that. Nobody is harmed. It clears <code>F1</code>.</p>
+<p><strong>The Defensio is a single parameter change</strong>, which makes it the best teaching dataset in this
+folder — see below.</p>
+<h2 id="the-trap">The trap</h2>
+<h3 id="earthquakes-have-tripled-also-they-have-not">Earthquakes have tripled. Also, they have not.</h3>
+<p>Verified 2026-08-07 via the <code>count</code> endpoint. Events per year, by magnitude threshold:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>decade</th><th>M≥4.5</th><th>M≥5.0</th><th>M≥6.0</th><th>M≥7.0</th></tr></thead><tbody><tr><td>1970s</td><td>2 584</td><td>1 358</td><td>112.7</td><td>12.1</td></tr><tr><td>1980s</td><td>3 977</td><td>1 603</td><td>128.7</td><td>11.0</td></tr><tr><td>1990s</td><td>4 314</td><td>1 466</td><td>153.5</td><td>15.4</td></tr><tr><td>2000s</td><td>6 056</td><td>1 723</td><td>158.5</td><td>14.3</td></tr><tr><td>2010s</td><td>7 528</td><td>1 847</td><td>149.4</td><td>16.0</td></tr><tr><td>2020s</td><td><strong>7 640</strong></td><td>1 803</td><td>132.7</td><td>14.0</td></tr><tr><td><strong>change</strong></td><td><strong>×2.96</strong></td><td>×1.33</td><td>×1.18</td><td>×1.16</td></tr></tbody></table>
+<p>Read the columns left to right. At M≥4.5 earthquakes have very nearly <strong>tripled</strong>. At M≥7.0 —
+where the count is 14 a year and always has been — there is no trend at all, just noise.</p>
+<p>The Earth is not shaking three times as hard. <strong>The seismometer network got denser.</strong> In 1970 a
+magnitude 4.6 event in the middle of the Pacific or under central Asia was simply not recorded by
+enough stations to make the catalogue. Today it is. The quantity that changed is the <em>magnitude of
+completeness</em> — the threshold above which the catalogue can be assumed to contain everything — and
+it has been falling steadily for fifty years.</p>
+<p>Above M7 the network was already complete in 1970, because an M7 is detectable from the other side
+of the planet. So the M≥7.0 column is a <strong>control</strong>: it measures the Earth. The M≥4.5 column
+measures the Earth <em>times the instruments</em>.</p>
+<p>Every number in that table is real, and re-running the query reproduces it exactly.</p>
+<h3 id="why-this-one-is-worth-building-deliberately">Why this one is worth building deliberately</h3>
+<p>The claim writes itself and needs no manipulation whatsoever:</p>
+<blockquote>
+<p>“Global seismic activity has increased by 196% since the 1970s (USGS ComCat, n = 290 432,
+M ≥ 4.5).”</p>
+</blockquote>
+<p>That sentence is true. The n is real, the threshold is stated, the source is authoritative and
+public domain. There is no cherry-picking to find, no filter step to point at, no dropped rows.
+The lineage is three nodes long and utterly clean.</p>
+<p><strong>This is the purest demonstration of the jam’s thesis in the whole folder.</strong> There is nothing
+wrong with the analysis. The deception is entirely in the unstated assumption that the catalogue is
+a sample of <em>earthquakes</em> rather than a sample of <em>earthquakes that were detected</em>, and no
+provenance system will ever flag that, because it is not a property of the computation.</p>
+<h3 id="how-the-defensio-wins">How the Defensio wins</h3>
+<p>Under <code>E3</code> — name the node, say what it did, show it changed:</p>
+<ul>
+<li><strong>The node</strong> is the <code>minmagnitude</code> parameter in the query. That is the entire attack surface.</li>
+<li><strong>What it did</strong>: it selected a magnitude band whose detection completeness changed over the study
+period.</li>
+<li><strong>Show it changed</strong>: re-run at <code>minmagnitude=7.0</code>. The trend disappears. One number, one re-run,
+thirty seconds in front of the room.</li>
+</ul>
+<p>Then the finishing move: plot all four thresholds on one chart and show the trend shrinking
+monotonically as the threshold rises. The bias has a <em>dose-response relationship</em> with the
+parameter, which is about as conclusive as a Defensio can get.</p>
+<p>This is why the dataset belongs in the teaching material even if no team picks it up. It is the
+shortest complete round trip from “reproducible, sourced, alarming” to “and here is exactly why it
+is nonsense” that we have.</p>
+<h3 id="secondary-traps">Secondary traps</h3>
+<ul>
+<li><strong><code>magType</code> is not one scale.</strong> The catalogue mixes <code>mb</code>, <code>ms</code>, <code>mw</code>, <code>ml</code>, <code>md</code> and others. They
+are different physical quantities that agree only approximately and disagree systematically at
+the extremes. Which types dominate has changed over time. Filtering to one type is defensible and
+changes the answer; not filtering is also defensible and changes it differently. <strong>Selective
+agreement</strong>, in its natural habitat: the normaliser deciding two magnitudes are comparable.</li>
+<li><strong>Geography is instrumentation.</strong> Event density maps look like tectonics but are partly maps of
+where the seismometers are. California and Japan are exquisitely instrumented; large parts of
+the southern oceans are not. Any “which region has the most earthquakes” claim inherits this.</li>
+<li><strong>Induced seismicity is real and confounds everything.</strong> Oklahoma genuinely did have far more
+earthquakes after 2009, from wastewater injection. So a regional version of this claim may be
+<em>true</em>, which is a <code>B5</code> problem. Check before committing.</li>
+<li><strong><code>nst</code>, <code>gap</code>, <code>dmin</code>, <code>rms</code> are quality columns</strong> describing how well-constrained each solution
+is. Filtering on them is rigorous-sounding and drops old events preferentially, because old
+events were located by fewer stations. That is the detection bias again, wearing a lab coat.</li>
+</ul>
+<h2 id="sensitivity">Sensitivity</h2>
+<p>Low. Earthquakes kill people, so avoid claims about casualties, building codes, or preparedness —
+those could be repeated as advice. Claims about <em>counts and detection</em> are safe and are where the
+interesting material is anyway.</p>
+<p>Also flag <code>F2</code> here: “seismic activity is increasing” is a claim with a real conspiracy-adjacent
+audience. Label the artefact.</p></article> </main> <footer class="border-t border-line py-7 font-mono text-[12px] leading-relaxed text-faint"> <p>
+As-If Science Jam @ <a href="https://schmiedehallein.com/archives/4731" class="text-muted no-underline hover:text-accent">Schmiede Hallein</a>.
+        Built on <a href="https://kton.dev" class="text-muted no-underline hover:text-accent">kton</a>.
+</p> <p class="mt-1">Every dataset here is real, publicly licensed, and credited on its own page.</p> </footer> </div> </body></html>

@@ -1,0 +1,238 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>pharmaverse — CDISC SDTM/ADaM test data — As-If Science Jam</title><meta name="description" content="As-If Science Jam — Schmiede26, Hallein. Real data, reproducible chains, false conclusions."><link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text y='13' font-size='14'>🜂</text></svg>"><link rel="stylesheet" href="/asif-jam/_astro/_slug_.DYeNbdx_.css"></head> <body class="font-sans antialiased"> <div class="mx-auto max-w-[1080px] px-5 sm:px-8"> <header class="flex flex-wrap items-baseline gap-x-7 gap-y-2 border-b border-line py-5"> <a href="/asif-jam/" class="font-mono text-[13px] font-semibold tracking-[.14em] uppercase text-ink no-underline">
+As-If<span class="text-accent"> Science Jam</span> </a> <nav class="flex flex-wrap gap-x-6 gap-y-1 text-[13px]"> <a href="/asif-jam/" class="no-underline hover:text-accent text-muted"> The jam </a><a href="/asif-jam/downloads" class="no-underline hover:text-accent text-muted"> Downloads </a><a href="/asif-jam/datasets" class="no-underline hover:text-accent text-muted"> Datasets </a><a href="https://kton.dev" target="_blank" rel="noreferrer" class="no-underline hover:text-accent text-muted"> kton </a> </nav> <span class="ml-auto font-mono text-[12px] text-faint">Schmiede26 · 16–26 Sept 2026 · Hallein</span> </header> <main class="py-10 sm:py-14"> <a href="/asif-jam/datasets" class="font-mono text-[12px] text-muted no-underline hover:text-accent">← all datasets</a> <article class="prose mt-2"><h1 id="pharmaverse--cdisc-sdtmadam-test-data">pharmaverse — CDISC SDTM/ADaM test data</h1>
+<p>A complete synthetic clinical trial in regulatory submission format: subject-level, adverse events,
+labs, vitals, exposure, PK — plus the raw-to-SDTM-to-ADaM pipeline that produced them.</p>
+<ul>
+<li><strong>Examples site</strong>: <a href="https://pharmaverse.github.io/examples/">https://pharmaverse.github.io/examples/</a></li>
+<li><strong>Packages</strong> (CRAN, all <strong>Apache License 2.0</strong> — verified 2026-08-12):
+<ul>
+<li><code>pharmaverseraw</code> 0.1.1 — raw source datasets</li>
+<li><code>pharmaversesdtm</code> 1.5.0 — SDTM domains (<strong>64 datasets</strong>)</li>
+<li><code>pharmaverseadam</code> 1.3.0 — ADaM analysis datasets (<strong>30 datasets</strong>)</li>
+</ul>
+</li>
+<li><strong>Direct download</strong> without R’s package machinery:
+<code>https://github.com/pharmaverse/pharmaverseadam/raw/main/data/&#x3C;name>.rda</code></li>
+<li><strong>Attribution</strong>: cite the package (<code>pharmaverseadam</code>, Apache-2.0) and note the CDISC pilot origin.</li>
+</ul>
+<h2 id="-not-eligible-as-a-jam-build-dataset">⚠ Not eligible as a jam build dataset</h2>
+<p><strong>The data is synthetic.</strong> From the <code>pharmaversesdtm</code> documentation: some datasets are sourced from
+the <a href="https://github.com/cdisc-org/sdtm-adam-pilot-project">CDISC pilot project</a>, others were
+“constructed ad-hoc by the {admiral} team”, the pilot data is used as input to <em>“create realistic
+synthetic data”</em>, and the project states that <strong>no personal data is to be used</strong>.</p>
+<p>That fails <a href="../rules/ruleset-2026-09.md"><code>B4</code></a> directly — <em>“Your source must be real, public, and
+licensed for this use. Synthetic or simulated data is out of scope.”</em></p>
+<p>So no team may build a claim on this. It is in the folder for three other reasons, and the
+first one solves a real problem.</p>
+<h2 id="why-it-is-here-anyway">Why it is here anyway</h2>
+<h3 id="1-it-is-the-safe-replacement-for-the-placebo-dataset">1. It is the safe replacement for the placebo dataset</h3>
+<p><a href="indo-rct-placebo.md"><code>indo-rct-placebo</code></a> is the highest-sensitivity item in this folder: real
+patients, a real complication, four <strong>named American hospitals</strong>, and a recommendation that it be
+organiser-presented with sites anonymised rather than handed to a team.</p>
+<p>This dataset supports <strong>the same clinical-trial traps with none of that risk</strong>. Subgroup hunting,
+analysis-population choice, endpoint definitions, missing data, site effects — all present, all
+demonstrable, and nobody is harmed by a false conclusion about synthetic subject <code>01-701-1015</code>.</p>
+<p>If the organisers decide <code>indo_rct</code> is too sharp to hand out, this is what replaces it, and almost
+nothing is lost pedagogically.</p>
+<h3 id="2-it-is-the-best-available-fixture-for-the-rule-checker">2. It is the best available fixture for the rule checker</h3>
+<p>The jam’s <a href="../rules/"><code>rules/</code></a> machinery needs realistic lineage to validate against, and the
+current fixture is a three-foton toy. Here the <em>pipeline itself is published</em>: raw → SDTM → ADaM,
+with the transformation scripts, in a format regulators actually accept. Registering that pipeline
+as plankton fotons gives a lineage graph with real depth to run
+<a href="../rules/check.py"><code>check.py</code></a> over.</p>
+<h3 id="3-it-is-what-the-rooms-professional-half-already-uses">3. It is what the room’s professional half already uses</h3>
+<p>Anyone at Schmiede who works in pharma will recognise ADaM instantly. Showing that the traps in
+this folder are equally at home in a <em>regulatory submission format</em> — one designed end to end for
+traceability — is a much stronger claim than showing them in municipal tree data.</p>
+<h2 id="shape">Shape</h2>
+<p><code>ADSL</code> (subject level), the spine — <strong>306 subjects, 55 columns</strong>:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th></th><th></th></tr></thead><tbody><tr><td>arms</td><td>Placebo 86 · Xanomeline High Dose 84 · Xanomeline Low Dose 84 · <strong>Screen Failure 52</strong></td></tr><tr><td>sites</td><td>17 (sizes from <strong>1</strong> to 51 subjects; 2 sites have fewer than 5)</td></tr><tr><td>subgroup variables</td><td><code>AGEGR1</code>, <code>SEX</code>, <code>RACE</code> (4), <code>RACEGR1</code>, <code>ETHNIC</code></td></tr><tr><td>population flags</td><td><code>SAFFL</code>, <code>DTHFL</code>, <code>DTH30FL</code>, <code>DTHA30FL</code>, <code>DTHB30FL</code></td></tr><tr><td>both arm variables</td><td><code>ARM</code>/<code>ARMCD</code> (planned), <code>ACTARM</code>/<code>ACTARMCD</code>, <code>TRT01P</code>, <strong><code>TRT01A</code></strong> (actual)</td></tr></tbody></table>
+<p>Companion datasets:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>dataset</th><th>rows</th><th>note</th></tr></thead><tbody><tr><td><code>adae</code></td><td>1 191</td><td>adverse events, 225 distinct subjects</td></tr><tr><td><code>adlb</code></td><td>83 652</td><td><strong>47 parameters × 29 visits</strong>, 1.3% missing <code>AVAL</code></td></tr><tr><td><code>adeg</code></td><td>~1 MB</td><td>ECG</td></tr><tr><td><code>advs</code></td><td>65 032</td><td>9 parameters</td></tr><tr><td><code>adpc</code>, <code>adppk</code></td><td></td><td>pharmacokinetics</td></tr><tr><td>therapeutic-area variants</td><td></td><td>oncology (RECIST, iRECIST, IMWG, PCWG3), ophthalmology, vaccine, metabolic, neuro, paediatric</td></tr></tbody></table>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">curl</span><span style="color:#79B8FF"> -sL</span><span style="color:#79B8FF"> -o</span><span style="color:#9ECBFF"> adsl.rda</span><span style="color:#9ECBFF"> https://github.com/pharmaverse/pharmaverseadam/raw/main/data/adsl.rda</span></span>
+<span class="line"><span style="color:#B392F0">Rscript</span><span style="color:#79B8FF"> -e</span><span style="color:#9ECBFF"> 'load("adsl.rda"); str(adsl)'</span></span></code></pre>
+<p>13 KB for <code>adsl</code>, 1.2 MB for <code>adlb</code>. Trivially laptop-sized.</p>
+<h2 id="the-traps">The traps</h2>
+<h3 id="1-arm-versus-trt01a--the-analysis-population-and-it-is-not-subtle">1. <code>ARM</code> versus <code>TRT01A</code> — the analysis population, and it is not subtle</h3>
+<p>Computed 2026-08-12. <strong>12 of 306 subjects</strong> randomised to Xanomeline High Dose actually received Low
+Dose. So the dataset ships two correct, standard, documented answers to “who was in the high-dose
+group”: 84 (as randomised) or 72 (as treated).</p>
+<p>Proportion of subjects with at least one adverse event:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>population</th><th>High Dose</th><th>Low Dose</th><th>apparent dose-response gap</th></tr></thead><tbody><tr><td>by planned <code>ARM</code> (ITT)</td><td>79/84 = <strong>94.0%</strong></td><td>77/84 = <strong>91.7%</strong></td><td><strong>2.3 points</strong></td></tr><tr><td>by actual <code>TRT01A</code> (as-treated)</td><td>70/72 = <strong>97.2%</strong></td><td>86/96 = <strong>89.6%</strong></td><td><strong>7.6 points</strong></td></tr></tbody></table>
+<p><strong>The apparent dose-response effect more than triples</strong> — from 2.3 to 7.6 percentage points — by
+selecting one documented column instead of another. Nothing is filtered, nothing is dropped, no row
+is touched.</p>
+<p>Both choices are orthodox. Intention-to-treat is the regulatory default for efficacy; as-treated is
+standard for safety. A methods sentence saying <em>“safety analyses were performed on the as-treated
+population”</em> is correct, conventional, and does the entire job.</p>
+<p>This is the same structure as <code>totalCost</code> versus <code>ecMaxContribution</code> in
+<a href="cordis-eu-research-funding.md"><code>cordis-eu-research-funding</code></a>: two correctly-labelled columns
+measuring different things, and one word in your sentence covering both. That it recurs in a
+<em>regulatory submission standard</em> is the point worth making in a Defensio.</p>
+<h3 id="2-saffl--a-17-exclusion-in-a-single-flag">2. <code>SAFFL</code> — a 17% exclusion in a single flag</h3>
+<p>52 of 306 subjects are screen failures with <code>SAFFL = "N"</code>. Filtering to <code>SAFFL == "Y"</code> is correct,
+universal, and required — and it silently removes <strong>17% of the enrolled population</strong>.</p>
+<p>Overall proportion with at least one AE:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>denominator</th><th>rate</th></tr></thead><tbody><tr><td>all randomised (306)</td><td><strong>73.5%</strong></td></tr><tr><td>safety population (254)</td><td><strong>88.6%</strong></td></tr><tr><td><em>difference from one flag</em></td><td><strong>15.1 points</strong></td></tr></tbody></table>
+<p>Screen failures contribute 0 of 52 AEs, because they never received treatment. So including them
+deflates every rate, and a team that quietly uses the enrolled count as its denominator has an
+honest-looking, fully reproducible, 15-point understatement of harm.</p>
+<p>The ADaM standard exists precisely to make population choices explicit — and the flag is what makes
+the exclusion invisible, because everyone applies it without reporting the count.</p>
+<h3 id="3-sites-of-size-1">3. Sites of size 1</h3>
+<p>17 sites, ranging from 51 subjects down to <strong>1</strong>, with two sites under 5. Exactly the structure that
+made <a href="indo-rct-placebo.md"><code>indo-rct-placebo</code></a> dangerous — a “centre effect” bar chart where one bar
+rests on a single patient — available here without naming a real hospital.</p>
+<p>Combine with no error bars (see
+<a href="../articles/techniques/06-showing-and-framing.md"><code>articles/techniques/06-showing-and-framing.md</code></a>)
+and the chart makes itself.</p>
+<h3 id="4-47-lab-parameters--29-visits">4. 47 lab parameters × 29 visits</h3>
+<p><code>adlb</code> is a garden of forking paths with a controlled vocabulary. 47 parameters, 29 visits, times
+arm, times subgroup: tens of thousands of defensible comparisons, every one a real clinical measure
+with a plausible mechanism attached. Change from baseline, percent change, shift tables, last
+observation, worst observation — each a standard derivation, each a different answer.</p>
+<p>1.3% of <code>AVAL</code> is missing, which is small enough that nobody checks and non-random enough to matter.</p>
+<h3 id="5-the-traceability-irony">5. The traceability irony</h3>
+<p>ADaM’s entire design purpose is traceability: every analysis value carries <code>AVAL</code>, <code>AVALC</code>,
+<code>PARAM</code>, <code>AVISIT</code>, and derivation flags, so a reviewer can walk from a table back to the raw
+observation. It is the closest thing in industry to what the jam’s platform is building.</p>
+<p><strong>And every trap above survives it intact.</strong> Perfect traceability, standard variables, submission
+format — and the dose-response effect still triples on a column choice. That is the jam’s thesis in
+the one domain that has spent thirty years and a great deal of money trying to make it false.</p>
+<p>If a single slide has to justify the whole event to a pharmaceutical audience, it is this one.</p>
+<h2 id="sensitivity">Sensitivity</h2>
+<p><strong>None</strong> — and that is unusual for clinical data, so it is worth being explicit about why. The
+subjects are synthetic, no personal data is present by project policy, the licence is Apache 2.0,
+and no institution is identifiable. A false conclusion here cannot be repeated as medical
+misinformation about a real treatment, because there is no real treatment: <em>Xanomeline</em> dosing in
+this dataset describes nobody.</p>
+<p>The only care needed is the reverse of the usual one — <strong>label it as synthetic</strong>, so nothing derived
+from it is ever mistaken for evidence about a real drug.</p>
+<h2 id="notes">Notes</h2>
+<ul>
+<li><code>pharmaversesdtm</code> has 64 datasets including therapeutic-area variants; if a team wants oncology
+response criteria (<code>rs_onco_recist</code>, <code>rs_onco_irecist</code>, <code>rs_onco_imwg</code>, <code>rs_onco_pcwg3</code>) the
+<em>choice of response criterion</em> is a normaliser trap of the first order — the same scans, four
+standards, four answers.</li>
+<li><code>REGION1</code> and <code>COUNTRY</code> have one level each, so no geographic slicing.</li>
+<li>The <code>examples</code> site also covers TLG generation (<code>rtables</code>, <code>tern</code>), logging and eSub packaging —
+i.e. the reporting layer, which is where <a href="../articles/techniques/06-showing-and-framing.md">family 06</a>
+lives.</li>
+<li>ADaM specifications need a free CDISC account; the data does not.</li>
+</ul></article> </main> <footer class="border-t border-line py-7 font-mono text-[12px] leading-relaxed text-faint"> <p>
+As-If Science Jam @ <a href="https://schmiedehallein.com/archives/4731" class="text-muted no-underline hover:text-accent">Schmiede Hallein</a>.
+        Built on <a href="https://kton.dev" class="text-muted no-underline hover:text-accent">kton</a>.
+</p> <p class="mt-1">Every dataset here is real, publicly licensed, and credited on its own page.</p> </footer> </div> </body></html>

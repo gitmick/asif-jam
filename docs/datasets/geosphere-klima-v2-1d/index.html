@@ -1,0 +1,168 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>GeoSphere Austria — Stationsdaten-v2, daily (klima-v2-1d) — As-If Science Jam</title><meta name="description" content="As-If Science Jam — Schmiede26, Hallein. Real data, reproducible chains, false conclusions."><link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text y='13' font-size='14'>🜂</text></svg>"><link rel="stylesheet" href="/asif-jam/_astro/_slug_.DYeNbdx_.css"></head> <body class="font-sans antialiased"> <div class="mx-auto max-w-[1080px] px-5 sm:px-8"> <header class="flex flex-wrap items-baseline gap-x-7 gap-y-2 border-b border-line py-5"> <a href="/asif-jam/" class="font-mono text-[13px] font-semibold tracking-[.14em] uppercase text-ink no-underline">
+As-If<span class="text-accent"> Science Jam</span> </a> <nav class="flex flex-wrap gap-x-6 gap-y-1 text-[13px]"> <a href="/asif-jam/" class="no-underline hover:text-accent text-muted"> The jam </a><a href="/asif-jam/downloads" class="no-underline hover:text-accent text-muted"> Downloads </a><a href="/asif-jam/datasets" class="no-underline hover:text-accent text-muted"> Datasets </a><a href="https://kton.dev" target="_blank" rel="noreferrer" class="no-underline hover:text-accent text-muted"> kton </a> </nav> <span class="ml-auto font-mono text-[12px] text-faint">Schmiede26 · 16–26 Sept 2026 · Hallein</span> </header> <main class="py-10 sm:py-14"> <a href="/asif-jam/datasets" class="font-mono text-[12px] text-muted no-underline hover:text-accent">← all datasets</a> <article class="prose mt-2"><h1 id="geosphere-austria--stationsdaten-v2-daily-klima-v2-1d">GeoSphere Austria — Stationsdaten-v2, daily (<code>klima-v2-1d</code>)</h1>
+<p>Quality-checked daily measurements from the Austrian national weather station network.</p>
+<ul>
+<li><strong>Source</strong>: <a href="https://data.hub.geosphere.at/dataset/klima-v2-1d">https://data.hub.geosphere.at/dataset/klima-v2-1d</a></li>
+<li><strong>API</strong>: <code>https://dataset.api.hub.geosphere.at/v1/station/historical/klima-v2-1d</code></li>
+<li><strong>Docs</strong>: <a href="https://dataset.api.hub.geosphere.at/v1/docs/">https://dataset.api.hub.geosphere.at/v1/docs/</a></li>
+<li><strong>Licence</strong>: Creative Commons Attribution 4.0 International (CC BY 4.0) — checked 2026-08-07
+on the dataset page. All publicly accessible Data Hub data requiring no authentication is
+CC BY 4.0.</li>
+<li><strong>Required attribution</strong>: <code>Data source: GeoSphere Austria — https://data.hub.geosphere.at (CC BY 4.0)</code></li>
+<li><strong>Publisher</strong>: GeoSphere Austria (the 2023 merger of ZAMG and the Geologische Bundesanstalt)</li>
+</ul>
+<h2 id="shape">Shape</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th></th><th></th></tr></thead><tbody><tr><td>resolution</td><td>daily (<code>P1D</code>)</td></tr><tr><td>advertised coverage</td><td>1775-01-01 → present</td></tr><tr><td>station records</td><td>1100 (492 currently active)</td></tr><tr><td>distinct station <em>names</em></td><td>585</td></tr><tr><td>parameters</td><td>130 columns = 65 measurements + 65 matching <code>_flag</code> quality columns</td></tr><tr><td>formats</td><td><code>csv</code>, <code>geojson</code></td></tr><tr><td>auth</td><td>none</td></tr></tbody></table>
+<p>Per federal state: Niederösterreich 241, Tirol 174, Kärnten 146, Steiermark 145,
+Oberösterreich 143, Salzburg 117, Vorarlberg 61, Burgenland 53, Wien 20.</p>
+<p>Measurements include air temperature (mean/min/max, plus 5 cm night minimum), 24 h precipitation,
+snow depth and fresh snow, sunshine duration, global radiation, pressure, vapour pressure,
+relative humidity, mean and peak wind, wind direction, cloud amount and density, visibility,
+and boolean day-indicators for thunderstorm, fog, gale, glaze ice, hoarfrost, rime and dew.</p>
+<h3 id="getting-it">Getting it</h3>
+<p>One station, four parameters, 36 years — 620 KB, about three seconds:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">curl</span><span style="color:#79B8FF"> -G</span><span style="color:#9ECBFF"> "https://dataset.api.hub.geosphere.at/v1/station/historical/klima-v2-1d"</span><span style="color:#79B8FF"> \</span></span>
+<span class="line"><span style="color:#79B8FF">  --data-urlencode</span><span style="color:#9ECBFF"> "parameters=tl_mittel"</span><span style="color:#79B8FF"> --data-urlencode</span><span style="color:#9ECBFF"> "parameters=tlmax"</span><span style="color:#79B8FF"> \</span></span>
+<span class="line"><span style="color:#79B8FF">  --data-urlencode</span><span style="color:#9ECBFF"> "parameters=rr"</span><span style="color:#79B8FF">        --data-urlencode</span><span style="color:#9ECBFF"> "parameters=so_h"</span><span style="color:#79B8FF"> \</span></span>
+<span class="line"><span style="color:#79B8FF">  --data-urlencode</span><span style="color:#9ECBFF"> "start=1990-01-01T00:00"</span><span style="color:#79B8FF"> --data-urlencode</span><span style="color:#9ECBFF"> "end=2025-12-31T00:00"</span><span style="color:#79B8FF"> \</span></span>
+<span class="line"><span style="color:#79B8FF">  --data-urlencode</span><span style="color:#9ECBFF"> "station_ids=131"</span><span style="color:#79B8FF"> \</span></span>
+<span class="line"><span style="color:#79B8FF">  --data-urlencode</span><span style="color:#9ECBFF"> "output_format=csv"</span><span style="color:#79B8FF"> -o</span><span style="color:#9ECBFF"> salzburg-flughafen.csv</span></span></code></pre>
+<p>Station 131 is Salzburg Flughafen, 430 m, records from 1874. Hallein has no station of its own;
+131 (airport, 430 m) and 145 (Salzburg Freisaal, 419 m) are the nearest, both about 15 km north.
+Station metadata — id, name, state, lat/lon, altitude, valid_from/valid_to, is_active — comes from
+the <code>/metadata</code> endpoint on the same path.</p>
+<p>Size is a function of how much you ask for. Everything ever measured is far too big for a laptop;
+a region and a decade is a few MB. Teams should pull their own slice, and <strong>the pull is the first
+node in their lineage</strong> — the URL <em>is</em> the sampling decision.</p>
+<h2 id="why-it-suits-the-jam">Why it suits the jam</h2>
+<p><strong>Boring enough to be trusted.</strong> Nobody suspects a thermometer. An audience that would push back
+instantly on crime or health statistics will accept a weather chart while it is being used to argue
+something ridiculous.</p>
+<p><strong>Rich enough to slice.</strong> 65 measurements × 1100 stations × 250 years is an enormous garden of
+forking paths, and every fork looks like housekeeping. Which stations? Active only, or historical
+too? Above or below 1000 m? Which years — and do you start at 1990 because it is a round number or
+because that is where your effect starts? Daily, monthly, or annual means? A team can make five
+defensible choices and land anywhere.</p>
+<p><strong>Plausible-mechanism trap, built in.</strong> Weather is the universal confounder. Every audience already
+believes weather affects mood, health, traffic, crops, energy, and crowds. Point at a correlation
+with weather on one axis and the room will start proposing mechanisms rather than asking which
+stations were used. That is exactly the failure the jam is about.</p>
+<p><strong>No real people in it.</strong> An absurd conclusion drawn from rainfall stays a game. It cannot escape
+the room and hurt anyone, which is more than can be said for the health and crime datasets that
+offer the same statistical affordances.</p>
+<h2 id="the-traps-it-naturally-supports">The traps it naturally supports</h2>
+<h3 id="1-the--1-sentinel--selective-sampling-that-looks-like-data-cleaning">1. The <code>-1</code> sentinel — selective sampling that looks like data cleaning</h3>
+<p>This is the strongest thing in the dataset and it is worth the whole entry on its own.</p>
+<p><code>rr</code> is 24-hour precipitation in mm. Its documented encoding:</p>
+<blockquote>
+<p><code>-1</code> = no precipitation, <code>0</code> = less than 1/10 mm</p>
+</blockquote>
+<p>So the driest days in Austria carry the value <strong>minus one millimetre</strong>. Three ways to take a mean
+of that column, all of which a competent person might write. Salzburg Flughafen (station 131),
+1990–2025, 12 114 days with a value:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>what you do</th><th>mean rainfall</th></tr></thead><tbody><tr><td><strong>A</strong> — <code>df.rr.mean()</code>, straight off the CSV</td><td><strong>2.849 mm/day</strong></td></tr><tr><td><strong>B</strong> — “drop the impossible negatives first”, <code>df[df.rr >= 0].rr.mean()</code></td><td><strong>5.500 mm/day</strong></td></tr><tr><td><strong>C</strong> — recode <code>-1</code> → <code>0</code>, then mean (the correct reading)</td><td><strong>3.257 mm/day</strong></td></tr></tbody></table>
+<p>B is 1.69× C. B is also the most <em>responsible-looking</em> of the three: it is the one where you
+noticed something was wrong and cleaned it. What it actually does is silently delete 4941 days —
+<strong>40.8% of the record, every one of them a dry day</strong> — leaving the mean rainfall <em>on days when it
+rained</em>, presented as the mean rainfall.</p>
+<p>A is wrong in the other direction: it subtracts a millimetre for every dry day.</p>
+<p>Nothing was fabricated in any of the three. All three are exactly what the code produced. A
+provenance badge goes green on all three.</p>
+<p><strong>And there is a second floor under it.</strong> The sentinel appears in the CSV as two different string
+literals — <code>-1</code> (3286 rows) and <code>-1.0</code> (1655 rows), a formatting change partway through the record.
+A filter written against the raw strings rather than parsed floats catches two thirds of them and
+leaves the rest. The bug is invisible, the result is a fourth number, and it is still reproducible.</p>
+<h3 id="2-silent-coverage-collapse--selective-evidence">2. Silent coverage collapse — selective evidence</h3>
+<p><code>so_h</code> (sunshine duration) is <strong>empty for 60.9%</strong> of days at station 131 over 1990–2025. Any
+“sunshine explains X” analysis at this station is running on 39% of the days, and unless somebody
+counts the rows, nothing in the output says so. The pairwise-deletion default of most stats
+libraries will do this for you without a warning.</p>
+<h3 id="3-which-two-rows-are-the-same-station--selective-agreement">3. Which two rows are “the same station” — selective agreement</h3>
+<p><strong>239 of the 585 distinct station names appear more than once</strong> among the 1100 records. Salzburg
+Flughafen is both station 131 (from 1874) and station 6300 (from 1939); Mattsee is 60 and 6415;
+Bischofshofen is 14 and 12504. Same place, different instrument generation, different id, and the
+CSV carries a <code>substation</code> column recording which physical device actually produced each row.</p>
+<p>Merging them gives you a long series with an instrument change buried in it. Not merging them gives
+you two short series. Choosing the merge rule <em>after</em> seeing which one produces a trend is the
+purest available example of a normaliser doing the deceiving — and the normaliser is a node in the
+lineage, so a good Defensio can point straight at it.</p>
+<h3 id="4-altitude--simpsons-paradox-on-tap">4. Altitude — Simpson’s paradox on tap</h3>
+<p>Stations run from 419 m (Salzburg Freisaal) to 3109 m (Sonnblick, recording since 1886). Almost any
+weather relationship reverses or vanishes when you stratify by altitude, and the network’s altitude
+mix has changed over time as stations opened and closed. An unstratified national average across
+1100 stations is a composition artefact waiting to be argued about.</p>
+<h3 id="5-quality-flags-nobody-reads--selective-evidence-again">5. Quality flags nobody reads — selective evidence again</h3>
+<p>Every measurement has a <code>_flag</code> twin drawn from an eight-value code list: unchecked, automatically
+checked, automatically checked (modified), manually checked (original), and so on. Restricting to
+<code>manuell geprüft</code> is defensible, sounds rigorous, and changes both which years and which stations
+survive. Nobody in the audience will ask.</p>
+<h2 id="notes">Notes</h2>
+<ul>
+<li>Station <code>valid_from</code> dates are honest about when a station opened, so survivorship is
+reconstructable rather than hidden. That is good: it means a Defensio can actually win.</li>
+<li>The 1775 start is the dataset envelope, not a promise. Only 50 station records begin before 1900.</li>
+<li>Fair pairing: municipal financial data from <strong>offenerhaushalt.at</strong> (KDZ), which covers Austrian
+municipalities from 2001. Weather × municipal budgets makes “rainfall predicts budget overruns”
+buildable from two real sources. <strong>Licence not yet checked — do not use until it is.</strong></li>
+</ul></article> </main> <footer class="border-t border-line py-7 font-mono text-[12px] leading-relaxed text-faint"> <p>
+As-If Science Jam @ <a href="https://schmiedehallein.com/archives/4731" class="text-muted no-underline hover:text-accent">Schmiede Hallein</a>.
+        Built on <a href="https://kton.dev" class="text-muted no-underline hover:text-accent">kton</a>.
+</p> <p class="mt-1">Every dataset here is real, publicly licensed, and credited on its own page.</p> </footer> </div> </body></html>

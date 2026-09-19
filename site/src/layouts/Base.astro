@@ -1,0 +1,52 @@
+---
+import '../styles/global.css';
+const { title, description = 'As-If Science Jam — Schmiede26, Hallein. Real data, reproducible chains, false conclusions.' } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const nav = [
+  { href: `${base}/`,          label: 'The jam' },
+  { href: `${base}/downloads`, label: 'Downloads' },
+  { href: `${base}/datasets`,  label: 'Datasets' },
+  { href: 'https://kton.dev',  label: 'kton', ext: true },
+];
+const here = Astro.url.pathname.replace(/\/$/, '');
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text y='13' font-size='14'>🜂</text></svg>" />
+</head>
+<body class="font-sans antialiased">
+  <div class="mx-auto max-w-[1080px] px-5 sm:px-8">
+    <header class="flex flex-wrap items-baseline gap-x-7 gap-y-2 border-b border-line py-5">
+      <a href={`${base}/`} class="font-mono text-[13px] font-semibold tracking-[.14em] uppercase text-ink no-underline">
+        As-If<span class="text-accent"> Science Jam</span>
+      </a>
+      <nav class="flex flex-wrap gap-x-6 gap-y-1 text-[13px]">
+        {nav.map(n => (
+          <a href={n.href}
+             target={n.ext ? '_blank' : undefined}
+             rel={n.ext ? 'noreferrer' : undefined}
+             class={`no-underline hover:text-accent ${here === n.href.replace(/\/$/, '') ? 'text-ink' : 'text-muted'}`}>
+            {n.label}
+          </a>
+        ))}
+      </nav>
+      <span class="ml-auto font-mono text-[12px] text-faint">Schmiede26 · 16–26 Sept 2026 · Hallein</span>
+    </header>
+
+    <main class="py-10 sm:py-14"><slot /></main>
+
+    <footer class="border-t border-line py-7 font-mono text-[12px] leading-relaxed text-faint">
+      <p>
+        As-If Science Jam @ <a href="https://schmiedehallein.com/archives/4731" class="text-muted no-underline hover:text-accent">Schmiede Hallein</a>.
+        Built on <a href="https://kton.dev" class="text-muted no-underline hover:text-accent">kton</a>.
+      </p>
+      <p class="mt-1">Every dataset here is real, publicly licensed, and credited on its own page.</p>
+    </footer>
+  </div>
+</body>
+</html>

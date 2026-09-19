@@ -1,0 +1,290 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Indomethacin RCT — placebo arm (indo_rct) — As-If Science Jam</title><meta name="description" content="As-If Science Jam — Schmiede26, Hallein. Real data, reproducible chains, false conclusions."><link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text y='13' font-size='14'>🜂</text></svg>"><link rel="stylesheet" href="/asif-jam/_astro/_slug_.DYeNbdx_.css"></head> <body class="font-sans antialiased"> <div class="mx-auto max-w-[1080px] px-5 sm:px-8"> <header class="flex flex-wrap items-baseline gap-x-7 gap-y-2 border-b border-line py-5"> <a href="/asif-jam/" class="font-mono text-[13px] font-semibold tracking-[.14em] uppercase text-ink no-underline">
+As-If<span class="text-accent"> Science Jam</span> </a> <nav class="flex flex-wrap gap-x-6 gap-y-1 text-[13px]"> <a href="/asif-jam/" class="no-underline hover:text-accent text-muted"> The jam </a><a href="/asif-jam/downloads" class="no-underline hover:text-accent text-muted"> Downloads </a><a href="/asif-jam/datasets" class="no-underline hover:text-accent text-muted"> Datasets </a><a href="https://kton.dev" target="_blank" rel="noreferrer" class="no-underline hover:text-accent text-muted"> kton </a> </nav> <span class="ml-auto font-mono text-[12px] text-faint">Schmiede26 · 16–26 Sept 2026 · Hallein</span> </header> <main class="py-10 sm:py-14"> <a href="/asif-jam/datasets" class="font-mono text-[12px] text-muted no-underline hover:text-accent">← all datasets</a> <article class="prose mt-2"><h1 id="indomethacin-rct--placebo-arm-indo_rct">Indomethacin RCT — placebo arm (<code>indo_rct</code>)</h1>
+<p>A real randomised, double-blind, placebo-controlled trial: 602 patients, rectal indomethacin versus
+placebo for the prevention of post-ERCP pancreatitis. 32 covariates per patient.</p>
+<ul>
+<li><strong>Source</strong>: <code>medicaldata</code> R package, dataset <code>indo_rct</code> —
+<a href="https://cran.r-project.org/web/packages/medicaldata/">https://cran.r-project.org/web/packages/medicaldata/</a></li>
+<li><strong>Local copy</strong>: <code>/mnt/c/dev/git-repos/asifin/data/indo_rct.csv</code> (148 KB) — already in the
+<strong>asifin</strong> repo, together with a research plan, a source catalogue and prior analysis in
+<code>findings.md</code></li>
+<li><strong>Licence</strong>: <strong>MIT</strong> (the <code>medicaldata</code> package, Peter Higgins, plus an additional LICENSE file).
+Verified 2026-08-07.</li>
+<li><strong>Original study</strong>: Elmunzer BJ et al., <em>A randomized trial of rectal indomethacin to prevent
+post-ERCP pancreatitis.</em> N Engl J Med 2012;366:1414–22.</li>
+<li><strong>Attribution</strong>: cite the NEJM paper and the <code>medicaldata</code> package. The package exists explicitly
+for teaching, which is what this is.</li>
+</ul>
+<blockquote>
+<p><strong>Read the sensitivity section before using this.</strong> It is the last section and it is the reason
+this entry exists in the form it does.</p>
+</blockquote>
+<h2 id="shape">Shape</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th></th><th></th></tr></thead><tbody><tr><td>patients</td><td>602 — <strong>307 placebo</strong>, 295 indomethacin</td></tr><tr><td>size</td><td>148 KB, opens in a spreadsheet</td></tr><tr><td>columns</td><td>33: <code>id</code>, <code>site</code>, <code>age</code>, <code>risk</code>, <code>gender</code>, <code>outcome</code>, plus 27 clinical and procedural covariates</td></tr><tr><td>outcome</td><td>binary — post-ERCP pancreatitis, yes/no</td></tr></tbody></table>
+<p>Headline results, recomputed from the CSV 2026-08-07 (they match the published trial):</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>arm</th><th>events</th><th>n</th><th>rate</th></tr></thead><tbody><tr><td>placebo</td><td>52</td><td>307</td><td><strong>16.9%</strong></td></tr><tr><td>indomethacin</td><td>27</td><td>295</td><td><strong>9.2%</strong></td></tr></tbody></table>
+<p>The drug works. That is not in dispute here and is not what this dataset is for in the jam.</p>
+<h2 id="why-it-suits-the-jam">Why it suits the jam</h2>
+<p><strong>Because it is the jam’s thesis stated in clinical form.</strong> A placebo arm is a group of people who
+received a documented, inert intervention. Whatever varies between them cannot be the drug. So the
+placebo arm is a controlled laboratory for exactly the question the event is about: <em>how much of an
+apparent effect is the world, and how much is measurement, context and who was counted?</em></p>
+<p><strong>Because the interesting variation is real and large</strong>, and the honest explanation is
+uninteresting while the dishonest one is fascinating. That asymmetry is the whole engine of the
+event.</p>
+<p><strong>Because it is small enough to check.</strong> 307 rows. Every subgroup can be counted by hand. There is
+nowhere to hide, which makes for a fast, brutal Defensio.</p>
+<h2 id="the-traps">The traps</h2>
+<h3 id="1-same-placebo-23-the-outcome--the-site-effect">1. Same placebo, 2.3× the outcome — the site effect</h3>
+<p>Placebo arm only, by trial site:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>site</th><th>events</th><th>n</th><th>rate</th></tr></thead><tbody><tr><td>University of Michigan</td><td>25</td><td>87</td><td><strong>28.7%</strong></td></tr><tr><td>Indiana University</td><td>26</td><td>207</td><td><strong>12.6%</strong></td></tr><tr><td>University of Kentucky</td><td>1</td><td>12</td><td>8.3%</td></tr><tr><td>Case Western</td><td>0</td><td><strong>1</strong></td><td><strong>0.0%</strong></td></tr></tbody></table>
+<p>Among patients who received <strong>no active drug</strong>, the complication rate differs by a factor of 2.3
+between the two centres that hold 96% of the arm. Prior analysis in the asifin repo puts this at
+p = 0.002, with a multivariate odds ratio of 0.284 for Indiana versus Michigan after adjustment.</p>
+<p>The as-if reading is irresistible: <em>the institution is the treatment.</em> Ritual, staff confidence,
+the room, the script — the context of care determines whether you get sick. The room will spend
+forty minutes on mechanism and enjoy every one of them.</p>
+<p>The boring reading is case mix, referral patterns, procedural technique, and — most importantly —
+<strong>what each centre counts as post-ERCP pancreatitis</strong>. The endpoint is a consensus definition
+applied by clinicians. Two sites applying the same written criteria with slightly different
+thresholds will produce different rates from identical patients. That is a <strong>normaliser</strong>, in the
+jam’s exact sense: the rule that decides whether two things are “the same”. It is the fourth column
+of the table in <code>CLAUDE.md</code>, sitting in a hospital.</p>
+<h3 id="2-the-site-with-one-patient">2. The site with one patient</h3>
+<p>Look at the bottom row again. <strong>Case Western contributed a single placebo patient, who did not
+develop pancreatitis.</strong> Rate: 0.0%.</p>
+<p>That is a true, reproducible, correctly computed statistic. “One participating centre recorded a
+zero per cent complication rate in the placebo arm” is a sentence you could put on a poster today.</p>
+<p>It is also worth noting how it behaves in practice: the prior analysis in
+<code>/mnt/c/dev/git-repos/asifin/findings.md</code> reports the site effect as “UM: 28.7%, IU: 12.6%,
+UK: 8.3%” — <strong>the n = 1 site is silently absent</strong>. That is not misconduct; dropping a singleton is
+the sensible thing to do. But it happened without being recorded as a decision, and it is exactly
+the class of step the platform is built to make visible. A team could reasonably build their whole
+entry on the difference between the analysis that mentions Case Western and the one that does not.</p>
+<p>Use this in the method session. It is a live example, from a real analysis in this organisation’s
+own repo, of an entirely defensible exclusion that never got written down.</p>
+<h3 id="3-fifty-three-subgroups-and-one-of-them-is-always-significant">3. Fifty-three subgroups, and one of them is always significant</h3>
+<p>Testing every single-covariate subgroup with n ≥ 20 in the placebo arm — 53 of them — against the
+16.9% base rate:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>subgroup</th><th>events / n</th><th>rate</th><th>ratio</th></tr></thead><tbody><tr><td>prior post-ERCP pancreatitis</td><td>16 / 49</td><td>32.7%</td><td><strong>1.93×</strong></td></tr><tr><td>site = Michigan</td><td>25 / 87</td><td>28.7%</td><td>1.70×</td></tr><tr><td>risk score 3</td><td>9 / 33</td><td>27.3%</td><td>1.61×</td></tr><tr><td>risk score 3.5</td><td>8 / 32</td><td>25.0%</td><td>1.48×</td></tr><tr><td>SOD type 1</td><td>10 / 43</td><td>23.3%</td><td>1.37×</td></tr><tr><td>trainee involved</td><td>31 / 140</td><td>22.1%</td><td>1.31×</td></tr><tr><td>…</td><td></td><td></td><td></td></tr><tr><td>aspirin 81 mg</td><td>3 / 27</td><td>11.1%</td><td>0.66×</td></tr><tr><td>risk score 1.5</td><td>4 / 47</td><td>8.5%</td><td>0.50×</td></tr><tr><td>therapeutic stent</td><td>2 / 25</td><td>8.0%</td><td><strong>0.47×</strong></td></tr></tbody></table>
+<p>A 4.1× spread between the extremes, from one file, with no interaction terms and no combinations.
+Cross two covariates and there are hundreds. A team that wants “patients who X are twice as likely
+to Y despite receiving no treatment” can have it in ten minutes, and every one of those subgroups
+is a real clinical category with a real mechanism story attached.</p>
+<p>Note <code>train</code> — trainee involvement, 22.1% versus 12.6%. <em>The operator changes the outcome</em> is a
+genuinely interesting finding, a plausible mechanism, and also exactly what you would expect if
+teaching cases are systematically harder. Both stories fit. Nothing in the data separates them.</p>
+<h3 id="4-the-12-patient-centre">4. The 12-patient centre</h3>
+<p>Kentucky’s 8.3% rests on 1 event in 12 patients. Its 95% confidence interval covers essentially the
+whole plausible range. Put it on a bar chart next to Michigan’s 28.7% without error bars — a
+plotting-step parameter, recorded in the lineage, that nobody inspects — and you have a clean
+three-bar “institutional effect” chart in which one bar is noise and one bar is a rounding error.</p>
+<h2 id="sensitivity--the-strictest-in-this-folder">Sensitivity — the strictest in this folder</h2>
+<p><strong>This is real patient data about a real complication at four named American hospitals, and it is
+the one dataset here where I would not let a team proceed without a conversation first.</strong></p>
+<p>Three distinct risks, in increasing order of seriousness:</p>
+<ol>
+<li><strong>Medical misinformation.</strong> Anything implying that indomethacin does not work, or that placebo is
+an adequate substitute for treatment, is straightforwardly dangerous and must not be built. The
+trial’s actual result — the drug halves the complication rate — is not the material.</li>
+<li><strong>Named institutions.</strong> “University of Michigan gives you a 3× higher chance of pancreatitis” is
+a specific, attributable claim about a real hospital. This is worse than generic health
+misinformation because it has a defamation shape and a named target who is not in the room.
+<strong>Anonymise the sites to A/B/C/D in every published artefact.</strong> The finding survives
+anonymisation completely intact; nothing of value is lost.</li>
+<li><strong>Patients.</strong> They are de-identified and the data is openly published for teaching, so there is
+no re-identification concern. But the outcome is a painful complication that happened to 52 real
+people in the placebo arm, and posters should not be flippant about it.</li>
+</ol>
+<h3 id="what-is-safe-and-it-is-the-good-part-anyway">What is safe, and it is the good part anyway</h3>
+<p>Frame every claim as <strong>about measurement and context, never about efficacy</strong>:</p>
+<ul>
+<li>✅ “Where you are treated predicts your outcome more than who you are” — a claim about
+institutional variation and endpoint definition.</li>
+<li>✅ “The definition of the endpoint is doing work the mechanism is getting credit for.”</li>
+<li>✅ “A centre with one patient achieved a 0% complication rate.”</li>
+<li>❌ Anything about whether the drug works.</li>
+<li>❌ Anything a reader could act on medically.</li>
+<li>❌ Anything naming a hospital.</li>
+</ul>
+<p>Under <code>F1</code> the honest assessment is that this dataset <strong>fails the “obviously a game” preference</strong>.
+Weather, trees and exoplanets are safe because absurdity is legible. Post-ERCP pancreatitis is not
+funny and an absurd conclusion about it does not read as absurd to someone outside the room.</p>
+<p><strong>Recommendation:</strong> use it in the <code>jam-method</code> session, presented by an organiser, with the sites
+anonymised — not as a team build dataset. It is the sharpest illustration in the folder of a
+normaliser deciding an outcome, and that lesson is worth having. Handing it to a team for three days
+of adversarial persuasion is a different proposition, and one for Michael, Erik and Walter to decide
+together rather than for this folder to authorise.</p>
+<h2 id="related-material-in-the-asifin-repo">Related material in the asifin repo</h2>
+<p><code>/mnt/c/dev/git-repos/asifin/</code> is a separate workstream — placebo and as-if science research on open
+clinical data, doubling as a dogfooding case for the improve platform. Relevant files:</p>
+<ul>
+<li><code>placebo-studies-sources.md</code> — catalogue of open datasets with placebo arms: PRO-ACT (ALS, 12 500+
+patients), NIDA Data Share, NINDS archived trials, ImmPort, PhysioNet, ClinicalTrials.gov summary
+results. <strong>All larger and all subject to the same sensitivity analysis as above; none licence-
+checked for jam use.</strong></li>
+<li><code>findings.md</code> — the prior analysis this entry verifies and extends.</li>
+<li><code>research-plan.md</code>, <code>study-catalog.json</code>, <code>variables-placebo.csv</code>.</li>
+</ul>
+<p>If more clinical material is wanted for the jam, the ClinicalTrials.gov / AACT route is the safer
+one: summary-level data, no individual patients, no named sites, and the depression extract already
+described in <code>findings.md</code> (348 placebo-controlled studies, 2001–2024) has an obvious temporal-trend
+trap of its own — <em>placebo response has been rising for two decades</em> is a real, contested claim in
+the literature and would make an excellent hypothesis that harms nobody.</p></article> </main> <footer class="border-t border-line py-7 font-mono text-[12px] leading-relaxed text-faint"> <p>
+As-If Science Jam @ <a href="https://schmiedehallein.com/archives/4731" class="text-muted no-underline hover:text-accent">Schmiede Hallein</a>.
+        Built on <a href="https://kton.dev" class="text-muted no-underline hover:text-accent">kton</a>.
+</p> <p class="mt-1">Every dataset here is real, publicly licensed, and credited on its own page.</p> </footer> </div> </body></html>

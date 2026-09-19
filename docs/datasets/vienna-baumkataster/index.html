@@ -1,0 +1,225 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Vienna Tree Register (Baumkataster) — BAUMKATOGD — As-If Science Jam</title><meta name="description" content="As-If Science Jam — Schmiede26, Hallein. Real data, reproducible chains, false conclusions."><link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text y='13' font-size='14'>🜂</text></svg>"><link rel="stylesheet" href="/asif-jam/_astro/_slug_.DYeNbdx_.css"></head> <body class="font-sans antialiased"> <div class="mx-auto max-w-[1080px] px-5 sm:px-8"> <header class="flex flex-wrap items-baseline gap-x-7 gap-y-2 border-b border-line py-5"> <a href="/asif-jam/" class="font-mono text-[13px] font-semibold tracking-[.14em] uppercase text-ink no-underline">
+As-If<span class="text-accent"> Science Jam</span> </a> <nav class="flex flex-wrap gap-x-6 gap-y-1 text-[13px]"> <a href="/asif-jam/" class="no-underline hover:text-accent text-muted"> The jam </a><a href="/asif-jam/downloads" class="no-underline hover:text-accent text-muted"> Downloads </a><a href="/asif-jam/datasets" class="no-underline hover:text-accent text-muted"> Datasets </a><a href="https://kton.dev" target="_blank" rel="noreferrer" class="no-underline hover:text-accent text-muted"> kton </a> </nav> <span class="ml-auto font-mono text-[12px] text-faint">Schmiede26 · 16–26 Sept 2026 · Hallein</span> </header> <main class="py-10 sm:py-14"> <a href="/asif-jam/datasets" class="font-mono text-[12px] text-muted no-underline hover:text-accent">← all datasets</a> <article class="prose mt-2"><h1 id="vienna-tree-register-baumkataster--baumkatogd">Vienna Tree Register (Baumkataster) — <code>BAUMKATOGD</code></h1>
+<p>Every tree the City of Vienna maintains: species, planting year, trunk circumference, height
+class, crown class, district, street, coordinates.</p>
+<ul>
+<li><strong>Source</strong>: <a href="https://www.data.gv.at/katalog/organization/stadt-wien">https://www.data.gv.at/katalog/organization/stadt-wien</a> → Baumkataster</li>
+<li><strong>Direct download</strong> (WFS, no auth, no key):
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>https://data.wien.gv.at/daten/geo?service=WFS&#x26;request=GetFeature&#x26;version=1.1.0</span></span>
+<span class="line"><span>  &#x26;typeName=ogdwien:BAUMKATOGD&#x26;srsName=EPSG:4326&#x26;outputFormat=csv</span></span></code></pre>
+</li>
+<li><strong>Licence</strong>: Creative Commons Attribution 4.0 (CC BY 4.0) — the standard for all Open Government
+Data of the City of Vienna. Verified 2026-08-07.</li>
+<li><strong>Required attribution</strong>: <code>Datenquelle: Stadt Wien – data.wien.gv.at</code></li>
+<li><strong>Publisher</strong>: Stadt Wien, Magistrat</li>
+</ul>
+<blockquote>
+<p>Note on the licence terms: Vienna additionally reserves the right to publicise applications built
+on its data. Harmless, but read <a href="https://digitales.wien.gv.at/ogd-nutzungsbedingungen/">https://digitales.wien.gv.at/ogd-nutzungsbedingungen/</a> before
+anything goes on a poster.</p>
+</blockquote>
+<h2 id="shape">Shape</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th></th><th></th></tr></thead><tbody><tr><td>rows</td><td><strong>232 290</strong> trees</td></tr><tr><td>download</td><td>53 MB CSV, one request, about 20 seconds</td></tr><tr><td>columns</td><td>18 (see below)</td></tr><tr><td>districts</td><td>24 values — the 23 Bezirke plus an empty string on 595 rows</td></tr><tr><td>species strings</td><td>676 distinct <code>GATTUNG_ART</code> values</td></tr><tr><td>record holder</td><td><code>DATENFUEHRUNG</code> = <code>magistrat</code> on all 232 290 rows</td></tr></tbody></table>
+<p>Columns: <code>FID</code>, <code>OBJECTID</code>, <code>SHAPE</code>, <code>BAUM_ID</code>, <code>DATENFUEHRUNG</code>, <code>BEZIRK</code>, <code>OBJEKT_STRASSE</code>,
+<code>GEBIETSGRUPPE</code>, <code>GATTUNG_ART</code>, <code>PFLANZJAHR</code>, <code>STAMMUMFANG</code>, <code>BAUMHOEHE</code>, <code>KRONENDURCHMESSER</code>,
+<code>BAUMNUMMER</code>, <code>SE_ANNO_CAD_DATA</code>, and a <code>_TXT</code> twin for each of the four measurement columns.</p>
+<p>Top genera: <em>Acer</em> 50 292, <em>Tilia</em> 26 196, <em>Fraxinus</em> 18 148, <em>Aesculus</em> 14 484, <em>Celtis</em> 10 734.
+Largest districts by tree count: 22nd (34 698), 21st (22 609), 2nd (21 399). Smallest: 8th (995).</p>
+<h2 id="why-it-suits-the-jam">Why it suits the jam</h2>
+<p><strong>It is the friendliest dataset we have.</strong> Everyone understands a tree. There is no jargon, no unit
+anyone has to look up, no domain expert in the room who will object on technical grounds. A
+participant who has never opened a CSV can have a plot of Vienna’s trees within twenty minutes, and
+the poster designs itself.</p>
+<p><strong>It is completely safe.</strong> Nothing you can conclude about street trees harms anyone. An absurd
+finding about the 8th district’s lime trees is legible as a game from across the room. It clears
+<code>F1</code> more comfortably than anything else in this folder.</p>
+<p><strong>It has an enormous number of slicing handles.</strong> 23 districts × 676 species strings × planting
+years back to 1658 × four measurement columns. Any claim of the form “trees in X are Y” has
+thousands of defensible-looking routes to it.</p>
+<p><strong>And it is honest in a way that makes the deception purely the reader’s fault</strong> — see below. That
+turns out to be the most interesting thing about it.</p>
+<h2 id="the-traps">The traps</h2>
+<h3 id="1-year-zero--the-sentinel-again-548-years-wide">1. Year zero — the sentinel again, 548 years wide</h3>
+<p><code>PFLANZJAHR</code> is the planting year. <strong>63 911 trees — 27.5% of the register — carry the value <code>0</code>.</strong>
+The twin column <code>PFLANZJAHR_TXT</code> reads <code>nicht definiert</code> on every one of them.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>what you do</th><th>mean planting year</th></tr></thead><tbody><tr><td><code>df.PFLANZJAHR.mean()</code></td><td><strong>1445.3</strong></td></tr><tr><td>drop the zeros first</td><td><strong>1993.9</strong></td></tr></tbody></table>
+<p>The average Vienna street tree was planted in <strong>1445</strong>, four decades before Columbus sailed and
+during the reign of Frederick III. Nobody will believe that number if you show it — but nobody
+shows the mean planting year. They show <em>tree age</em>, which is <code>2026 - PFLANZJAHR</code>, and they show it
+per district, where the zeros are unevenly distributed and quietly shift the rankings by centuries
+without producing a single figure that looks wrong.</p>
+<p>This is the same structure as the <code>-1</code> rainfall sentinel in
+<a href="geosphere-klima-v2-1d.md"><code>geosphere-klima-v2-1d</code></a>, and it is worth having both in the room: two
+unrelated public agencies, two completely different domains, the same failure available in the
+first line of analysis. It is not a quirk of one dataset. It is what datasets are like.</p>
+<p>Real planting years do go back a long way — 1658, 1708, 1725 — so “implausibly old” is not a clean
+filter either. A team that drops everything before 1900 to be safe has just made another
+undocumented sampling decision.</p>
+<h3 id="2-baumhoehe-is-not-metres--the-unit-that-isnt">2. <code>BAUMHOEHE</code> is not metres — the unit that isn’t</h3>
+<p>This is the best trap in the dataset, and it is subtle enough to survive a Defensio.</p>
+<p><code>BAUMHOEHE</code> runs 0 to 8. It looks like metres. It is an <strong>ordinal class code</strong>:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>code</th><th><code>BAUMHOEHE_TXT</code></th><th>n</th></tr></thead><tbody><tr><td>0</td><td><code>nicht bekannt</code></td><td>3 599</td></tr><tr><td>1</td><td><code>0-5 m</code></td><td>64 436</td></tr><tr><td>2</td><td><code>6-10 m</code></td><td>83 558</td></tr><tr><td>3</td><td><code>11-15 m</code></td><td>55 604</td></tr><tr><td>4</td><td><code>16-20 m</code></td><td>18 587</td></tr><tr><td>5</td><td><code>21-25 m</code></td><td>5 056</td></tr><tr><td>6</td><td><code>26-30 m</code></td><td>1 332</td></tr><tr><td>7</td><td><code>31-35 m</code></td><td>105</td></tr><tr><td>8</td><td><code>> 35 m</code></td><td>13</td></tr></tbody></table>
+<p><code>mean(BAUMHOEHE)</code> = <strong>2.182</strong>. Put “average tree height: 2.18 m” on a slide and a sharp audience
+member may object that Vienna’s street trees are visibly taller than a person. But almost nobody
+puts the pooled mean on a slide. They put <em>district A 2.61 vs district B 2.09</em> on a slide, as a bar
+chart, labelled “metres”, and it passes — because the comparison is directionally meaningful even
+though the units are fiction.</p>
+<p>It gets worse in a useful way. Averaging an ordinal code assumes the classes are evenly spaced.
+They are not: classes 1–7 are 5 m wide but class 1 spans 0–5 m and class 8 is unbounded above. So
+even the <em>ranking</em> between districts can be manipulated by how you handle the top class. Recode
+class 8 as 35, or as 40, or as the class midpoint, and the answer moves. Every one of those is a
+recorded transformation step.</p>
+<p><code>KRONENDURCHMESSER</code> is coded the same way (0 = unknown, 1 = <code>0-3 m</code>, … 8 = <code>>21 m</code>).</p>
+<p><strong><code>STAMMUMFANG</code> is different, and the difference is the trap.</strong> It really is centimetres — <code>1</code> means
+<code>1 cm</code> — so of the four measurement columns, three are class codes and one is a genuine
+measurement, <code>0</code> means “unknown” in all four, and nothing in the column names tells you which is
+which. A team that discovers the coding for one column and generalises to the others gets a
+plausible, reproducible, entirely wrong answer. Also note <code>STAMMUMFANG</code> reaches <strong>34 593</strong>, i.e. a
+trunk 346 m around, so it has outliers of its own.</p>
+<h3 id="3-the-dataset-tells-you-everything-and-that-is-the-point">3. The dataset tells you everything, and that is the point</h3>
+<p>Every sentinel in this file has a <code>_TXT</code> twin that spells out the answer in plain German.
+<code>PFLANZJAHR = 0</code> sits next to <code>PFLANZJAHR_TXT = 'nicht definiert'</code>. <code>BAUMHOEHE = 2</code> sits next to
+<code>BAUMHOEHE_TXT = '6-10 m'</code>. The City of Vienna concealed nothing. The documentation is <em>in the
+row</em>.</p>
+<p>The deception still works, every time, because analysts select the numeric columns and drop the
+text ones — they look redundant, and they break your plotting library.</p>
+<p>Make this explicit in your Defensio if you use this dataset. “We did not hide anything. The
+disambiguation was shipped in the next column over. You did not read it.” That is a much more
+uncomfortable point than any statistical one, and it is the actual lesson of the jam.</p>
+<h3 id="4-coverage-that-varies-by-district--selective-sampling-for-free">4. Coverage that varies by district — selective sampling for free</h3>
+<p>The register covers trees the <em>Magistrat maintains</em>. Park trees, forest trees (the Wienerwald),
+private garden trees and cemetery trees are variously in or out. District tree counts therefore
+measure municipal responsibility at least as much as they measure trees, and the 22nd district’s
+34 698 versus the 8th’s 995 is largely a fact about land use and administration.</p>
+<p>Any per-district rate — trees per capita, trees per km², trees per anything — inherits this. It is
+a denominator argument, it is completely legitimate to make, and it is invisible unless someone
+asks what the register is a register <em>of</em>.</p>
+<h2 id="suggested-claims">Suggested claims</h2>
+<ul>
+<li>“Vienna’s trees are getting shorter” (mix the <code>BAUMHOEHE</code> class-code mean with a changing
+district composition over successive register releases)</li>
+<li>“The 1st district has Vienna’s oldest trees” (let the zeros do the work)</li>
+<li>“Maples are crowding out lindens” (676 species strings, no controlled vocabulary — the
+normaliser that decides which strings are the same species is where this one lives; that is a
+<strong>selective agreement</strong> trap, and it maps onto the same lineage node as the duplicate weather
+stations)</li>
+</ul>
+<h2 id="notes">Notes</h2>
+<ul>
+<li>53 MB is fine on a laptop but slow in a browser-based notebook. Filter by <code>BEZIRK</code> server-side
+with a WFS <code>CQL_FILTER</code> if a team is struggling.</li>
+<li><code>SHAPE</code> holds the geometry as text and dominates the file size. Drop it unless mapping.</li>
+<li>Vienna publishes many sibling datasets under the same licence and the same WFS pattern — swap
+<code>typeName</code> for playgrounds, drinking fountains, benches, dog zones. Cross-joining two of them by
+district is the easiest route to a spurious correlation this folder offers.</li>
+</ul>
+<h2 id="sensitivity">Sensitivity</h2>
+<p>None. Trees.</p></article> </main> <footer class="border-t border-line py-7 font-mono text-[12px] leading-relaxed text-faint"> <p>
+As-If Science Jam @ <a href="https://schmiedehallein.com/archives/4731" class="text-muted no-underline hover:text-accent">Schmiede Hallein</a>.
+        Built on <a href="https://kton.dev" class="text-muted no-underline hover:text-accent">kton</a>.
+</p> <p class="mt-1">Every dataset here is real, publicly licensed, and credited on its own page.</p> </footer> </div> </body></html>

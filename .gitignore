@@ -1,0 +1,20 @@
+# Built by bin/setup, never vendored.
+bin/cockpit
+bin/plankton
+bin/nekton
+bin/kton
+
+# Your PRIVATE signing key. Anyone who can read it can sign as you.
+keys/*.key
+
+# Written by bin/setup and deliberately NOT shared: it names which identity signs here, and that
+# differs per person. Everything in it that IS shared — the trust tier, the image, the paths —
+# comes from cockpit.config.shared.json, which is committed.
+cockpit.config.json
+
+.Rproj.user
+.Rhistory
+
+# the site
+site/node_modules/
+site/.astro/

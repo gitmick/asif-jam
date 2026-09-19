@@ -1,0 +1,148 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Our World in Data — Grapher datasets — As-If Science Jam</title><meta name="description" content="As-If Science Jam — Schmiede26, Hallein. Real data, reproducible chains, false conclusions."><link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text y='13' font-size='14'>🜂</text></svg>"><link rel="stylesheet" href="/asif-jam/_astro/_slug_.DYeNbdx_.css"></head> <body class="font-sans antialiased"> <div class="mx-auto max-w-[1080px] px-5 sm:px-8"> <header class="flex flex-wrap items-baseline gap-x-7 gap-y-2 border-b border-line py-5"> <a href="/asif-jam/" class="font-mono text-[13px] font-semibold tracking-[.14em] uppercase text-ink no-underline">
+As-If<span class="text-accent"> Science Jam</span> </a> <nav class="flex flex-wrap gap-x-6 gap-y-1 text-[13px]"> <a href="/asif-jam/" class="no-underline hover:text-accent text-muted"> The jam </a><a href="/asif-jam/downloads" class="no-underline hover:text-accent text-muted"> Downloads </a><a href="/asif-jam/datasets" class="no-underline hover:text-accent text-muted"> Datasets </a><a href="https://kton.dev" target="_blank" rel="noreferrer" class="no-underline hover:text-accent text-muted"> kton </a> </nav> <span class="ml-auto font-mono text-[12px] text-faint">Schmiede26 · 16–26 Sept 2026 · Hallein</span> </header> <main class="py-10 sm:py-14"> <a href="/asif-jam/datasets" class="font-mono text-[12px] text-muted no-underline hover:text-accent">← all datasets</a> <article class="prose mt-2"><h1 id="our-world-in-data--grapher-datasets">Our World in Data — Grapher datasets</h1>
+<p>Several thousand country-by-year indicators covering health, energy, economy, demography,
+agriculture, environment and technology, all in one tidy long format that joins on
+<code>(entity, year)</code>.</p>
+<ul>
+<li><strong>Source</strong>: <a href="https://ourworldindata.org/data">https://ourworldindata.org/data</a></li>
+<li><strong>Direct download</strong>: append <code>.csv</code> to <strong>any</strong> grapher URL. Append <code>.metadata.json</code> for structured
+provenance, or <code>.zip</code> for both plus a README.</li>
+<li><strong>Licence</strong>: <strong>split, and you must handle both halves.</strong> Verified 2026-08-07 against the OWID FAQ.
+<ul>
+<li>OWID’s own charts, writing and <em>processed</em> data: <strong>CC BY 4.0</strong>.</li>
+<li>The underlying source data — UN WPP, the Human Mortality Database, World Bank, IEA, FAO and
+hundreds of others — is redistributed under <strong>each provider’s own terms</strong>, which OWID
+explicitly does not override. Some of those are restrictive.</li>
+</ul>
+</li>
+<li><strong>Citation</strong>: credit both OWID and the original provider. The <code>.metadata.json</code> gives you a
+ready-made <code>citationShort</code> and <code>citationLong</code> per column.</li>
+</ul>
+<blockquote>
+<p><strong>This split licence is the reason to read <code>.metadata.json</code> before using an indicator, not
+after.</strong> It is also, conveniently, a live example of a provenance chain with a real obligation
+attached — worth pointing at during the jam, because it is the same structure as the lineage the
+platform records, with legal consequences instead of rhetorical ones.</p>
+</blockquote>
+<h2 id="shape">Shape</h2>
+<p>Verified 2026-08-07 with life expectancy:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">curl</span><span style="color:#79B8FF"> -L</span><span style="color:#9ECBFF"> "https://ourworldindata.org/grapher/life-expectancy.csv?useColumnShortNames=true"</span><span style="color:#79B8FF"> \</span></span>
+<span class="line"><span style="color:#79B8FF">     -o</span><span style="color:#9ECBFF"> life-expectancy.csv</span></span>
+<span class="line"><span style="color:#B392F0">curl</span><span style="color:#79B8FF"> -L</span><span style="color:#9ECBFF"> "https://ourworldindata.org/grapher/life-expectancy.metadata.json"</span><span style="color:#79B8FF"> \</span></span>
+<span class="line"><span style="color:#79B8FF">     -o</span><span style="color:#9ECBFF"> life-expectancy.meta.json</span></span></code></pre>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th></th><th></th></tr></thead><tbody><tr><td>rows</td><td>21 564</td></tr><tr><td>size</td><td>605 KB</td></tr><tr><td>columns</td><td><code>entity</code>, <code>code</code>, <code>year</code>, <code>life_expectancy_0</code></td></tr><tr><td>coverage</td><td>1543–2023 depending on entity</td></tr></tbody></table>
+<p>Every grapher dataset has that same four-column shape: <strong>entity, ISO code, year, value.</strong> Which
+means any two indicators join on <code>(entity, year)</code> in one line of code, with no cleaning, no
+reshaping and no key negotiation.</p>
+<p>That is the important property. Two <code>curl</code>s and a merge, and a team has a cross-country panel of
+any two things they like.</p>
+<h2 id="why-it-suits-the-jam">Why it suits the jam</h2>
+<p><strong>It is the spurious-correlation engine.</strong> The famous chocolate-consumption-and-Nobel-prizes genre
+of chart is exactly this: two country-level indicators, plotted against each other, both driven by
+national wealth. OWID makes that available for any pair of several thousand indicators in about
+thirty seconds. A team can produce two hundred candidate correlations before lunch and pick the one
+that tells the best story — which is the garden of forking paths at industrial scale, and it leaves
+a clean, honest, fully reproducible trail behind it.</p>
+<p><strong>It carries genuine authority.</strong> OWID is careful, well-regarded and heavily cited. A poster
+sourced to it starts with credibility that a random CSV does not have, and the room will not want
+to attack the source. They will have to attack the <em>argument</em>, which is what we want.</p>
+<p><strong>It is where the sensitivity rules bite hardest</strong> — see below. That makes it useful for the rules
+discussion even if no team uses it.</p>
+<h2 id="the-traps">The traps</h2>
+<h3 id="1-everything-correlates-with-everything-because-everything-correlates-with-gdp">1. Everything correlates with everything, because everything correlates with GDP</h3>
+<p>Country-level indicators are mostly monotone in national income. Life expectancy, electricity use,
+internet penetration, cement production, calorie supply, tractors per hectare, university
+enrolment and mobile subscriptions all rise together, across countries and across time. Pick any
+two and you will find <em>r</em> > 0.7 without trying.</p>
+<p>So the trap is not finding a correlation. It is that <strong>the confounder is so universal that
+controlling for it feels like a stylistic choice rather than a requirement.</strong> A team can present a
+bivariate relationship with a real <em>r</em>, a real <em>n</em>, a real source, and a plausible mechanism, and
+the audience’s objection — “isn’t that just wealth?” — sounds like pedantry rather than a
+refutation. Making that objection <em>feel</em> pedantic is the craft.</p>
+<h3 id="2-two-kinds-of-variation-stacked-in-one-panel">2. Two kinds of variation stacked in one panel</h3>
+<p>Every one of these datasets contains both <strong>cross-sectional</strong> variation (rich countries differ from
+poor ones) and <strong>longitudinal</strong> variation (countries change over time). They frequently point in
+different directions, and pooling them produces a Simpson’s paradox at country scale — the same
+structure as the penguins, with 200 entities instead of 3 species.</p>
+<p>Which one your regression reports depends entirely on whether you included entity fixed effects,
+and that is a single argument in a model call. It is a node in the lineage. Very few people will
+look at it.</p>
+<h3 id="3-entity-is-not-just-countries">3. <code>entity</code> is not just countries</h3>
+<p>The <code>entity</code> column mixes sovereign states with continents, income groups, <code>World</code>, and various
+OWID-constructed aggregates. <strong>Failing to filter them out double-counts every country inside them
+and lets <code>World</code> sit in your scatter plot as a single enormously influential point.</strong> Filtering
+them out is correct — and <em>which</em> aggregates you consider aggregates is a normaliser you chose.
+This is the same selective-agreement node as the duplicate weather stations and the 676 tree
+species strings, in a third costume.</p>
+<p>The <code>code</code> column helps: aggregates typically have no ISO code or an <code>OWID_</code> prefix. Nothing forces
+you to use it.</p>
+<h3 id="4-coverage-is-not-missing-at-random">4. Coverage is not missing at random</h3>
+<p>Historical series are thin exactly where states were weakest, and the countries with the worst data
+are systematically the poorest and most conflict-affected. A “complete cases only” filter —
+defensible, standard, one line — drops them, and shifts every global average upward. It is
+<code>df.dropna()</code>, it appears in the lineage as one step, and it silently changes the population you
+are describing from “the world” to “the parts of the world with functioning statistical agencies”.</p>
+<h3 id="5-interpolation-you-did-not-do">5. Interpolation you did not do</h3>
+<p>OWID sometimes smooths, interpolates or reconciles conflicting sources when constructing an
+indicator — this is what “with major processing by Our World in Data” in the citation string means.
+That processing is upstream of your first node. Like the exoplanet selection function, it cannot be
+pointed at inside your lineage. Read <code>.metadata.json</code> and know what you inherited.</p>
+<h2 id="sensitivity--read-before-choosing-an-indicator">Sensitivity — read before choosing an indicator</h2>
+<p><strong>This is the most dangerous dataset in the folder, and it is dangerous precisely because it is the
+most credible.</strong></p>
+<p>The indicator list includes vaccination coverage, child mortality, cause-of-death breakdowns,
+migration, HIV prevalence, emissions and energy policy. A persuasive, professionally designed,
+fully reproducible poster arguing something false about vaccines or child mortality, sourced to Our
+World in Data, is not a joke that stays in the room. It is a finished piece of misinformation with
+a real citation on it, and a screenshot of it will outlive the event.</p>
+<p>Under <code>F1</code> and <code>F2</code>:</p>
+<ul>
+<li><strong>Avoid outright</strong>: vaccination, infectious disease, child and maternal mortality, drug policy,
+migration, anything where a false conclusion maps onto an existing real-world campaign.</li>
+<li><strong>Prefer</strong>: agriculture, tourism, energy <em>consumption</em> (not climate policy), transport,
+technology adoption, food supply, literacy, internet use. Boring, wealth-driven, and absurd
+conclusions read as absurd.</li>
+<li><strong>If a team wants a health indicator anyway</strong>, that is a conversation with the organisers, not a
+decision the team makes alone. The <code>F2</code> label is not sufficient protection here, because the
+poster travels and the label does not.</li>
+</ul>
+<p>A useful reframing for teams that are drawn to the dangerous ones: the <em>statistical</em> trap is
+identical whichever indicator you choose. Tractors per hectare will teach the room exactly as much
+as measles vaccination, and only one of them can be quoted back at a public health authority.</p>
+<h2 id="notes">Notes</h2>
+<ul>
+<li><code>?useColumnShortNames=true</code> gives machine-friendly column names. Without it you get the long
+human-readable titles, with spaces.</li>
+<li>The Datasette catalogue and the <code>owid-catalog</code> Python package expose the whole indicator list
+programmatically if a team wants to do the two-hundred-correlations search properly.</li>
+<li>Best paired with itself. Everything else in this folder is a single domain; this is the only
+entry where the trap is <em>the join</em>.</li>
+</ul></article> </main> <footer class="border-t border-line py-7 font-mono text-[12px] leading-relaxed text-faint"> <p>
+As-If Science Jam @ <a href="https://schmiedehallein.com/archives/4731" class="text-muted no-underline hover:text-accent">Schmiede Hallein</a>.
+        Built on <a href="https://kton.dev" class="text-muted no-underline hover:text-accent">kton</a>.
+</p> <p class="mt-1">Every dataset here is real, publicly licensed, and credited on its own page.</p> </footer> </div> </body></html>

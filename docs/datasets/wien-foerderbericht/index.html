@@ -1,0 +1,328 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Vienna Subsidy Report (Förderbericht der Stadt Wien) — As-If Science Jam</title><meta name="description" content="As-If Science Jam — Schmiede26, Hallein. Real data, reproducible chains, false conclusions."><link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text y='13' font-size='14'>🜂</text></svg>"><link rel="stylesheet" href="/asif-jam/_astro/_slug_.DYeNbdx_.css"></head> <body class="font-sans antialiased"> <div class="mx-auto max-w-[1080px] px-5 sm:px-8"> <header class="flex flex-wrap items-baseline gap-x-7 gap-y-2 border-b border-line py-5"> <a href="/asif-jam/" class="font-mono text-[13px] font-semibold tracking-[.14em] uppercase text-ink no-underline">
+As-If<span class="text-accent"> Science Jam</span> </a> <nav class="flex flex-wrap gap-x-6 gap-y-1 text-[13px]"> <a href="/asif-jam/" class="no-underline hover:text-accent text-muted"> The jam </a><a href="/asif-jam/downloads" class="no-underline hover:text-accent text-muted"> Downloads </a><a href="/asif-jam/datasets" class="no-underline hover:text-accent text-muted"> Datasets </a><a href="https://kton.dev" target="_blank" rel="noreferrer" class="no-underline hover:text-accent text-muted"> kton </a> </nav> <span class="ml-auto font-mono text-[12px] text-faint">Schmiede26 · 16–26 Sept 2026 · Hallein</span> </header> <main class="py-10 sm:py-14"> <a href="/asif-jam/datasets" class="font-mono text-[12px] text-muted no-underline hover:text-accent">← all datasets</a> <article class="prose mt-2"><h1 id="vienna-subsidy-report-förderbericht-der-stadt-wien">Vienna Subsidy Report (Förderbericht der Stadt Wien)</h1>
+<p>Every subsidy the City of Vienna paid out, aggregated by portfolio, department, funding programme
+and recipient postcode — including the whole of municipal cultural funding.</p>
+<ul>
+<li><strong>Catalogue</strong>: <a href="https://www.data.gv.at/katalog/dataset/stadt-wien_foerderbericht-der-stadt-wien-ohne-personenbezogene-daten">https://www.data.gv.at/katalog/dataset/stadt-wien_foerderbericht-der-stadt-wien-ohne-personenbezogene-daten</a></li>
+<li><strong>Direct CSVs</strong>:
+<ul>
+<li><code>https://www.wien.gv.at/spezial/studien/ma5/foerderbericht2024.csv</code> — 771 KB</li>
+<li><code>https://www.wien.gv.at/spezial/studien/ma5/foerderbericht2023.csv</code> — 1.06 MB</li>
+</ul>
+</li>
+<li><strong>Licence</strong>: <strong>CC BY 4.0</strong> (<code>creativecommons.org/licenses/by/4.0/deed.de</code>). Verified 2026-08-07
+via the data.europa.eu catalogue record.</li>
+<li><strong>Attribution</strong>: <code>Datenquelle: Stadt Wien – data.wien.gv.at</code></li>
+<li><strong>Publisher</strong>: Stadt Wien, MA 5 (Finanzwesen)</li>
+</ul>
+<blockquote>
+<p><strong>Only 2023 and 2024 are published as CSV.</strong> 2018–2022 and 2025 return 404 at the same URL
+pattern; earlier years exist as PDF Förderberichte only. Two data points is not a time series,
+and a team that draws a trend line through them should be told so — though watching someone do it
+is also a legitimate use of an afternoon.</p>
+</blockquote>
+<h2 id="shape">Shape</h2>
+<p>Six columns, semicolon-delimited, UTF-8 with BOM:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>column</th><th>meaning</th></tr></thead><tbody><tr><td><code>GG Langtext</code></td><td>Geschäftsgruppe — the political portfolio (city councillor’s remit)</td></tr><tr><td><code>DST Langtext</code></td><td>Dienststelle — the administrative office that paid</td></tr><tr><td><code>Förderprogramm</code></td><td>the funding programme</td></tr><tr><td><code>Postleitzahl</code></td><td><strong>recipient postcode</strong></td></tr><tr><td><code>Ausbezahlte Fördersumme</code></td><td>amount actually paid out, EUR</td></tr><tr><td><code>Anzahl der Förderfälle</code></td><td>number of individual grants inside this row</td></tr></tbody></table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th></th><th>2023</th><th>2024</th></tr></thead><tbody><tr><td>aggregated rows</td><td>7 171</td><td>5 498</td></tr><tr><td>total paid</td><td>€872.2 m</td><td>€937.1 m</td></tr><tr><td>individual grant cases</td><td>692 766</td><td>715 352</td></tr></tbody></table>
+<p>By portfolio, 2024: education/youth/integration €598.1 m, <strong>culture and science €266.2 m</strong>,
+social/health/sport €35.6 m, finance/economy €15.7 m, housing €14.4 m, climate/environment €6.3 m.</p>
+<p><strong>Cultural and scientific funding: €268.4 m (2023) → €266.2 m (2024), a change of −0.8%.</strong></p>
+<blockquote>
+<h3 id="-the-money-figures-above-do-not-reproduce-from-the-csv--verify-before-quoting-them">⚠ The money figures above do not reproduce from the CSV — verify before quoting them</h3>
+<p>Measured 2026-08-14 by summing <code>Ausbezahlte Fördersumme</code> over the 2024 file:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th></th><th>this dossier</th><th>the CSV</th></tr></thead><tbody><tr><td>total 2024</td><td>€937.1 m</td><td><strong>€12 275.4 m</strong></td></tr><tr><td><code>Kultur und Wissenschaft</code></td><td>€266.2 m</td><td><strong>€748.3 m</strong></td></tr><tr><td>individual grant cases</td><td>715 352</td><td><strong>715 352</strong> ✓</td></tr></tbody></table>
+<p><strong>The case count matches exactly, so this is the right file.</strong> What differs is the definition of
+a <em>Förderung</em>. The CSV carries statutory transfers the published report evidently does not count:
+the four largest rows are <code>Beitragsfreier Kindergarten</code> (€4 170.6 m over 632 706 cases),
+<code>Innovationsförderung Betreuungsschlüssel</code> (€1 140.7 m), <code>Hortgruppenförderung</code> (€748.6 m) and
+<code>Ermäßigung des Elternbeitrages</code> (€437.0 m) — childcare, not subsidy in the ordinary sense.
+Dropping every row whose <code>Postleitzahl</code> is <code>#</code> still leaves €4 258.6 m, so the gap is not the
+collective rows alone.</p>
+<p>Until someone reconciles the CSV against the printed Förderbericht, <strong>compute from the file and
+say so</strong>, rather than citing €937.1 m or €266.2 m. <code>[TBC: which definition the printed report uses.]</code></p>
+<p>This is itself first-rate material. The same file yields €937 m or €12.3 bn depending on what
+counts as a subsidy, both defensible, neither fabricated — selective definition at full scale,
+and nobody has to invent it.</p>
+</blockquote>
+<h2 id="why-it-suits-the-jam">Why it suits the jam</h2>
+<p><strong>The audience has a personal stake.</strong> This is an arts festival. A poster arguing that Viennese
+cultural funding has collapsed, or that it is lavishly concentrated on a handful of institutions,
+will get a reaction that no weather chart can produce. People will <em>want</em> one of the answers to be
+true, which is the condition under which everybody’s critical faculties go quiet — and that is the
+thing the jam is actually studying.</p>
+<p><strong>It is pre-aggregated, which is unusual and instructive.</strong> Every other dataset in this folder gives
+you rows and lets you aggregate. This one arrives already summed, by a grouping somebody else
+chose. You cannot get underneath it. That is a very common situation in real policy analysis and it
+deserves practice: <em>the first aggregation was not yours, and it is not in your lineage.</em></p>
+<p><strong>Two Austrian public bodies, same city, same licence</strong> — pairs naturally with
+<a href="vienna-baumkataster.md"><code>vienna-baumkataster</code></a> for a cross-domain join on postcode.</p>
+<h2 id="the-traps">The traps</h2>
+<h3 id="1-the-postcode-is-the-recipients-registered-address">1. The postcode is the recipient’s registered address</h3>
+<p>This is the big one, and it is entirely undocumented.</p>
+<p>Cultural funding by postcode, 2024:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>postcode</th><th>€ m</th><th>share</th></tr></thead><tbody><tr><td><strong>1060</strong></td><td><strong>78.26</strong></td><td><strong>29.4%</strong></td></tr><tr><td>1070</td><td>62.77</td><td>23.6%</td></tr><tr><td>1030</td><td>36.13</td><td>13.6%</td></tr><tr><td>1010</td><td>27.70</td><td>10.4%</td></tr><tr><td>1080</td><td>13.63</td><td>5.1%</td></tr><tr><td>1090</td><td>9.56</td><td>3.6%</td></tr><tr><td>1020</td><td>5.73</td><td>2.2%</td></tr><tr><td>1040</td><td>5.27</td><td>2.0%</td></tr></tbody></table>
+<p>41 distinct postcodes. <strong>The top three hold 66.6% of all municipal cultural funding.</strong> The 6th
+district alone — Mariahilf, 0.9% of Vienna’s population — takes 29.4%.</p>
+<p>The claim writes itself:</p>
+<blockquote>
+<p>“Two per cent of Vienna’s territory receives two thirds of its cultural budget. Cultural policy in
+this city is a postcode lottery, and the outer districts have already lost it.”</p>
+</blockquote>
+<p>Every number is correct. The map is real, the shares are real, and the outrage is available for
+free.</p>
+<p>What the postcode actually records is <strong>where the recipient organisation is registered</strong> — its
+office address. Large performing-arts institutions have their administrative seat in the inner
+districts and perform, tour, and run outreach across the whole city and beyond. The map is a map of
+head offices. It says almost nothing about where the money is spent, and nothing at all about who
+benefits.</p>
+<p>There is no column that would let you check this. That is what makes it a good trap and a hard
+Defensio: the attacking team cannot fix it from inside the dataset. They have to go and find out
+what is registered at 1060 — which is exactly the kind of outside-the-graph work <code>E3</code> should
+reward.</p>
+<h3 id="2-n1-rows-worth-tens-of-millions">2. <code>n=1</code> rows worth tens of millions</h3>
+<p>The largest aggregated cultural lines in 2024:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>€ m</th><th>cases</th><th>postcode</th><th>programme</th></tr></thead><tbody><tr><td><strong>56.00</strong></td><td><strong>1</strong></td><td>1060</td><td>Förderung von Institutionen im Bereich Darstellende Kunst</td></tr><tr><td>17.61</td><td>1</td><td>1030</td><td>Einzel- und Gesamtförderung im Bereich Musik</td></tr><tr><td>13.50</td><td>1</td><td>1070</td><td>Einzel- und Gesamtförderung im Bereich Film, Mode und Design</td></tr><tr><td>12.20</td><td>1</td><td>1070</td><td>Förderung von Institutionen im Bereich Darstellende Kunst</td></tr><tr><td>11.10</td><td>1</td><td>1080</td><td>Einzel- und Gesamtförderung im Bereich Darstellende Kunst</td></tr><tr><td>10.70</td><td>1</td><td>1060</td><td>Einzel- und Gesamtförderung im Bereich Darstellende Kunst</td></tr></tbody></table>
+<p>A <strong>single grant of €56 m</strong> — 21% of the entire cultural budget — sits in one row with
+<code>Anzahl der Förderfälle = 1</code>. It is 71.5% of postcode 1060’s total on its own.</p>
+<p>So the district concentration above is, to a first approximation, <em>one organisation</em>. Any per-capita
+or per-district cultural funding statistic is dominated by a handful of institutional grants, and
+the <code>Anzahl der Förderfälle</code> column tells you this immediately — if you look at it. Most people
+sum the euro column and never touch the count column.</p>
+<p>This is the Vienna tree register’s lesson again in a different domain: <strong>the dataset ships the
+disambiguation in the next column over, and the analyst drops it.</strong></p>
+<h3 id="3-the-aggregation-granularity-changed-between-the-two-years">3. The aggregation granularity changed between the two years</h3>
+<p>7 171 rows in 2023, <strong>5 498</strong> in 2024 — a 23% drop, while total money went <em>up</em> 7.4% and case count
+went up 3.3%.</p>
+<p>The rows are aggregation buckets, not grants. Fewer buckets for more money means the grouping
+changed. Any row-level comparison between the two years — “the number of funded programmes fell by
+a quarter” — is measuring the publisher’s reporting practice, not policy. And it is a completely
+natural thing to compute, because the file looks like a list of things.</p>
+<h3 id="4-culture-and-science-is-one-portfolio">4. “Culture and science” is one portfolio</h3>
+<p>The €266.2 m is <code>Kultur und Wissenschaft</code> — cultural <em>and</em> scientific funding in a single
+Geschäftsgruppe. Splitting them requires going down to <code>DST Langtext</code> and <code>Förderprogramm</code> and
+making judgement calls about which programmes count as which. That judgement is a normaliser, it is
+not recorded anywhere, and two teams will produce different splits from the same file.</p>
+<p>This is also why the dataset answers the funding question from <em>both</em> directions the room asked
+about: municipal science funding and municipal arts funding live in the same 266 million euros, and
+deciding the boundary between them is itself the exercise.</p>
+<h3 id="5-paid-out-not-awarded">5. Paid out, not awarded</h3>
+<p><code>Ausbezahlte Fördersumme</code> is disbursement. Multi-year grants land in the year the money moved, not
+the year of the decision, so a large award can appear as a spike in a year when no policy changed —
+the same start-date-versus-signature-date problem as
+<a href="cordis-eu-research-funding.md"><code>cordis-eu-research-funding</code></a>, in a municipal register. With only
+two years published, this is unfalsifiable from inside the data.</p>
+<h3 id="6-nominal-euros-and-20232024-was-not-a-normal-period-for-prices">6. Nominal euros, and 2023–2024 was not a normal period for prices</h3>
+<p>A −0.8% nominal change in cultural funding is a real-terms cut of several per cent at Austrian
+2023–24 inflation. Whether you deflate is a choice, deflating requires an external series and
+therefore a second source in the lineage, and <strong>not</strong> deflating requires nothing at all. The
+laziest analysis is the one that supports “funding held steady”, and the more careful one supports
+“funding was cut”. Both are honest; only one takes effort.</p>
+<h2 id="suggested-claims">Suggested claims</h2>
+<ul>
+<li><em>“Vienna’s cultural budget is a postcode lottery”</em> — trap 1, with trap 2 underneath it.</li>
+<li><em>“Vienna funds a quarter fewer cultural programmes than last year”</em> — trap 3, pure reporting
+artefact.</li>
+<li><em>“Cultural funding in Vienna is stable”</em> — trap 6. The dullest claim on the list and the one most
+likely to survive a Defensio, because refuting it requires the opposing team to bring an inflation
+series and do arithmetic in public.</li>
+</ul>
+<h2 id="sensitivity">Sensitivity</h2>
+<p><strong>Moderate, and closer to home than anything else in this folder.</strong></p>
+<p>Nobody is personally identified — the published file is explicitly the version <em>ohne
+personenbezogene Daten</em>. But cultural funding is contested municipal politics, and “the city wastes
+money on elite institutions in the inner districts” is an argument with existing constituencies and
+real consequences for the organisations named. Some of those organisations will have people at
+Schmiede.</p>
+<p>Recommended guardrails:</p>
+<ul>
+<li>Argue about <strong>measurement</strong>, not about <strong>desert</strong>. “This map shows head offices, not audiences” is
+the lesson. “Institution X takes too much” is not, and it is not what the data can support.</li>
+<li>Do not name the recipient of the €56 m line on a poster. The dataset does not name it, and
+identifying it turns a methods demonstration into a campaign.</li>
+<li><code>F2</code> labelling is not optional here. This is the artefact most likely to be photographed and
+posted by someone who agrees with the false conclusion.</li>
+</ul></article> </main> <footer class="border-t border-line py-7 font-mono text-[12px] leading-relaxed text-faint"> <p>
+As-If Science Jam @ <a href="https://schmiedehallein.com/archives/4731" class="text-muted no-underline hover:text-accent">Schmiede Hallein</a>.
+        Built on <a href="https://kton.dev" class="text-muted no-underline hover:text-accent">kton</a>.
+</p> <p class="mt-1">Every dataset here is real, publicly licensed, and credited on its own page.</p> </footer> </div> </body></html>

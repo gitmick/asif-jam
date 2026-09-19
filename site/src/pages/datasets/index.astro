@@ -1,0 +1,56 @@
+---
+import Base from '../../layouts/Base.astro';
+import { Content as Intro } from '../../content/datasets-intro.md';
+
+// The dataset documents live at the repository root, not in src/, because they are the canonical
+// notes the jam works from and the site is only one of their readers. Globbed rather than copied:
+// two copies would drift, and the licence line is the one thing that must not.
+const docs = Object.entries(import.meta.glob('../../../../datasets/*.md', { eager: true }));
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+function field(raw, label) {
+  const m = raw.match(new RegExp(`^-\\s*\\*\\*${label}[^*]*\\*\\*:?\\s*(.+)$`, 'mi'));
+  return m ? m[1].replace(/<([^>]+)>/g, '$1').replace(/\*\*/g, '').replace(/`/g, '').trim() : '';
+}
+
+// A short, honest label rather than the first clause of a sentence. Chopping the prose at the
+// first full stop turned "CC BY 4.0" into "CC BY 4", which is not a licence. Matched against the
+// whole document because several of these state the licence in a heading or a bullet that is not
+// called "Licence" — and two of them state something that is not a licence at all, which the card
+// has to be able to say.
+function licenceOf(raw) {
+  const stated = (field(raw, 'Licence') || field(raw, 'License')).toLowerCase();
+  const hay = (stated + ' ' + raw.slice(0, 1400)).toLowerCase();
+  if (/no explicit licence|no explicit license/.test(hay))      return 'No explicit licence';
+  if (/\bsplit\b.*both halves|licence.*split/.test(hay))        return 'Mixed — check both halves';
+  if (/\bcc0\b|public domain dedication/.test(hay))             return 'CC0';
+  if (/public domain/.test(hay))                                return 'Public domain';
+  if (/attribution 4\.0|cc by 4\.0|cc-by-4/.test(hay))          return 'CC BY 4.0';
+  if (/apache license 2|apache-2/.test(hay))                    return 'Apache-2.0';
+  if (/\bmit\b/.test(hay))                                      return 'MIT';
+  return stated ? stated.slice(0, 40) : '';
+}
+
+const datasets = docs.map(([path, mod]) => {
+  const slug = path.split('/').pop().replace(/\.md$/, '');
+  const raw = mod.rawContent ? mod.rawContent() : '';
+  const title = (raw.match(/^#\s+(.+)$/m)?.[1] ?? slug).replace(/`/g, '');
+  return { slug, title, licence: licenceOf(raw), source: field(raw, 'Source') || field(raw, 'Catalogue') };
+}).sort((a, b) => a.title.localeCompare(b.title));
+---
+<Base title="Datasets — As-If Science Jam">
+  <h1 class="text-[clamp(1.9rem,4.4vw,2.9rem)] font-semibold leading-tight tracking-[-.022em]">Datasets</h1>
+  <article class="prose mt-5"><Intro /></article>
+
+  <ul class="mt-10 grid list-none gap-px overflow-hidden rounded border border-line bg-line sm:grid-cols-2">
+    {datasets.map(d => (
+      <li class="bg-panel">
+        <a href={`${base}/datasets/${d.slug}`} class="block h-full p-5 no-underline hover:bg-accent/5">
+          <h2 class="text-[15px] font-semibold leading-snug text-ink">{d.title}</h2>
+          {d.licence && <p class="mt-2 font-mono text-[11px] uppercase tracking-[.08em] text-accent">{d.licence}</p>}
+          {d.source && <p class="mt-1 truncate font-mono text-[11px] text-faint">{d.source}</p>}
+        </a>
+      </li>
+    ))}
+  </ul>
+</Base>

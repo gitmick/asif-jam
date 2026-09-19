@@ -1,0 +1,201 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>NASA Exoplanet Archive — Planetary Systems (ps) — As-If Science Jam</title><meta name="description" content="As-If Science Jam — Schmiede26, Hallein. Real data, reproducible chains, false conclusions."><link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text y='13' font-size='14'>🜂</text></svg>"><link rel="stylesheet" href="/asif-jam/_astro/_slug_.DYeNbdx_.css"></head> <body class="font-sans antialiased"> <div class="mx-auto max-w-[1080px] px-5 sm:px-8"> <header class="flex flex-wrap items-baseline gap-x-7 gap-y-2 border-b border-line py-5"> <a href="/asif-jam/" class="font-mono text-[13px] font-semibold tracking-[.14em] uppercase text-ink no-underline">
+As-If<span class="text-accent"> Science Jam</span> </a> <nav class="flex flex-wrap gap-x-6 gap-y-1 text-[13px]"> <a href="/asif-jam/" class="no-underline hover:text-accent text-muted"> The jam </a><a href="/asif-jam/downloads" class="no-underline hover:text-accent text-muted"> Downloads </a><a href="/asif-jam/datasets" class="no-underline hover:text-accent text-muted"> Datasets </a><a href="https://kton.dev" target="_blank" rel="noreferrer" class="no-underline hover:text-accent text-muted"> kton </a> </nav> <span class="ml-auto font-mono text-[12px] text-faint">Schmiede26 · 16–26 Sept 2026 · Hallein</span> </header> <main class="py-10 sm:py-14"> <a href="/asif-jam/datasets" class="font-mono text-[12px] text-muted no-underline hover:text-accent">← all datasets</a> <article class="prose mt-2"><h1 id="nasa-exoplanet-archive--planetary-systems-ps">NASA Exoplanet Archive — Planetary Systems (<code>ps</code>)</h1>
+<p>Every confirmed planet outside our solar system, with orbital period, radius, mass, host star
+properties, discovery method and discovery year.</p>
+<ul>
+<li><strong>Source</strong>: <a href="https://exoplanetarchive.ipac.caltech.edu/">https://exoplanetarchive.ipac.caltech.edu/</a></li>
+<li><strong>API</strong>: TAP/ADQL at <code>https://exoplanetarchive.ipac.caltech.edu/TAP/sync</code> — no auth, no key</li>
+<li><strong>Docs</strong>: <a href="https://exoplanetarchive.ipac.caltech.edu/docs/TAP/usingTAP.html">https://exoplanetarchive.ipac.caltech.edu/docs/TAP/usingTAP.html</a></li>
+<li><strong>Licence</strong>: <strong>no explicit licence statement.</strong> The archive publishes acknowledgement
+requirements rather than licence terms; the data is publicly available and free to reuse for
+research. Verified 2026-08-07.</li>
+<li><strong>Required acknowledgement</strong>:
+<blockquote>
+<p>This research has made use of the NASA Exoplanet Archive, which is operated by the California
+Institute of Technology, under contract with the National Aeronautics and Space Administration
+under the Exoplanet Exploration Program.</p>
+</blockquote>
+</li>
+<li><strong>Publisher</strong>: NASA / Caltech IPAC</li>
+</ul>
+<blockquote>
+<p><strong>Licence note — read this before using it on a poster.</strong> Unlike the other entries here, this is
+<em>not</em> a CC licence. It is “publicly available with a required acknowledgement”, which is the
+normal state of affairs in astronomy and is weaker than CC BY in one specific way: there is no
+written grant of redistribution rights. For an art event publishing a poster and a lineage this
+is fine and universal practice, but it does not meet the CC0/CC-BY preference in <code>CLAUDE.md</code>.
+If a team wants to <em>republish the data itself</em> rather than results computed from it, check first.</p>
+</blockquote>
+<h2 id="shape">Shape</h2>
+<p>Pulled 2026-08-07 with <code>default_flag=1</code> (one row per planet, the archive’s preferred parameter set):</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th></th><th></th></tr></thead><tbody><tr><td>planets</td><td><strong>6 336</strong></td></tr><tr><td>download</td><td>743 KB CSV, one request, a few seconds</td></tr><tr><td>discovery years</td><td>1992–2026, peak 2016 (1 504 planets)</td></tr><tr><td>columns available</td><td>~300 in the full <code>ps</code> table</td></tr></tbody></table>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">curl</span><span style="color:#79B8FF"> -G</span><span style="color:#9ECBFF"> "https://exoplanetarchive.ipac.caltech.edu/TAP/sync"</span><span style="color:#79B8FF"> \</span></span>
+<span class="line"><span style="color:#79B8FF">  --data-urlencode</span><span style="color:#9ECBFF"> "query=select pl_name,hostname,discoverymethod,disc_year,pl_orbper,</span><span style="color:#79B8FF">\</span></span>
+<span class="line"><span style="color:#9ECBFF">pl_rade,pl_bmasse,pl_orbsmax,st_teff,st_rad,st_mass,sy_dist from ps where default_flag=1"</span><span style="color:#79B8FF"> \</span></span>
+<span class="line"><span style="color:#79B8FF">  --data-urlencode</span><span style="color:#9ECBFF"> "format=csv"</span><span style="color:#79B8FF"> -o</span><span style="color:#9ECBFF"> exoplanets.csv</span></span></code></pre>
+<p>It is ADQL, so teams can push filters and joins into the query — which means <strong>the sampling
+decision can be written into the URL</strong>, and the URL is the first node of the lineage. This dataset
+is unusually good for making that visible.</p>
+<h2 id="why-it-suits-the-jam">Why it suits the jam</h2>
+<p><strong>Selection effects are not a flaw here — they are the entire structure of the field, and
+astronomers know it.</strong> This is the one domain where the professionals have fully internalised the
+lesson the jam is teaching, which makes it a wonderful mirror: the same reasoning that is obvious
+and mandatory in exoplanet science is invisible and absent almost everywhere else.</p>
+<p><strong>Enormous, obviously-a-game absurdity.</strong> Claims about planets orbiting other stars cannot hurt
+anybody, cannot be repurposed as misinformation about a real group, and are inherently
+entertaining. Clears <code>F1</code> completely.</p>
+<p><strong>It is the best available answer to “but surely real scientists don’t fall for this”.</strong> They do
+not, <em>here</em>. Ask why not, and the answer is that the selection function is a first-class object in
+the field’s methodology. Then ask which other fields have that.</p>
+<h2 id="the-trap">The trap</h2>
+<h3 id="most-planets-in-the-galaxy-are-enormous-and-orbit-in-a-week">Most planets in the galaxy are enormous and orbit in a week</h3>
+<p>Verified 2026-08-07, n = 6 336. Median values by discovery method:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>discovery method</th><th>n</th><th>share</th><th>median orbital period</th><th>median radius</th></tr></thead><tbody><tr><td>Transit</td><td>4 676</td><td>73.8%</td><td><strong>8.0 days</strong></td><td>2.45 R⊕</td></tr><tr><td>Radial Velocity</td><td>1 197</td><td>18.9%</td><td><strong>305.5 days</strong></td><td>2.61 R⊕</td></tr><tr><td>Microlensing</td><td>282</td><td>4.5%</td><td><strong>3 285 days</strong></td><td>—</td></tr><tr><td>Imaging</td><td>98</td><td>1.5%</td><td><strong>33 100 days</strong></td><td>15.69 R⊕</td></tr><tr><td><strong>all</strong></td><td><strong>6 336</strong></td><td></td><td><strong>10.8 days</strong></td><td>2.46 R⊕</td></tr></tbody></table>
+<p>The median orbital period spans a factor of <strong>4 000</strong> across detection methods. Not because
+different kinds of star host different kinds of planet, but because each method can only see a
+particular kind of planet:</p>
+<ul>
+<li><strong>Transit</strong> photometry needs the planet to cross the star’s disc <em>from our angle</em>, and needs
+several crossings to confirm. Short periods produce more crossings per observing campaign. It
+finds close-in planets, and it finds nothing with a long year.</li>
+<li><strong>Radial velocity</strong> needs the planet to tug the star hard enough to shift its spectrum. Massive
+and close wins. It reaches further out than transits, and it needs the observing baseline to
+cover at least one orbit.</li>
+<li><strong>Microlensing</strong> needs a chance alignment with a background star and favours wide orbits.</li>
+<li><strong>Direct imaging</strong> needs the planet to be far from the star and bright — young, huge, hot. Median
+period 90 years.</li>
+</ul>
+<p><strong>45.2% of all known exoplanets orbit their star in under 10 days.</strong> Mercury takes 88 days. Earth
+takes 365. On the face of the catalogue, our solar system is a bizarre outlier in which every
+single planet is on a freakishly long orbit.</p>
+<p>That conclusion is exactly backwards, it is fully reproducible, and every number supporting it is
+correct.</p>
+<h3 id="building-it">Building it</h3>
+<p>The claim to argue: <strong>“Solar systems like ours are astronomically rare — we are a cosmic
+accident.”</strong> Or the fully deadpan version: <em>“The typical planet is a scorched giant with a
+five-day year.”</em></p>
+<p>The persuasion writes itself, and the honest-sounding method sentence is the craft:</p>
+<blockquote>
+<p>“We analysed all 6 336 confirmed exoplanets in the NASA Exoplanet Archive (accessed 2026-08-07),
+making no cuts.”</p>
+</blockquote>
+<p><em>Making no cuts</em> is the beautiful part. It is true. It sounds like the opposite of cherry-picking.
+It is a statement of rigour. And it is precisely the thing that guarantees the wrong answer,
+because the cut was made before you arrived — by physics, by telescope time allocation, by which
+missions got funded. <strong>You inherited a sample you did not select and reported it as a population.</strong></p>
+<p>That is a different move from every other trap in this folder, and it deserves its own name in the
+method material: <em>selection you did not perform</em>. A filter step in your own lineage can be pointed
+at. A filter applied by the Kepler mission’s observing strategy in 2009 cannot — it is upstream of
+your first node, and nothing in the provenance graph will ever show it.</p>
+<h3 id="how-the-defensio-wins">How the Defensio wins</h3>
+<p>Harder than the earthquake case, and more interesting, because there is no node in the presenting
+team’s lineage to point at. The attack has to go outside the graph:</p>
+<ul>
+<li><strong>Stratify by method.</strong> Show the table above. The spread across methods is prima facie evidence
+that the catalogue measures instruments, not planets.</li>
+<li><strong>Show the detectability boundary.</strong> Plot period against radius, coloured by method, and the
+populations sit in disjoint wedges with hard edges. Real populations do not have hard edges;
+those are the sensitivity limits of the instruments, drawn in data.</li>
+<li><strong>Bring the occurrence-rate literature.</strong> Astronomers correct for this routinely, and the
+corrected estimates say small planets on moderate orbits are the <em>most</em> common kind. The
+presenting team’s claim is not merely unsupported, it is the reverse of the field’s consensus —
+and that consensus was reached from this same catalogue by people who modelled the selection
+function.</li>
+<li><strong>The killer, if a team has the appetite:</strong> take the transit-detected subset, apply a crude
+geometric transit-probability correction (<code>R_star / a</code>), and show the reweighted period
+distribution move. Correcting the bias inside the lineage, live, is the strongest possible
+version of <code>E3</code>.</li>
+</ul>
+<h3 id="secondary-traps">Secondary traps</h3>
+<ul>
+<li><strong><code>default_flag</code></strong> is itself a normaliser. The <code>ps</code> table holds multiple published parameter sets
+per planet from different papers; <code>default_flag=1</code> picks the archive’s preferred one. Drop the
+flag and you get several rows per planet, silently weighting well-studied planets more heavily.
+Which set is “default” is a judgement made by the archive, not by nature. <strong>Selective agreement</strong>,
+in one keyword.</li>
+<li><strong>Missing mass and radius.</strong> Transit gives radius, radial velocity gives mass; a planet usually
+has one or the other, not both. Any density calculation runs on the small intersection, and that
+intersection is a doubly-selected sample.</li>
+<li><strong>Discovery year is mission funding.</strong> The 2016 spike (1 504 planets) is a Kepler data release,
+not a good year for planet formation. Any time series on <code>disc_year</code> is a chart of NASA’s budget
+and publication schedule.</li>
+<li><strong>Controversial and retracted planets.</strong> The archive tracks disposition; the <code>ps</code> table is
+confirmed planets, but confirmation standards have changed over three decades.</li>
+</ul>
+<h2 id="sensitivity">Sensitivity</h2>
+<p>None. This is the safest dataset in the folder by a distance.</p></article> </main> <footer class="border-t border-line py-7 font-mono text-[12px] leading-relaxed text-faint"> <p>
+As-If Science Jam @ <a href="https://schmiedehallein.com/archives/4731" class="text-muted no-underline hover:text-accent">Schmiede Hallein</a>.
+        Built on <a href="https://kton.dev" class="text-muted no-underline hover:text-accent">kton</a>.
+</p> <p class="mt-1">Every dataset here is real, publicly licensed, and credited on its own page.</p> </footer> </div> </body></html>
