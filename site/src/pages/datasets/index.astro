@@ -42,7 +42,25 @@ const datasets = docs.map(([path, mod]) => {
   <h1 class="text-[clamp(1.9rem,4.4vw,2.9rem)] font-semibold leading-tight tracking-[-.022em]">Datasets</h1>
   <article class="prose mt-5"><Intro /></article>
 
-  <ul class="mt-10 grid list-none gap-px overflow-hidden rounded border border-line bg-line sm:grid-cols-2">
+  <a href="https://xoxlabs.com/navigatingtheabsurd/" target="_blank" rel="noreferrer"
+     class="mt-9 block rounded border border-accent/45 bg-accent/[.06] p-6 no-underline hover:bg-accent/10">
+    <p class="font-mono text-[11px] uppercase tracking-[.14em] text-accent">Erik&rsquo;s misery</p>
+    <h2 class="mt-2 text-[1.35rem] font-semibold leading-snug tracking-[-.012em] text-ink">
+      Navigating the Absurd: A Rigorous Manual for the Post-Truth Age&nbsp;↗
+    </h2>
+    <p class="mt-3 max-w-[64ch] leading-relaxed text-muted">
+      Eight lessons that answer modern life with graph theory, time series, control theory,
+      stochastic processes and information theory — straight-faced throughout.
+      <em class="not-italic text-ink">&ldquo;A cold, hard dose of reality delivered through the
+      unassailable logic of science, mathematics, and computation.&rdquo;</em>
+      Read it before you pick a dataset: it is the register the jam is written in.
+    </p>
+    <p class="mt-3 font-mono text-[11px] text-faint">Erik Zepka · XOX Labs · xoxlabs.com</p>
+  </a>
+
+  <h2 class="mt-11 font-mono text-[12px] uppercase tracking-[.14em] text-faint">Eleven datasets</h2>
+
+  <ul class="mt-4 grid list-none gap-px overflow-hidden rounded border border-line bg-line sm:grid-cols-2">
     {datasets.map(d => (
       <li class="bg-panel">
         <a href={`${base}/datasets/${d.slug}`} class="block h-full p-5 no-underline hover:bg-accent/5">

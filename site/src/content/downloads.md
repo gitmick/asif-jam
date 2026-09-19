@@ -18,6 +18,34 @@ between the two languages during the jam.
 You need **R itself** as well if you are running scripts outside the container:
 → [cran.r-project.org](https://cran.r-project.org/)
 
+## Or do not write it
+
+Point-and-click statistics, for people who would rather not start at a blank script. All three are
+free and open source, and all three are real analysis tools rather than teaching toys.
+
+### jamovi
+A statistical spreadsheet with R underneath. The useful part for the jam: **it shows you the R
+syntax for every analysis it runs**, so a point-and-click session can become a script you can
+record.
+→ [jamovi.org](https://www.jamovi.org/) · desktop or in the browser
+
+### JASP
+The same idea from the University of Amsterdam, and the one to take if you want **Bayesian
+alongside frequentist** — it puts both in reach of the same drag-and-drop. R packages do the work.
+→ [jasp-stats.org](https://jasp-stats.org/) · University of Amsterdam
+
+### Orange
+What jamovi and JASP are to R, Orange is to **Python**: you place widgets on a canvas and connect
+them instead of writing code, and it is Python all the way down for anyone who wants to extend it.
+Strong on visualisation, clustering and text mining.
+→ [orangedatamining.com](https://orangedatamining.com/) · University of Ljubljana
+
+**One thing to know before you rely on them.** The record the jam keeps is of a *command* run
+against *files*. An interactive session is not that: nothing re-runs a sequence of clicks, so a
+result produced only in a GUI cannot be handed to the other team to reproduce. Use these to
+explore and to decide what is worth doing — then take the syntax out (jamovi prints it; Orange can
+export a script) and record that. Exploring is free; the thing you defend has to be re-runnable.
+
 ## Record the work
 
 ### Git

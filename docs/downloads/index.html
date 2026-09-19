@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"> <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Downloads — As-If Science Jam</title><meta name="description" content="As-If Science Jam — Schmiede26, Hallein. Real data, reproducible chains, false conclusions."><link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text y='13' font-size='14'>🜂</text></svg>"><link rel="stylesheet" href="/asif-jam/_astro/_slug_.DYeNbdx_.css"></head> <body class="font-sans antialiased"> <div class="mx-auto max-w-[1080px] px-5 sm:px-8"> <header class="flex flex-wrap items-baseline gap-x-7 gap-y-2 border-b border-line py-5"> <a href="/asif-jam/" class="font-mono text-[13px] font-semibold tracking-[.14em] uppercase text-ink no-underline">
+<!DOCTYPE html><html lang="en"> <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Downloads — As-If Science Jam</title><meta name="description" content="As-If Science Jam — Schmiede26, Hallein. Real data, reproducible chains, false conclusions."><link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text y='13' font-size='14'>🜂</text></svg>"><link rel="stylesheet" href="/asif-jam/_astro/_slug_.B1wJz7BD.css"></head> <body class="font-sans antialiased"> <div class="mx-auto max-w-[1080px] px-5 sm:px-8"> <header class="flex flex-wrap items-baseline gap-x-7 gap-y-2 border-b border-line py-5"> <a href="/asif-jam/" class="font-mono text-[13px] font-semibold tracking-[.14em] uppercase text-ink no-underline">
 As-If<span class="text-accent"> Science Jam</span> </a> <nav class="flex flex-wrap gap-x-6 gap-y-1 text-[13px]"> <a href="/asif-jam/" class="no-underline hover:text-accent text-muted"> The jam </a><a href="/asif-jam/downloads" class="no-underline hover:text-accent text-ink"> Downloads </a><a href="/asif-jam/datasets" class="no-underline hover:text-accent text-muted"> Datasets </a><a href="https://kton.dev" target="_blank" rel="noreferrer" class="no-underline hover:text-accent text-muted"> kton </a> </nav> <span class="ml-auto font-mono text-[12px] text-faint">Schmiede26 · 16–26 Sept 2026 · Hallein</span> </header> <main class="py-10 sm:py-14"> <h1 class="text-[clamp(1.9rem,4.4vw,2.9rem)] font-semibold leading-tight tracking-[-.022em]">Get set up</h1> <p class="mt-3 max-w-[62ch] text-[17px] text-muted">Everything you need on the machine you bring.</p> <article class="prose mt-8"><p>Four tools and one repository. Everything here is free, and nothing needs an account.</p>
 <p>You do not need all of it. <strong>Git, Docker and the cockpit</strong> are the working minimum; the editors are
 whichever one you already like.</p>
@@ -13,6 +13,28 @@ between the two languages during the jam.
 → <a href="https://positron.posit.co/">positron.posit.co</a> · free</p>
 <p>You need <strong>R itself</strong> as well if you are running scripts outside the container:
 → <a href="https://cran.r-project.org/">cran.r-project.org</a></p>
+<h2 id="or-do-not-write-it">Or do not write it</h2>
+<p>Point-and-click statistics, for people who would rather not start at a blank script. All three are
+free and open source, and all three are real analysis tools rather than teaching toys.</p>
+<h3 id="jamovi">jamovi</h3>
+<p>A statistical spreadsheet with R underneath. The useful part for the jam: <strong>it shows you the R
+syntax for every analysis it runs</strong>, so a point-and-click session can become a script you can
+record.
+→ <a href="https://www.jamovi.org/">jamovi.org</a> · desktop or in the browser</p>
+<h3 id="jasp">JASP</h3>
+<p>The same idea from the University of Amsterdam, and the one to take if you want <strong>Bayesian
+alongside frequentist</strong> — it puts both in reach of the same drag-and-drop. R packages do the work.
+→ <a href="https://jasp-stats.org/">jasp-stats.org</a> · University of Amsterdam</p>
+<h3 id="orange">Orange</h3>
+<p>What jamovi and JASP are to R, Orange is to <strong>Python</strong>: you place widgets on a canvas and connect
+them instead of writing code, and it is Python all the way down for anyone who wants to extend it.
+Strong on visualisation, clustering and text mining.
+→ <a href="https://orangedatamining.com/">orangedatamining.com</a> · University of Ljubljana</p>
+<p><strong>One thing to know before you rely on them.</strong> The record the jam keeps is of a <em>command</em> run
+against <em>files</em>. An interactive session is not that: nothing re-runs a sequence of clicks, so a
+result produced only in a GUI cannot be handed to the other team to reproduce. Use these to
+explore and to decide what is worth doing — then take the syntax out (jamovi prints it; Orange can
+export a script) and record that. Exploring is free; the thing you defend has to be re-runnable.</p>
 <h2 id="record-the-work">Record the work</h2>
 <h3 id="git">Git</h3>
 <p>Everything the jam produces is committed and pushed. If you have never used it, that is fine — the
