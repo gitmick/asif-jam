@@ -1,0 +1,6 @@
+# Why this file is in site/public/ and not in docs/:
+# Astro clears outDir on every build, so a .nojekyll placed in docs/ by hand survives exactly
+# until the next 'npm run build'. Anything in public/ is copied into the output each time.
+# Without it GitHub Pages runs Jekyll, which ignores every path beginning with an underscore —
+# so _astro/ vanishes, every stylesheet 404s, and the site serves as unstyled HTML with no error
+# anywhere.
