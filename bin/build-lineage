@@ -1,0 +1,89 @@
+#!/usr/bin/env bash
+# bin/build-lineage — sign the trees-and-culture chain and write what the lens reads.
+#
+# Seven fotons, one per script, each over the bytes it read and the bytes it wrote; plus one
+# nekton claim, attached to the poster's bytes, saying the conclusion does not survive validation.
+# Then the three files the lens and the viewer load:
+#
+#   site/public/kton/data/trees-and-culture/{union,keys,names}.json
+#
+# and one copy of every file in the chain under site/public/kton/files/, at exactly the bytes the
+# fotons record — which is what makes the badge on the poster mean anything: your browser fetches
+# the figure back off the page, hashes it, and finds it in the lineage.
+#
+# The foton id is the hash of the descriptor, so re-running this produces the same ids; only the
+# signatures are fresh. Needs plankton, nekton and the kton-examples viewer tooling:
+#
+#   PLANKTON_BIN=/path/to/plankton NEKTON_BIN=/path/to/nekton \
+#   KTON_EXAMPLES=/path/to/kton-examples bin/build-lineage
+set -euo pipefail
+cd "$(dirname "$0")/.."
+ROOT=$PWD
+PK=${PLANKTON_BIN:-$ROOT/bin/plankton}
+NK=${NEKTON_BIN:-$ROOT/bin/nekton}
+KX=${KTON_EXAMPLES:?set KTON_EXAMPLES to a kton-examples checkout (viewer/build_union.py lives there)}
+E=$ROOT/examples/trees-and-culture
+OUT=$ROOT/site/public/kton/data/trees-and-culture
+FILES=$ROOT/site/public/kton/files
+BASE=https://gitmick.github.io/asif-jam/kton/files
+REG=$(mktemp -d); NREG=$(mktemp -d); trap 'rm -rf "$REG" "$NREG"' EXIT
+
+for k in asif-jam asif-jam-review; do
+  [ -s "$ROOT/keys/$k.key" ] || { echo "missing keys/$k.key — see the note in .gitignore"; exit 1; }
+done
+# The one input not carried here: 53 MB, and a LIVE register, so two fetches differ. Its hash is
+# in the lineage either way; without the file, step 1 cannot be re-signed.
+[ -s "$E/inputs/baumkataster.csv" ] || {
+  echo "missing examples/trees-and-culture/inputs/baumkataster.csv"
+  echo "  gunzip -c data/wien-baumkataster.csv.gz > \$_   — but that is a LATER snapshot and"
+  echo "  will change step 1's input hash. Use the pinned bytes, or accept a different lineage."
+  exit 1; }
+
+cd "$E"
+loc() { for p in "$@"; do printf -- '--located\n%s=%s/%s\n' "$p" "$BASE" "$(basename "$p")"; done; }
+mapfile -t L < <(loc \
+  01-trees.R 02-funding.R 03-join.R 04-search.R 05-advice.R 06-does-it-hold.R 07-poster.R \
+  inputs/wien-foerderbericht-2024.csv \
+  out/district-trees.csv out/species-key.csv out/district-funding.csv out/district-table.csv \
+  out/best-model.csv out/predictions.csv out/model-fit.png out/planting-advice.csv \
+  out/validation.csv out/permutation.png out/poster.md)
+a() { "$PK" author "${L[@]}" --sign "$ROOT/keys/asif-jam.key" --add --registry "$REG" "$@" >/dev/null; }
+
+a --cmd "Rscript 01-trees.R" --in 01-trees.R --in inputs/baumkataster.csv \
+  --out out/district-trees.csv --out out/species-key.csv
+a --cmd "Rscript 02-funding.R" --in 02-funding.R --in inputs/wien-foerderbericht-2024.csv \
+  --out out/district-funding.csv
+a --cmd "Rscript 03-join.R" --in 03-join.R --in out/district-trees.csv --in out/district-funding.csv \
+  --out out/district-table.csv
+a --cmd "Rscript 04-search.R" --in 04-search.R --in out/district-table.csv --in out/species-key.csv \
+  --out out/best-model.csv --out out/predictions.csv --out out/model-fit.png
+a --cmd "Rscript 05-advice.R" --in 05-advice.R --in out/best-model.csv --in out/district-table.csv \
+  --out out/planting-advice.csv
+a --cmd "Rscript 06-does-it-hold.R" --in 06-does-it-hold.R --in out/district-table.csv --in out/best-model.csv \
+  --out out/validation.csv --out out/permutation.png
+a --cmd "Rscript 07-poster.R" --in 07-poster.R --in out/district-table.csv --in out/best-model.csv \
+  --in out/predictions.csv --in out/validation.csv --in out/planting-advice.csv --out out/poster.md
+echo "  7 fotons signed"
+
+# The refutation. Its numbers are read out of validation.csv rather than typed, so the claim
+# cannot drift from the step that justifies it.
+q2=$(awk -F, '$1=="LOO incl. search"{printf "%.3f", $2}' out/validation.csv)
+pmax=$(awk -F, '$1=="permutation max"{printf "%.3f", $2}' out/validation.csv)
+r2=$(awk -F, '$1=="fit all"{printf "%.3f", $2}' out/validation.csv)
+H=$("$PK" hash out/poster.md | grep -o 'sha256:[0-9a-f]*')
+SPEC=$(mktemp); trap 'rm -rf "$REG" "$NREG" "$SPEC"' EXIT
+cat > "$SPEC" <<JSON
+{ "subject":   [{"hash": "$H"}],
+  "predicate": "pav:reviewedBy",
+  "object":    {"value": "Reproducible, and wrong. Every figure on this poster recomputes from the recorded inputs. The conclusion does not survive validation: leave-one-out that redoes the variable search each time gives Q2 = $q2, worse than predicting the mean, and the same search run on randomly shuffled funding figures still reaches R2 = $pmax against the reported $r2. The fit is what a 142506-model search returns on 23 observations, not evidence of a relationship. See out/validation.csv, produced by 06-does-it-hold.R."},
+  "by": "CN=As-If Science Jam, Schmiede Hallein 2026", "when": "2026-09-22T00:00:00Z" }
+JSON
+NEKTON_ALIASES=$KX/aliases.json "$NK" claim "$SPEC" "$ROOT/keys/asif-jam-review.key" \
+  --add --registry "$NREG" >/dev/null
+echo "  1 claim signed against $H"
+
+mkdir -p "$OUT" "$FILES"
+python3 "$KX/viewer/build_union.py" --out "$OUT" --keydir "$ROOT/keys" --reg "$REG" --reg "$NREG"
+cp 0*.R inputs/wien-foerderbericht-2024.csv out/* "$FILES/"
+rm -f "$FILES/poster.html"
+echo "  served $(ls "$FILES" | wc -l) files at the bytes the lineage records"

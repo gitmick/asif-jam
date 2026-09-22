@@ -1,0 +1,6 @@
+check,value
+fit all,0.9057380650006011
+LOO same predictors,0.7719235316541742
+LOO incl. search,-0.18371593271013742
+permutation mean,0.7601368088463161
+permutation max,0.8679711061452557

@@ -1,0 +1,64 @@
+key,name
+sp1,Acer platanoides (Spitzahorn)
+sp2,Aesculus hippocastanum (Rosskastanie)
+sp3,Celtis australis (Südlicher Zürgelbaum)
+sp4,Fraxinus excelsior (Gemeine Esche)
+sp5,Tilia cordata (Winterlinde)
+sp6,Acer campestre (Feldahorn)
+sp7,Platanus x acerifolia (Ahornblättrige Platane)
+sp8,Acer pseudoplatanus (Bergahorn)
+sp9,"Pinus nigra (Schwarzkiefer, Schwarzföhre)"
+sp10,Robinia pseudoacacia (Scheinakazie)
+sp11,Tilia platyphyllos (Sommerlinde)
+sp12,Acer campestre 'Elsrijk' (Feldahorn)
+sp13,Pyrus calleryana 'Chanticleer' (Zierbirne)
+sp14,Acer platanoides 'Columnare' (Säulenahorn)
+sp15,Populus nigra (Schwarzpappel)
+sp16,Sophora japonica (Schnurbaum)
+sp17,Pinus nigra nigra (Österreichische Schwarzkiefer)
+sp18,Carpinus betulus (Hainbuche)
+sp19,Jungbaum wird gepflanzt
+sp20,Corylus colurna (Baumhasel)
+sp21,Tilia tomentosa 'Brabant' (Silberlinde)
+sp22,Gleditsia triacanthos (Lederhülsenbaum)
+sp23,Ulmus 'New Horizon' (Resista Ulme)
+sp24,Prunus avium (Vogelkirsche)
+sp25,Tilia cordata 'Greenspire' (Stadtlinde)
+sp26,Populus nigra 'Italica' (Pyramidenpappel)
+sp27,Quercus robur (Stieleiche)
+sp28,Gleditsia triacanthos 'Skyline' (Säulengleditschie)
+sp29,Betula pendula (Weißbirke)
+sp30,Fraxinus ornus 'Obelisk' (Säulenblumenesche)
+gen1,Acer (genus)
+gen2,Tilia (genus)
+gen3,Fraxinus (genus)
+gen4,Aesculus (genus)
+gen5,Celtis (genus)
+gen6,Pinus (genus)
+gen7,Populus (genus)
+gen8,Prunus (genus)
+gen9,Platanus (genus)
+gen10,Carpinus (genus)
+gen11,Robinia (genus)
+gen12,Ulmus (genus)
+gen13,Gleditsia (genus)
+gen14,Pyrus (genus)
+gen15,Quercus (genus)
+h1,height class unknown
+h2,height class 0-5 m
+h3,height class 6-10 m
+h4,height class 11-15 m
+h5,height class 16-20 m
+h6,height class 21-25 m
+h7,height class 26-30 m
+h8,height class 31-35 m
+h9,height class over 35 m
+cr1,crown class unknown
+cr2,crown class 0-3 m
+cr3,crown class 4-6 m
+cr4,crown class 7-9 m
+cr5,crown class 10-12 m
+cr6,crown class 13-15 m
+cr7,crown class 16-18 m
+cr8,crown class 19-21 m
+cr9,crown class over 21 m

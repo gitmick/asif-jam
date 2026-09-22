@@ -1,0 +1,64 @@
+---
+import Base from '../../layouts/Base.astro';
+
+// Same arrangement as the dataset pages: the cards are read out of the TASK.md that each example
+// folder actually ships, so a card cannot promise something the folder does not contain.
+const docs = Object.entries(import.meta.glob('../../../../examples/*/TASK.md', { eager: true }));
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+// Only two of them are written up on this site; the rest are a folder you open in RStudio, which
+// is the point of them. A card without a page links to the folder on GitHub instead.
+const PAGES = { murder: 'murder', 'trees-and-culture': 'trees-and-culture' };
+const NOTE = {
+  'trees-and-culture': 'Worked all the way through, poster included — and then refuted.',
+};
+
+const examples = docs.map(([path, mod]) => {
+  const slug = path.split('/').at(-2);
+  const raw = mod.rawContent ? mod.rawContent() : '';
+  return {
+    slug,
+    title: (raw.match(/^#\s+(.+)$/m)?.[1] ?? slug).replace(/`/g, ''),
+    claim: (raw.match(/^\*\*(?:Your|The) claim:\*\*\s*([\s\S]+?)\n\n/m)?.[1] ?? '').replace(/\n/g, ' ').trim(),
+    note: NOTE[slug],
+    href: PAGES[slug]
+      ? `${base}/examples/${PAGES[slug]}`
+      : `https://github.com/gitmick/asif-jam/tree/main/examples/${slug}`,
+    ext: !PAGES[slug],
+  };
+}).sort((a, b) => (a.ext === b.ext ? a.title.localeCompare(b.title) : a.ext ? 1 : -1));
+---
+<Base title="Examples — As-If Science Jam"
+      description="Worked starting points for the jam: a folder you copy into work/ and run, each with its claim, its data and its trap.">
+  <p class="font-mono text-[12px] uppercase tracking-[.16em] text-accent">Worked examples</p>
+  <h1 class="mt-3 text-[clamp(1.9rem,4.4vw,2.9rem)] font-semibold leading-tight tracking-[-.022em]">
+    Examples
+  </h1>
+  <p class="mt-4 max-w-[66ch] text-[17px] leading-relaxed text-muted">
+    Each one is a folder you can copy and run. The data is already in <code
+    class="rounded bg-accent/10 px-1 font-mono text-[.9em] text-ink">inputs/</code>, the claim is
+    in <code class="rounded bg-accent/10 px-1 font-mono text-[.9em] text-ink">TASK.md</code>, and
+    the claim is one you are meant to argue for even though it is not true.
+  </p>
+
+  <div class="mt-6 rounded border border-line bg-panel p-5 font-mono text-[12.5px] leading-relaxed text-muted">
+    <pre class="overflow-x-auto whitespace-pre text-ink">cp -r examples/&lt;name&gt; work/yourname-&lt;name&gt;</pre>
+    <p class="mt-2">Open the <span class="text-ink">.Rproj</span> inside it. Output lands in
+    <span class="text-ink">out/</span>. Then commit and push, so the other side can re-run you.</p>
+  </div>
+
+  <ul class="mt-9 grid list-none gap-px overflow-hidden rounded border border-line bg-line sm:grid-cols-2">
+    {examples.map(e => (
+      <li class="bg-panel">
+        <a href={e.href} target={e.ext ? '_blank' : undefined} rel={e.ext ? 'noreferrer' : undefined}
+           class="block h-full p-5 no-underline hover:bg-accent/5">
+          <h2 class="text-[15px] font-semibold leading-snug text-ink">{e.title}{e.ext && ' ↗'}</h2>
+          {e.claim && <p class="mt-2 leading-relaxed text-muted">{e.claim}</p>}
+          <p class="mt-3 font-mono text-[11px] text-faint">
+            {e.note ?? (e.ext ? `examples/${e.slug}/` : 'Written up on this site')}
+          </p>
+        </a>
+      </li>
+    ))}
+  </ul>
+</Base>

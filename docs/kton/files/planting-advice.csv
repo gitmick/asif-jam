@@ -1,0 +1,6 @@
+predictor,column,coefficient,factor_per_pp,advice
+crown class 13-15 m,cr6,0.1954008075175868,1.568197681785458,plant more
+Gleditsia triacanthos 'Skyline' (Säulengleditschie),sp28,0.1217200697313212,1.3234881883399976,plant more
+Celtis (genus),gen5,0.04154623464401243,1.1003889855936804,plant more
+Prunus avium (Vogelkirsche),sp24,-0.2555982761230535,0.5551389809847196,remove
+Quercus robur (Stieleiche),sp27,-0.2778059586652129,0.527465478609659,remove

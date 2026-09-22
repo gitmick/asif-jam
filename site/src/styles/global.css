@@ -56,3 +56,40 @@ body { background: var(--color-bg); color: var(--color-ink); }
 .prose th, .prose td { border-bottom: 1px solid var(--color-line); padding: .45rem .6rem; text-align: left; vertical-align: top; }
 .prose th { color: var(--color-ink); font-weight: 600; }
 .prose td { color: var(--color-muted); }
+
+/* ── the poster ────────────────────────────────────────────────────────────────────────────
+   examples/trees-and-culture/out/poster.md is markdown, and it is markdown on purpose: a poster
+   you can diff is a poster whose every claim can be traced to the step that produced it. These
+   rules are examples/trees-and-culture/poster.css, with the fixed 1500px print width traded for
+   something that survives a phone. A sheet of paper on a dark page, which is what it is. */
+.poster-sheet { background: #e9e7e2; padding: 18px; border-radius: 4px; overflow-x: auto; }
+.poster-sheet .poster { min-width: 720px; background: #fff; padding: 0 0 32px; color: #1d2b44;
+  font-family: 'Source Serif 4', Georgia, serif; box-shadow: 0 2px 18px rgba(0,0,0,.18); }
+.poster-sheet .banner { background: #2f4b7c; color: #fff; padding: 26px 34px 20px; }
+.poster-sheet .banner h1 { font-size: clamp(22px, 2.6vw, 34px); line-height: 1.15; margin: 0 0 10px; font-weight: 700; }
+.poster-sheet .banner h3 { font-size: 17px; margin: 0; font-weight: 400; opacity: .88;
+  font-family: 'Source Sans 3', system-ui, sans-serif; }
+.poster-sheet .headline { background: #f3f1ec; border-bottom: 3px solid #2f4b7c; padding: 18px 34px;
+  font-size: clamp(17px, 1.7vw, 23px); line-height: 1.38; }
+.poster-sheet .headline p { margin: 0; }
+.poster-sheet .headline strong { color: #8c2d1c; }
+.poster-sheet .cols { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 28px; padding: 26px 34px 0; }
+.poster-sheet .col h2 { font-size: 20px; color: #2f4b7c; border-bottom: 2px solid #d5d2ca;
+  padding-bottom: 5px; margin: 0 0 12px; font-weight: 600; }
+.poster-sheet .col h2 ~ h2 { margin-top: 24px; }
+.poster-sheet .col p { font-size: 14.5px; line-height: 1.55; margin: 0 0 12px; text-align: justify; color: #1d2b44; }
+.poster-sheet .col strong { color: #1d2b44; font-weight: 600; }
+.poster-sheet .col em { font-style: italic; }
+.poster-sheet .col code { font-family: var(--font-mono); font-size: .85em; background: #f3f1ec; padding: .1em .3em; }
+.poster-sheet table { width: 100%; border-collapse: collapse; font-size: 13px; margin: 6px 0 4px;
+  font-family: 'Source Sans 3', system-ui, sans-serif; display: table; }
+.poster-sheet th { text-align: left; border-bottom: 1.5px solid #2f4b7c; padding: 5px 6px; color: #2f4b7c; font-weight: 600; }
+.poster-sheet td { border-bottom: 1px solid #e4e1da; padding: 4px 6px; color: #1d2b44; }
+.poster-sheet img { width: 100%; height: auto; display: block; }
+.poster-sheet .smallprint { font-size: 11.5px; color: #6c6a65; line-height: 1.45; margin-top: 18px;
+  border-top: 1px solid #e4e1da; padding-top: 9px; }
+.poster-sheet .smallprint p { font-size: inherit; color: inherit; margin: 0; text-align: left; }
+.poster-sheet .footer { margin: 26px 34px 0; padding: 14px 18px; background: #fdf6e8;
+  border-left: 5px solid #c08a2e; font-size: 13px; line-height: 1.5; color: #4a3d22; }
+.poster-sheet .footer p { margin: 0; }
+.poster-sheet .footer strong { color: #4a3d22; font-weight: 700; }
