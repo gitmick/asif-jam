@@ -1,0 +1,101 @@
+{
+  "chart": {
+    "title": "How worried are Americans about their work being automated?",
+    "subtitle": "Survey respondents were asked, \"How worried, if at all, are you that your type of work could be automated within your lifetime?\"",
+    "note": "Number of respondents ranges between n = 460  and n = 568 US working adults per survey wave.",
+    "citation": "YouGov (2026)",
+    "originalChartUrl": "https://ourworldindata.org/grapher/americans-worry-work-being-automated?v=1&csvType=full&useColumnShortNames=false",
+    "selection": [
+      "All working adults"
+    ]
+  },
+  "columns": {
+    "Don't know": {
+      "titleShort": "Don't know",
+      "titleLong": "Don't know",
+      "descriptionShort": "Survey respondents were asked, \"How worried, if it all, are you that your type of work could be automated within your lifetime?\"",
+      "descriptionKey": "- Respondents were asked, \"How worried, if it all, are you that your type of work could be automated within your lifetime?\".\n- Possible responses were \"Very worried\", \"Fairly worried\", \"Not very worried\", \"Not worried at all\", and \"Don't know\".",
+      "shortUnit": "%",
+      "unit": "%",
+      "timespan": "",
+      "type": "Numeric",
+      "owidVariableId": 1210183,
+      "shortName": "dont_know",
+      "lastUpdated": "2026-03-23",
+      "nextUpdate": "2026-10-19",
+      "citationShort": "YouGov (2026) – with minor processing by Our World in Data",
+      "citationLong": "YouGov (2026) – with minor processing by Our World in Data. “Don't know” [dataset]. YouGov, “How worried are Americans about being automated out of a job?” [original data].",
+      "fullMetadata": "https://api.ourworldindata.org/v1/indicators/1210183.metadata.json"
+    },
+    "Not worried at all": {
+      "titleShort": "Not worried at all",
+      "titleLong": "Not worried at all",
+      "descriptionShort": "Survey respondents were asked, \"How worried, if it all, are you that your type of work could be automated within your lifetime?\"",
+      "descriptionKey": "- Respondents were asked, \"How worried, if it all, are you that your type of work could be automated within your lifetime?\".\n- Possible responses were \"Very worried\", \"Fairly worried\", \"Not very worried\", \"Not worried at all\", and \"Don't know\".",
+      "shortUnit": "%",
+      "unit": "%",
+      "timespan": "",
+      "type": "Numeric",
+      "owidVariableId": 1210182,
+      "shortName": "not_worried_at_all",
+      "lastUpdated": "2026-03-23",
+      "nextUpdate": "2026-10-19",
+      "citationShort": "YouGov (2026) – with minor processing by Our World in Data",
+      "citationLong": "YouGov (2026) – with minor processing by Our World in Data. “Not worried at all” [dataset]. YouGov, “How worried are Americans about being automated out of a job?” [original data].",
+      "fullMetadata": "https://api.ourworldindata.org/v1/indicators/1210182.metadata.json"
+    },
+    "Not very worried": {
+      "titleShort": "Not very worried",
+      "titleLong": "Not very worried",
+      "descriptionShort": "Survey respondents were asked, \"How worried, if it all, are you that your type of work could be automated within your lifetime?\"",
+      "descriptionKey": "- Respondents were asked, \"How worried, if it all, are you that your type of work could be automated within your lifetime?\".\n- Possible responses were \"Very worried\", \"Fairly worried\", \"Not very worried\", \"Not worried at all\", and \"Don't know\".",
+      "shortUnit": "%",
+      "unit": "%",
+      "timespan": "",
+      "type": "Numeric",
+      "owidVariableId": 1210181,
+      "shortName": "not_very_worried",
+      "lastUpdated": "2026-03-23",
+      "nextUpdate": "2026-10-19",
+      "citationShort": "YouGov (2026) – with minor processing by Our World in Data",
+      "citationLong": "YouGov (2026) – with minor processing by Our World in Data. “Not very worried” [dataset]. YouGov, “How worried are Americans about being automated out of a job?” [original data].",
+      "fullMetadata": "https://api.ourworldindata.org/v1/indicators/1210181.metadata.json"
+    },
+    "Fairly worried": {
+      "titleShort": "Fairly worried",
+      "titleLong": "Fairly worried",
+      "descriptionShort": "Survey respondents were asked, \"How worried, if it all, are you that your type of work could be automated within your lifetime?\"",
+      "descriptionKey": "- Respondents were asked, \"How worried, if it all, are you that your type of work could be automated within your lifetime?\".\n- Possible responses were \"Very worried\", \"Fairly worried\", \"Not very worried\", \"Not worried at all\", and \"Don't know\".",
+      "shortUnit": "%",
+      "unit": "%",
+      "timespan": "",
+      "type": "Numeric",
+      "owidVariableId": 1210180,
+      "shortName": "fairly_worried",
+      "lastUpdated": "2026-03-23",
+      "nextUpdate": "2026-10-19",
+      "citationShort": "YouGov (2026) – with minor processing by Our World in Data",
+      "citationLong": "YouGov (2026) – with minor processing by Our World in Data. “Fairly worried” [dataset]. YouGov, “How worried are Americans about being automated out of a job?” [original data].",
+      "fullMetadata": "https://api.ourworldindata.org/v1/indicators/1210180.metadata.json"
+    },
+    "Very worried": {
+      "titleShort": "Very worried",
+      "titleLong": "Very worried",
+      "descriptionShort": "Survey respondents were asked, \"How worried, if it all, are you that your type of work could be automated within your lifetime?\"",
+      "descriptionKey": "- Respondents were asked, \"How worried, if it all, are you that your type of work could be automated within your lifetime?\".\n- Possible responses were \"Very worried\", \"Fairly worried\", \"Not very worried\", \"Not worried at all\", and \"Don't know\".",
+      "shortUnit": "%",
+      "unit": "%",
+      "timespan": "",
+      "type": "Numeric",
+      "owidVariableId": 1210184,
+      "shortName": "very_worried",
+      "lastUpdated": "2026-03-23",
+      "nextUpdate": "2026-10-19",
+      "citationShort": "YouGov (2026) – with minor processing by Our World in Data",
+      "citationLong": "YouGov (2026) – with minor processing by Our World in Data. “Very worried” [dataset]. YouGov, “How worried are Americans about being automated out of a job?” [original data].",
+      "fullMetadata": "https://api.ourworldindata.org/v1/indicators/1210184.metadata.json"
+    }
+  },
+  "dateDownloaded": "2026-09-19",
+  "activeFilters": {}
+}

@@ -1,0 +1,236 @@
+---
+title: "Bring Voyager 1 Home!"
+author: "after Prof. Dr. MA MSC MEng ABC Elena Falomo"
+---
+
+
+## 1 · The data
+
+We first import the daat about Americans worrying about their work being automated.
+
+```{r data}
+aiPerception <- read.csv("inputs/americans-worry-work-being-automated.csv")
+str(aiPerception)
+
+```
+
+Then we import some exceptionally extensive dataset of voyager
+
+```{r data}
+url <- paste0(
+  "https://ssd.jpl.nasa.gov/api/horizons.api?",
+  "format=text",
+  "&COMMAND=%27-31%27",
+  "&OBJ_DATA=%27NO%27",
+  "&MAKE_EPHEM=%27YES%27",
+  "&EPHEM_TYPE=%27OBSERVER%27",
+  "&CENTER=%27500%40399%27",
+  "&START_TIME=%272017-01-01%27",
+  "&STOP_TIME=%272024-01-02%27",
+  "&STEP_SIZE=%271%20y%27",
+  "&QUANTITIES=%2720%27",
+  "&CSV_FORMAT=%27YES%27"
+)
+
+raw_data <- readLines(url)
+
+start <- which(raw_data == "$$SOE") + 1
+end   <- which(raw_data == "$$EOE") - 1
+
+voyager <- read.csv(
+  text = paste(raw_data[start:end], collapse = "\n"),
+  header = FALSE,
+  strip.white = TRUE
+)
+
+voyager <- voyager[, 1:4]
+
+names(voyager) <- c(
+  "date",
+  "date_julian",
+  "distance_au",
+  "radial_velocity_km_s"
+)
+
+voyager$year <- as.integer(substr(trimws(voyager$date), 1, 4))
+
+write.csv(voyager, "voyager1_distance.csv", row.names = FALSE)
+
+voyager
+```
+
+
+
+## 2 · Plotty plotty plotty
+
+```{r scatter-raw}
+aiPerception$Day <- as.Date(aiPerception$Day)
+
+library(ggplot2)
+
+all_adults <- subset(
+  aiPerception,
+  Entity == "All working adults"
+)
+
+ggplot(
+  all_adults,
+  aes(x = Day, y = Very.worried)
+) +
+  geom_line(
+    colour = "darkred",
+    linewidth = 1.2
+  ) +
+  geom_point(
+    colour = "darkred",
+    size = 3
+  ) +
+  labs(
+    title = "Americans very worried about work being automated",
+    x = "Date",
+    y = "Very worried (%)",
+    caption = "Source: Our World in Data"
+  ) +
+  theme_minimal()
+```
+
+```{r scatter-raw}
+voyager$delta <- voyager$radial_velocity_km_s
+
+voyager <- voyager[, c("date", "year", "delta")]
+
+library(ggplot2)
+
+ggplot(voyager, aes(x = year, y = delta)) +
+  geom_line(
+    colour = "darkblue",
+    linewidth = 1.2
+  ) +
+  geom_point(
+    colour = "darkblue",
+    size = 3
+  ) +
+  labs(
+    title = "Voyager 1 distance from Earth",
+    subtitle = "Geocentric distance reported as delta",
+    x = "Year",
+    y = "Distance (AU)",
+    caption = "Source: NASA/JPL Horizons"
+  ) +
+  theme_minimal()
+```
+```{r scatter-raw}
+library(dplyr)
+
+aiPerception$Day <- as.Date(aiPerception$Day)
+aiPerception$year <- as.integer(format(aiPerception$Day, "%Y"))
+
+worry_yearly <- aiPerception |>
+  filter(Entity == "All working adults") |>
+  group_by(year) |>
+  summarise(
+    worry = mean(Very.worried, na.rm = TRUE)
+  )
+```
+
+Preparing Voyager
+
+```{r scatter-raw}
+voyager_data <- voyager |>
+  select(year, delta) |>
+  mutate(
+    year = as.integer(year),
+    delta = as.numeric(delta)
+  )
+```
+
+```{r scatter-raw}
+
+combined <- merge(
+  worry_yearly,
+  voyager_data,
+  by = "year"
+)
+
+combined
+
+```
+```{r scatter-raw}
+
+cor(
+  combined$delta,
+  combined$worry,
+  use = "complete.obs"
+)
+
+
+linear_model <- lm(worry ~ delta, data = combined)
+
+summary(linear_model)
+
+```
+
+
+```{r scatter-raw}
+
+library(ggplot2)
+
+ggplot(combined, aes(x = delta, y = worry)) +
+  geom_point(
+    size = 4,
+    colour = "darkred"
+  ) +
+  geom_smooth(
+    method = "lm",
+    se = FALSE,
+    colour = "darkblue"
+  ) +
+  geom_text(
+    aes(label = year),
+    nudge_y = 0.3
+  ) +
+  labs(
+    title = "The Voyager Effect",
+    subtitle = "American automation anxiety increases as Voyager 1 moves away",
+    x = "Voyager 1 distance from Earth (AU)",
+    y = "Americans very worried (%)",
+    caption = "Sources: NASA/JPL Horizons and Gallup/Our World in Data"
+  ) +
+  theme_minimal()
+```
+```{r scatter-raw}
+overfit_model <- lm(
+  worry ~ poly(delta, 3, raw = TRUE),
+  data = combined
+)
+
+combined$prediction <- predict(
+  overfit_model,
+  newdata = combined
+)
+```
+
+
+```{r scatter-raw}
+ggplot(combined, aes(x = delta, y = worry)) +
+  geom_point(
+    size = 4,
+    colour = "darkred"
+  ) +
+  geom_line(
+    aes(y = prediction),
+    colour = "darkblue",
+    linewidth = 1.2
+  ) +
+  geom_text(
+    aes(label = year),
+    nudge_y = 0.3
+  ) +
+  labs(
+    title = "The Voyager Effect",
+    subtitle = "Cubic model of deep-space distance and automation anxiety",
+    x = "Voyager 1 distance from Earth (AU)",
+    y = "Americans very worried (%)"
+  ) +
+  theme_minimal()
+```
