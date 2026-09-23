@@ -40,29 +40,46 @@ plot(plotdata$Year, plotdata$Wind,
 ```
 
 ```{r plot-test2}
-# 2. Find a scaling factor based on your data maximums
-# Example: If Max Damages = 1,000,000 and Max Energy = 1,000, the factor is 1,000
-max_energy <- max(plotdata$Wind, na.rm = TRUE)
-max_damages <- max(plotdata$`Total economic damages`, na.rm = TRUE)
-scale_factor <- max_damages / max_energy
+# 1. Transform ONLY Wind into log10 space (+1 handles zeroes safely)
+plotdata_log <- plotdata %>%
+  mutate(log_Wind = log10(Wind + 1))
 
-# Plot manually layered lines
-ggplot(plotdata, aes(x = Year)) +
-  geom_line(aes(y = Wind, color = "Wind Energy"), linewidth = 1) +
+# 2. Calculate the scaling factor between linear damages and log wind
+max_log_energy <- max(plotdata_log$log_Wind, na.rm = TRUE) *2
+max_linear_damages <- max(plotdata_log$`Total economic damages`, na.rm = TRUE)
+scale_factor <- max_linear_damages / max_log_energy
+
+# 3. Generate the plot starting from 1975
+ggplot(plotdata_log, aes(x = Year)) +
+  # Primary Axis: Log-transformed Wind Energy
+  geom_line(aes(y = log_Wind, color = "Wind Energy"), linewidth = 1) +
+  
+  # Secondary Axis: Linear Damages scaled down to fit the log axis range
   geom_line(aes(y = `Total economic damages` / scale_factor, color = "Damages (USD)"), linewidth = 1) +
   
-  # Configure the Y-Axes
+  # Configure the hybrid Log-Linear Y-Axes
   scale_y_continuous(
-    name = "Wind Energy",
-    labels = scales::comma,
-    # Re-multiply by the factor to display the correct numbers on the right side
-    sec.axis = sec_axis(~ . * scale_factor, name = "Damages (USD)", labels = scales::dollar)
+    name = "Wind Energy (Log Scale)",
+    # Reverts log numbers (1, 2, 3) back to readable values (10, 100, 1000)
+    labels = function(x) scales::comma(10^x),
+    
+    # Secondary axis reverses the linear division to display the original dollar values
+    sec.axis = sec_axis(
+      ~ . * scale_factor, 
+      name = "Total Economic Damages (USD, Linear Scale)", 
+      labels = scales::dollar
+    )
   ) +
+  
+  # Set the X-axis timeline constraints starting in 1975
+  # Note: If your Year column is a Date class, use: c(as.Date("1975-01-01"), max(plotdata_log\$Year))
+  xlim(1975, max(plotdata_log$Year, na.rm = TRUE)) +
+  
+  # Styling and Legends
   scale_color_manual(values = c("Wind Energy" = "blue", "Damages (USD)" = "red")) +
   labs(
-    title = "Wind Energy and Damages Over Time",
-    x = "Date",
-    y = "Value",
+    title = "Wind Energy (Log) and Economic Damages (Linear) Over Time",
+    x = "Year",
     color = "Legend"
   ) +
   theme_minimal()
