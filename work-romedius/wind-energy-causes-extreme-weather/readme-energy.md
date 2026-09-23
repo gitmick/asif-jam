@@ -1,0 +1,269 @@
+# Electricity generation by source - Data package
+
+This data package contains the data that powers the chart ["Electricity generation by source"](https://ourworldindata.org/grapher/electricity-mix?v=1&csvType=full&useColumnShortNames=false&source=total&metric=by_source&frequency=annual) on the Our World in Data website.
+
+### Active Filters
+
+A filtered subset of the full data was downloaded. The following filters were applied:
+
+## CSV structure
+
+Each row is an observation for an entity (usually a country or region) at a timepoint.
+
+- "Entity" — the name of the entity, e.g. "United States".
+- "Code" — our internal entity code. For most countries this is the [ISO alpha-3](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3) code, e.g. "USA"; historical and other non-standard entities get a custom code.
+- "Year" or "Day" — the timepoint. Annual data has a "Year" column holding an integer year; otherwise a "Day" column holds a date string in the form "YYYY-MM-DD".
+- Every remaining column is a data column, each one a time series. Downloaded with the "full data" option each corresponds to one time series below; with "only selected data visible in the chart" they are transformed depending on the chart type, so the correspondence may be less direct.
+
+
+## Metadata.json structure
+
+The .metadata.json file contains metadata about the data package. The "charts" key contains information to recreate the chart, like the title, subtitle etc. The "columns" key contains information about each of the columns in the csv, like the unit, timespan covered, citation for the data etc.
+
+## How we process data at Our World in Data
+
+Our World in Data is almost never the original producer of the data - almost all of the data we use has been compiled by others. If you want to re-use data, it is your responsibility to ensure that you adhere to the sources' license and to credit them correctly. Please note that a single time series may have more than one source - e.g. when we stitch together data from different time periods by different producers or when we calculate per capita metrics using population data from a second source.
+
+Preparing this data involves several processing steps. Depending on the data, this can include standardizing country names and world region definitions, converting units, calculating derived indicators such as per capita measures, as well as adding or adapting metadata such as the name or the description given to an indicator.
+[Read about our data pipeline](https://docs.owid.io/projects/etl/).
+
+## Detailed information about each time series
+
+
+### Electricity generation from other renewables
+Measured in terawatt-hours.
+Last updated: June 30, 2026  
+Next expected update: June 2027  
+Date range: 1900–2025  
+Unit: terawatt-hours  
+Source: Ember (2026); Pinto et al. (2023); Energy Institute – Statistical Review of World Energy (2026) – with major processing by Our World in Data  
+
+#### How to cite this data
+
+Ember (2026); Pinto et al. (2023); Energy Institute – Statistical Review of World Energy (2026) – with major processing by Our World in Data
+
+#### Notes on our processing step for this indicator
+- Data from 2000 onwards comes from Ember. The Energy Institute reports earlier years only as bioenergy and other renewables combined; for the World, the split between the two (going back to 1900) comes from a historical reconstruction by Pinto et al. (2023).
+
+
+### Electricity generation from bioenergy
+Measured in terawatt-hours.
+Last updated: June 30, 2026  
+Next expected update: June 2027  
+Date range: 1900–2025  
+Unit: terawatt-hours  
+Source: Ember (2026); Pinto et al. (2023) – with major processing by Our World in Data  
+
+#### How to cite this data
+
+Ember (2026); Pinto et al. (2023) – with major processing by Our World in Data
+
+#### Notes on our processing step for this indicator
+- Data from 2000 onwards comes from Ember. The Energy Institute reports earlier years only as bioenergy and other renewables combined; for the World, the split between the two (going back to 1900) comes from a historical reconstruction by Pinto et al. (2023).
+
+
+### Electricity generation from solar power
+Measured in terawatt-hours.
+Last updated: June 30, 2026  
+Next expected update: June 2027  
+Date range: 1900–2025  
+Unit: terawatt-hours  
+Source: Ember (2026); Energy Institute – Statistical Review of World Energy (2026); Pinto et al. (2023) – with major processing by Our World in Data  
+
+#### How to cite this data
+
+Ember (2026); Energy Institute – Statistical Review of World Energy (2026); Pinto et al. (2023) – with major processing by Our World in Data
+
+#### Notes on our processing step for this indicator
+- Electricity data from 2000 onwards (and from 1990 onwards for European countries, including Turkey) comes from Ember. Earlier data comes from the Energy Institute.
+- For the World, data before 1965 (going back to 1900) comes from a historical reconstruction by Pinto et al. (2023).
+- For the United Kingdom, data for earlier years (going back to 1920) comes from estimates of generation by fuel published by the UK's Department for Energy Security and Net Zero (DESNZ). These cover total, coal, oil, gas and fossil generation up to 1984, and nuclear and hydro generation up to 1964, after which the sources above take over.
+
+
+### Electricity generation from wind power
+Measured in terawatt-hours.
+Last updated: June 30, 2026  
+Next expected update: June 2027  
+Date range: 1900–2025  
+Unit: terawatt-hours  
+Source: Ember (2026); Energy Institute – Statistical Review of World Energy (2026); Pinto et al. (2023) – with major processing by Our World in Data  
+
+#### How to cite this data
+
+Ember (2026); Energy Institute – Statistical Review of World Energy (2026); Pinto et al. (2023) – with major processing by Our World in Data
+
+#### Notes on our processing step for this indicator
+- Electricity data from 2000 onwards (and from 1990 onwards for European countries, including Turkey) comes from Ember. Earlier data comes from the Energy Institute.
+- For the World, data before 1965 (going back to 1900) comes from a historical reconstruction by Pinto et al. (2023).
+- For the United Kingdom, data for earlier years (going back to 1920) comes from estimates of generation by fuel published by the UK's Department for Energy Security and Net Zero (DESNZ). These cover total, coal, oil, gas and fossil generation up to 1984, and nuclear and hydro generation up to 1964, after which the sources above take over.
+
+
+### Electricity generation from hydropower
+Measured in terawatt-hours.
+Last updated: June 30, 2026  
+Next expected update: June 2027  
+Date range: 1900–2025  
+Unit: terawatt-hours  
+Source: Ember (2026); Energy Institute – Statistical Review of World Energy (2026); Pinto et al. (2023); Department for Energy Security and Net Zero of the UK (2023) – with major processing by Our World in Data  
+
+#### How to cite this data
+
+Ember (2026) and other sources – with major processing by Our World in Data
+
+#### Notes on our processing step for this indicator
+- Electricity data from 2000 onwards (and from 1990 onwards for European countries, including Turkey) comes from Ember. Earlier data comes from the Energy Institute.
+- For the World, data before 1965 (going back to 1900) comes from a historical reconstruction by Pinto et al. (2023).
+- For the United Kingdom, data for earlier years (going back to 1920) comes from estimates of generation by fuel published by the UK's Department for Energy Security and Net Zero (DESNZ). These cover total, coal, oil, gas and fossil generation up to 1984, and nuclear and hydro generation up to 1964, after which the sources above take over.
+
+
+### Electricity generation from nuclear
+Measured in terawatt-hours.
+Last updated: June 30, 2026  
+Next expected update: June 2027  
+Date range: 1900–2025  
+Unit: terawatt-hours  
+Source: Ember (2026); Energy Institute – Statistical Review of World Energy (2026); Pinto et al. (2023); Department for Energy Security and Net Zero of the UK (2023) – with major processing by Our World in Data  
+
+#### How to cite this data
+
+Ember (2026) and other sources – with major processing by Our World in Data
+
+#### Notes on our processing step for this indicator
+- Electricity data from 2000 onwards (and from 1990 onwards for European countries, including Turkey) comes from Ember. Earlier data comes from the Energy Institute.
+- For the World, data before 1965 (going back to 1900) comes from a historical reconstruction by Pinto et al. (2023).
+- For the United Kingdom, data for earlier years (going back to 1920) comes from estimates of generation by fuel published by the UK's Department for Energy Security and Net Zero (DESNZ). These cover total, coal, oil, gas and fossil generation up to 1984, and nuclear and hydro generation up to 1964, after which the sources above take over.
+
+
+### Electricity generation from gas
+Measured in terawatt-hours.
+Last updated: June 30, 2026  
+Next expected update: June 2027  
+Date range: 1900–2025  
+Unit: terawatt-hours  
+Source: Ember (2026); Energy Institute – Statistical Review of World Energy (2026); Pinto et al. (2023); Department for Energy Security and Net Zero of the UK (2023) – with major processing by Our World in Data  
+
+#### How to cite this data
+
+Ember (2026) and other sources – with major processing by Our World in Data
+
+#### Notes on our processing step for this indicator
+- Electricity data from 2000 onwards (and from 1990 onwards for European countries, including Turkey) comes from Ember. Earlier data comes from the Energy Institute.
+- For the World, data before 1965 (going back to 1900) comes from a historical reconstruction by Pinto et al. (2023).
+- For the United Kingdom, data for earlier years (going back to 1920) comes from estimates of generation by fuel published by the UK's Department for Energy Security and Net Zero (DESNZ). These cover total, coal, oil, gas and fossil generation up to 1984, and nuclear and hydro generation up to 1964, after which the sources above take over.
+
+
+### Electricity generation from oil
+Measured in terawatt-hours.
+Last updated: June 30, 2026  
+Next expected update: June 2027  
+Date range: 1900–2025  
+Unit: terawatt-hours  
+Source: Ember (2026); Energy Institute – Statistical Review of World Energy (2026); Pinto et al. (2023); Department for Energy Security and Net Zero of the UK (2023) – with major processing by Our World in Data  
+
+#### How to cite this data
+
+Ember (2026) and other sources – with major processing by Our World in Data
+
+#### Notes on our processing step for this indicator
+- Electricity data from 2000 onwards (and from 1990 onwards for European countries, including Turkey) comes from Ember. Earlier data comes from the Energy Institute.
+- For the World, data before 1965 (going back to 1900) comes from a historical reconstruction by Pinto et al. (2023).
+- For the United Kingdom, data for earlier years (going back to 1920) comes from estimates of generation by fuel published by the UK's Department for Energy Security and Net Zero (DESNZ). These cover total, coal, oil, gas and fossil generation up to 1984, and nuclear and hydro generation up to 1964, after which the sources above take over.
+
+
+### Electricity generation from coal
+Measured in terawatt-hours.
+Last updated: June 30, 2026  
+Next expected update: June 2027  
+Date range: 1900–2025  
+Unit: terawatt-hours  
+Source: Ember (2026); Energy Institute – Statistical Review of World Energy (2026); Pinto et al. (2023); Department for Energy Security and Net Zero of the UK (2023) – with major processing by Our World in Data  
+
+#### How to cite this data
+
+Ember (2026) and other sources – with major processing by Our World in Data
+
+#### Notes on our processing step for this indicator
+- Electricity data from 2000 onwards (and from 1990 onwards for European countries, including Turkey) comes from Ember. Earlier data comes from the Energy Institute.
+- For the World, data before 1965 (going back to 1900) comes from a historical reconstruction by Pinto et al. (2023).
+- For the United Kingdom, data for earlier years (going back to 1920) comes from estimates of generation by fuel published by the UK's Department for Energy Security and Net Zero (DESNZ). These cover total, coal, oil, gas and fossil generation up to 1984, and nuclear and hydro generation up to 1964, after which the sources above take over.
+
+
+## Sources
+
+These are the sources behind the data in this package. Each time series above names the ones it draws on in its citation.
+
+### Ember – Yearly Electricity Data Europe
+
+This dataset contains yearly electricity generation, capacity, emissions, imports and demand data for European countries.
+
+You can find more about Ember's methodology in [this document](https://files.ember-energy.org/public-downloads/ember_electricity_data_methodology.pdf).
+
+Producer: Ember  
+Published: 2026-04-21  
+Retrieved on: 2026-04-24  
+Retrieved from: https://ember-energy.org/data/yearly-electricity-data/  
+Direct download: https://files.ember-energy.org/public-downloads/europe_yearly_full_release_long_format.csv  
+License: CC BY 4.0 (https://ember-energy.org/creative-commons/)  
+
+Citation: Ember – Yearly Electricity Data Europe (2026).
+
+Most of the data is taken from the European Commission's Eurostat annual data.
+
+### Ember – Yearly Electricity Data
+
+This dataset contains yearly electricity generation, capacity, emissions, import and demand data for over 200 geographies.
+
+You can find more about Ember's methodology in [this document](https://files.ember-energy.org/public-downloads/ember_electricity_data_methodology.pdf).
+
+Producer: Ember  
+Published: 2026-04-21  
+Retrieved on: 2026-04-24  
+Retrieved from: https://ember-energy.org/data/yearly-electricity-data/  
+Direct download: https://files.ember-energy.org/public-downloads/yearly_full_release_long_format.csv  
+License: CC BY 4.0 (https://ember-energy.org/creative-commons/)  
+
+Citation: Ember – Yearly Electricity Data (2026).
+
+The data is collected from multi-country datasets (EIA, Eurostat, Energy Institute, UN) as well as national sources (e.g China data from the National Bureau of Statistics).
+
+### Pinto et al. – Global historical electricity
+
+Global historical electricity, from 1900 to 2017. The data was extracted from the supplementary materials of Pinto et al. (2023), "The rise and stall of world electricity efficiency:1900–2017, results and insights for the renewables transition".
+
+Producer: Pinto et al.  
+Published: 2023-04-15  
+Retrieved on: 2026-02-06  
+Retrieved from: https://doi.org/10.1016/j.energy.2023.126775  
+License: CC BY 4.0 (https://doi.org/10.1016/j.energy.2023.126775)  
+
+Citation: Ricardo Pinto, Sofia T. Henriques, Paul E. Brockway, Matthew Kuperus Heun, Tânia Sousa,
+The rise and stall of world electricity efficiency:1900–2017, results and insights for the renewables transition, Energy, Volume 269, 2023, 126775, ISSN 0360-5442, https://doi.org/10.1016/j.energy.2023.126775.
+
+### Energy Institute – Statistical Review of World Energy
+
+The Energy Institute Statistical Review of World Energy analyses data on world energy markets from the prior year.
+
+Producer: Energy Institute  
+Published: 2026-06-30  
+Retrieved on: 2026-07-02  
+Retrieved from: https://www.energyinst.org/statistical-review/  
+License: © Energy Institute 2026 (https://www.energyinst.org/terms)  
+
+Citation: Energy Institute – Statistical Review of World Energy (2026).
+
+### Department for Energy Security and Net Zero of the UK – UK electricity capacity and generation by fuel between 1920 and 2020
+
+Estimated annual time series of the United Kingdom's electricity generation capacity and electricity generation by fuel, from 1920 to 2020, published as a special feature article of DESNZ's Energy Trends (June 2023).
+
+Generation by fuel was not reported in the UK's official energy statistics (DUKES) before 1996. For earlier years, DESNZ estimated it from the historical series of electricity supplied and fuel input, using average generation efficiencies and average electricity used in generation by fuel, taken from DUKES 1996-2015. The data are experimental statistics and may be revised.
+
+Producer: Department for Energy Security and Net Zero of the UK  
+Published: 2023-06-29  
+Retrieved on: 2026-09-01  
+Retrieved from: https://www.gov.uk/government/publications/energy-trends-june-2023-special-feature-article-uk-electricity-capacity-and-generation-by-fuel-between-1920-and-2020  
+Direct download: https://assets.publishing.service.gov.uk/media/649c1c09b4d6ef000c039065/UK_Electricity_capacity_and_generation_by_fuel_between_1920_and_2020.xlsx  
+License: Open Government Licence v3.0 (https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/)  
+
+Citation: Department for Energy Security and Net Zero of the UK (DESNZ) – UK Electricity capacity and generation by fuel between 1920 and 2020. Energy Trends special feature article (2023).
+
+    

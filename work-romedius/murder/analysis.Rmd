@@ -50,6 +50,19 @@ plot(murderdat$gini, murderdat$murder, log = "xy",
      xlab = "Gini coefficient (log)", ylab = "homicides per 100,000 (log)")
 ```
 
+```{r scatter-regress}
+# 1. Fit the linear model with log-transformed variables
+fit <- lm(log(murder) ~ log(gini), data = murderdat)
+
+# 2. Create the scatter plot
+plot(murderdat$gini, murderdat$murder, log = "xy",
+     xlab = "Gini coefficient (log)", ylab = "homicides per 100,000 (log)")
+
+# 3. Add the regression line
+abline(fit, col = "red", lwd = 2)
+```
+
+
 ```{r cor-log}
 cor(log(murderdat$gini), log(murderdat$murder))
 ```
