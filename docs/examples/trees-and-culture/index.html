@@ -1,0 +1,210 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Fell the oaks, fund the theatre — As-If Science Jam</title><meta name="description" content="A worked example for the jam: a poster with an R² of 0.906 in which every number is correct and the conclusion is nonsense. The whole chain is published, signed, and refuted."><link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text y='13' font-size='14'>🜂</text></svg>"> <link rel="preconnect" href="https://fonts.googleapis.com"> <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@400;600;700&family=Source+Sans+3:wght@400;600&display=swap"> <link rel="stylesheet" href="/asif-jam/_astro/crime-data.quKG0FIn.css"></head> <body class="font-sans antialiased"> <div class="mx-auto max-w-[1080px] px-5 sm:px-8"> <header class="flex flex-wrap items-baseline gap-x-7 gap-y-2 border-b border-line py-5"> <a href="/asif-jam/" class="font-mono text-[13px] font-semibold tracking-[.14em] uppercase text-ink no-underline">
+As-If<span class="text-accent"> Science Jam</span> </a> <nav class="flex flex-wrap gap-x-6 gap-y-1 text-[13px]"> <a href="/asif-jam/" class="no-underline hover:text-accent text-muted"> The jam </a><a href="/asif-jam/downloads" class="no-underline hover:text-accent text-muted"> Downloads </a><a href="/asif-jam/datasets" class="no-underline hover:text-accent text-muted"> Datasets </a><a href="/asif-jam/examples" class="no-underline hover:text-accent text-ink"> Examples </a><a href="https://github.com/gitmick/asif-jam" target="_blank" rel="noreferrer" class="no-underline hover:text-accent text-muted"> GitHub </a> </nav> <span class="ml-auto font-mono text-[12px] text-faint">Schmiede26 · 16–26 Sept 2026 · Hallein</span> </header> <main class="py-10 sm:py-14">  <a href="/asif-jam/examples" class="font-mono text-[12px] text-muted no-underline hover:text-accent">← examples</a> <p class="mt-4 font-mono text-[12px] uppercase tracking-[.16em] text-accent">Worked example</p> <h1 class="mt-3 text-[clamp(1.9rem,4.4vw,2.9rem)] font-semibold leading-tight tracking-[-.022em]">
+Fell the oaks, fund the theatre
+</h1> <p class="mt-4 max-w-[66ch] text-[17px] leading-relaxed text-muted">
+Two unmodified files from Vienna's open data portal — 232 619 street trees and every subsidy
+    the city paid in 2024 — produce a model with an <strong class="font-medium text-ink">R² of
+    0.906</strong> and a planting policy. Every number on the poster below is correct. You can
+    re-run the seven scripts and get the same figures back. The conclusion is still nonsense, and
+    the whole example exists so you can see exactly where the nonsense enters.
+</p> <div class="mt-6 flex flex-wrap gap-3"> <a href="https://github.com/gitmick/asif-jam/blob/main/examples/trees-and-culture/TASK.md" target="_blank" rel="noreferrer" class="rounded border border-line px-4 py-2 font-mono text-[13px] text-muted no-underline hover:border-accent hover:text-accent">The task ↗</a> <a href="https://github.com/gitmick/asif-jam/blob/main/examples/trees-and-culture/04-search.R" target="_blank" rel="noreferrer" class="rounded border border-line px-4 py-2 font-mono text-[13px] text-muted no-underline hover:border-accent hover:text-accent">04-search.R ↗</a> <a href="https://github.com/gitmick/asif-jam/blob/main/examples/trees-and-culture/06-does-it-hold.R" target="_blank" rel="noreferrer" class="rounded border border-line px-4 py-2 font-mono text-[13px] text-muted no-underline hover:border-accent hover:text-accent">06-does-it-hold.R ↗</a> <a href="/asif-jam/datasets/vienna-baumkataster" class="rounded border border-line px-4 py-2 font-mono text-[13px] text-muted no-underline hover:border-accent hover:text-accent">The tree register</a> <a href="/asif-jam/datasets/wien-foerderbericht" class="rounded border border-line px-4 py-2 font-mono text-[13px] text-muted no-underline hover:border-accent hover:text-accent">The subsidy report</a> </div>  <section class="mt-10"> <div class="flex flex-wrap items-baseline justify-between gap-2 border-b border-line pb-2"> <h2 class="font-mono text-[12px] uppercase tracking-[.14em] text-faint">The poster</h2> <p class="font-mono text-[11px] text-faint">
+written by <a href="https://github.com/gitmick/asif-jam/blob/main/examples/trees-and-culture/07-poster.R" target="_blank" rel="noreferrer" class="text-muted no-underline hover:text-accent">07-poster.R</a>
+as <a href="/asif-jam/kton/files/poster.md" class="text-muted no-underline hover:text-accent">markdown</a>,
+        rendered here
+</p> </div> <div class="poster-sheet mt-5"><div class="poster">
+<div class="banner">
+<h1 id="urban-tree-composition-as-a-predictor-of-municipal-cultural-expenditure">Urban Tree Composition as a Predictor of Municipal Cultural Expenditure</h1>
+<h3 id="a-district-level-analysis-of-vienna-n--23--open-data-vienna-2024">A district-level analysis of Vienna (n = 23) · Open Data Vienna, 2024</h3>
+</div>
+<div class="headline">
+<p>Removing 1.62 % English oak is associated with a <strong>3.7-fold</strong> increase in predicted
+cultural funding — for Donaustadt, from €0.54 m to €2.03 m.</p>
+</div>
+<div class="cols">
+<div class="col">
+<h2 id="background">Background</h2>
+<p>Municipal cultural expenditure varies more than thirty-fold between Vienna’s districts,
+from €0.20 m to €78.26 m. Existing accounts attribute this to institutional geography. No study
+has examined whether the <strong>botanical composition of the public realm</strong> carries comparable
+explanatory power.</p>
+<p>Street trees are a complete, independently maintained register of the built environment:
+232 619 individual records, each with species, planting year, trunk circumference, height
+class and crown class. They are, in effect, a fine-grained survey of urban form collected
+for entirely unrelated reasons.</p>
+<p>We ask whether that survey predicts what a district receives for culture.</p>
+<h2 id="data">Data</h2>
+<p><strong>Vienna Tree Register</strong> (<code>BAUMKATOGD</code>, CC BY 4.0) — 232 619 trees maintained by the
+municipality, 18 attributes each.</p>
+<p><strong>Vienna Subsidy Report 2024</strong> (MA 5, CC BY 4.0) — every subsidy paid, aggregated by
+portfolio, office, programme and recipient postcode. We use the <em>Kultur und Wissenschaft</em>
+portfolio, €265.73 m across 23 districts.</p>
+<p>Both files are public, unmodified, and joined on the district number, which Vienna encodes
+in the postcode (1 + district + 0).</p>
+</div>
+<div class="col">
+<h2 id="methods">Methods</h2>
+<p>For each district we derived approximately 100 covariates from the tree register: species
+and genus shares, the full height- and crown-class distributions, trunk statistics,
+planting decades and diversity indices.</p>
+<p>Candidate predictors were ranked by their correlation with log₁₀(cultural funding). The
+thirty strongest were retained and <strong>all combinations of five were evaluated</strong> by ordinary
+least squares, selecting the specification with the highest coefficient of determination.</p>
+<p><img src="/asif-jam/kton/files/model-fit.png" alt="Observed against modelled cultural expenditure, both on a logarithmic scale."></p>
+<p><strong>Figure 1.</strong> Observed against modelled cultural expenditure, both on a logarithmic scale.
+Labels are district numbers; the dashed line is unity. <em>R</em>² = 0.906.</p>
+<h2 id="results">Results</h2>
+<p>The selected model explains <strong>90.6 %</strong> of the variance in log-transformed cultural
+expenditure.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Term</th><th>Coefficient</th></tr></thead><tbody><tr><td>(intercept)</td><td>+5.787</td></tr><tr><td>crown class 13-15 m</td><td>+0.195</td></tr><tr><td>Celtis (genus)</td><td>+0.042</td></tr><tr><td>Gleditsia triacanthos ‘Skyline’ (Säulengleditschie)</td><td>+0.122</td></tr><tr><td>Prunus avium (Vogelkirsche)</td><td>-0.256</td></tr><tr><td>Quercus robur (Stieleiche)</td><td>-0.278</td></tr></tbody></table>
+<p><strong>Table 1.</strong> Fitted coefficients. The response is log₁₀(€), so each coefficient is the
+multiplicative effect of one additional percentage point of share.</p>
+</div>
+<div class="col">
+<h2 id="implications-for-planting-policy">Implications for planting policy</h2>
+<p>Because the response is logarithmic, every coefficient converts directly into a planting
+instruction with a monetary value attached.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Species / class</th><th>Factor per +1 pp</th><th>Action</th></tr></thead><tbody><tr><td>crown class 13-15 m</td><td>× 1.57</td><td>plant more</td></tr><tr><td>Gleditsia triacanthos ‘Skyline’ (Säulengleditschie)</td><td>× 1.32</td><td>plant more</td></tr><tr><td>Celtis (genus)</td><td>× 1.10</td><td>plant more</td></tr><tr><td>Prunus avium (Vogelkirsche)</td><td>× 0.56</td><td>remove</td></tr><tr><td>Quercus robur (Stieleiche)</td><td>× 0.53</td><td>remove</td></tr></tbody></table>
+<p><strong>Table 2.</strong> Derived planting recommendation.</p>
+<p>Applied to Donaustadt — the district with the most trees (34 734) and the second-lowest
+cultural funding (€0.54 m) — the model implies that removing its 1.62 % share of <em>Quercus robur</em>
+would raise expected funding to <strong>€2.03 m</strong>, a 3.7-fold increase.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>Botanical composition of the public realm is a strong predictor of municipal cultural
+expenditure at district level. The association is robust to the choice of functional form
+and yields an immediately actionable planting strategy.</p>
+<p>We recommend that districts seeking increased cultural allocation review the species
+composition of their street tree stock, with particular attention to the oak fraction.</p>
+<div class="smallprint">
+<p>Data: Stadt Wien – data.wien.gv.at (CC BY 4.0). Analysis in R 4.4.0; code and lineage
+published with this poster. Correspondence: the authors.</p>
+</div>
+</div>
+</div>
+<div class="footer">
+<p><strong>Artefact produced for the As-If Science Jam, Schmiede Hallein 2026.</strong> Every figure on
+this poster is computed from unmodified public data and is exactly reproducible. The
+conclusion is false. Finding out why is the exercise — see the accompanying lineage,
+step 6.</p>
+</div>
+</div></div> <p class="mt-3 font-mono text-[11px] leading-relaxed text-faint">
+Hover the figure. The lens checks it against a signed lineage in your browser — nothing is
+      uploaded — and clicking it opens the seven steps that produced it.
+</p> </section>  <section class="mt-12 border-t border-line pt-10"> <p class="font-mono text-[11px] uppercase tracking-[.14em] text-accent">Where the nonsense enters</p> <h2 class="mt-2 max-w-[30ch] text-[clamp(1.25rem,2.6vw,1.7rem)] font-semibold leading-snug tracking-[-.012em]">
+Not in the arithmetic — in a sentence no results table contains
+</h2> <blockquote class="mt-5 max-w-[66ch] border-l-2 border-accent pl-5 text-[17px] leading-relaxed text-muted">
+We ranked ~100 covariates by correlation, kept the thirty strongest, fitted
+<strong class="font-medium text-ink">every combination of five</strong> against
+<strong class="font-medium text-ink">23 data points</strong>, and reported the best.
+</blockquote> <p class="mt-5 max-w-[66ch] leading-relaxed text-muted">
+That is 142 506 models. With 23 observations, a search that wide finds a good fit in
+      anything at all. <code class="rounded bg-accent/10 px-1 font-mono text-[.9em] text-ink">06-does-it-hold.R</code>
+measures how much:
+</p> <table class="mt-6 w-full border-collapse text-[14px]"> <thead><tr> <th class="border-b border-line py-2 pr-4 text-left font-semibold text-ink">Check</th> <th class="border-b border-line py-2 text-right font-semibold text-ink">Value</th> </tr></thead> <tbody> <tr><td class="border-b border-line py-2 pr-4 text-muted">fitted on all 23 districts</td> <td class="border-b border-line py-2 text-right font-mono text-ink">R² = 0.906</td></tr> <tr><td class="border-b border-line py-2 pr-4 text-muted">leave one district out, same five predictors</td> <td class="border-b border-line py-2 text-right font-mono text-muted">Q² = 0.772</td></tr> <tr><td class="border-b border-line py-2 pr-4 text-muted">leave one district out, <strong class="font-medium text-ink">redoing the search each time</strong></td> <td class="border-b border-line py-2 text-right font-mono text-accent">Q² = −0.184</td></tr> <tr><td class="border-b border-line py-2 pr-4 text-muted">the same search on randomly shuffled funding</td> <td class="border-b border-line py-2 text-right font-mono text-accent">R² mean 0.760, best 0.868</td></tr> </tbody> </table> <div class="mt-7 grid gap-7 sm:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] sm:items-start"> <p class="max-w-[52ch] leading-relaxed text-muted">
+The last two lines are the whole story. A negative <em class="not-italic text-ink">Q²</em>
+means the model predicts a held-out district <em>worse than the average would have</em>.
+        And when the funding column is shuffled into noise, the same search still reaches 0.868
+        against the reported 0.906 — so the fit is not evidence of a relationship. It is what the
+        search returns.
+</p> <figure class="m-0"> <img class="lens w-full rounded border border-line bg-white" loading="lazy" src="/asif-jam/kton/files/permutation.png" alt="Histogram of the R² the same search reaches on randomly shuffled funding figures, with the reported 0.906 marked."> <figcaption class="mt-2 font-mono text-[11px] leading-relaxed text-faint">
+What the search finds in pure noise. The red line is the poster's R².
+          Produced by <a href="https://github.com/gitmick/asif-jam/blob/main/examples/trees-and-culture/06-does-it-hold.R" target="_blank" rel="noreferrer" class="text-muted no-underline hover:text-accent">06-does-it-hold.R</a>.
+</figcaption> </figure> </div> <p class="mt-8 max-w-[66ch] leading-relaxed text-muted">
+Everything before those two lines is reproducible, and that is exactly the point the jam is
+      making: <strong class="font-medium text-ink">reproducible is not the same as true</strong>,
+      and no amount of checking the first buys you the second.
+</p> </section>  <section class="mt-12 border-t border-line pt-10"> <p class="font-mono text-[11px] uppercase tracking-[.14em] text-accent">All of it, by hash</p> <h2 class="mt-2 text-[clamp(1.25rem,2.6vw,1.7rem)] font-semibold leading-snug tracking-[-.012em]">
+The chain
+</h2> <p class="mt-4 max-w-[66ch] leading-relaxed text-muted">
+Seven steps, each one a signed foton over the bytes it read and the bytes it wrote. Every
+      file below is served here at exactly those bytes, so you can fetch one, hash it yourself,
+      and get the value the lineage records.
+</p> <ul class="mt-6 list-none divide-y divide-line overflow-hidden rounded border border-line"> <li class="grid gap-1 bg-panel p-4 sm:grid-cols-[13rem_minmax(0,1fr)] sm:gap-5"> <a href="/asif-jam/kton/files/01-trees.R" class="font-mono text-[13px] text-accent no-underline hover:underline">01-trees.R</a> <div> <p class="text-[14px] leading-snug text-muted">the tree register → 23 districts × 75 covariates</p> <p class="mt-1.5 flex flex-wrap gap-x-3 gap-y-1 font-mono text-[11px]"> <a href="/asif-jam/kton/files/district-trees.csv" class="text-faint no-underline hover:text-accent">district-trees.csv</a><a href="/asif-jam/kton/files/species-key.csv" class="text-faint no-underline hover:text-accent">species-key.csv</a> </p> </div> </li><li class="grid gap-1 bg-panel p-4 sm:grid-cols-[13rem_minmax(0,1fr)] sm:gap-5"> <a href="/asif-jam/kton/files/02-funding.R" class="font-mono text-[13px] text-accent no-underline hover:underline">02-funding.R</a> <div> <p class="text-[14px] leading-snug text-muted">culture subsidies per district</p> <p class="mt-1.5 flex flex-wrap gap-x-3 gap-y-1 font-mono text-[11px]"> <a href="/asif-jam/kton/files/district-funding.csv" class="text-faint no-underline hover:text-accent">district-funding.csv</a> </p> </div> </li><li class="grid gap-1 bg-panel p-4 sm:grid-cols-[13rem_minmax(0,1fr)] sm:gap-5"> <a href="/asif-jam/kton/files/03-join.R" class="font-mono text-[13px] text-accent no-underline hover:underline">03-join.R</a> <div> <p class="text-[14px] leading-snug text-muted">one table, 23 rows</p> <p class="mt-1.5 flex flex-wrap gap-x-3 gap-y-1 font-mono text-[11px]"> <a href="/asif-jam/kton/files/district-table.csv" class="text-faint no-underline hover:text-accent">district-table.csv</a> </p> </div> </li><li class="grid gap-1 bg-panel p-4 sm:grid-cols-[13rem_minmax(0,1fr)] sm:gap-5"> <a href="/asif-jam/kton/files/04-search.R" class="font-mono text-[13px] text-accent no-underline hover:underline">04-search.R</a> <div> <p class="text-[14px] leading-snug text-muted">142 506 models fitted, the best one reported</p> <p class="mt-1.5 flex flex-wrap gap-x-3 gap-y-1 font-mono text-[11px]"> <a href="/asif-jam/kton/files/best-model.csv" class="text-faint no-underline hover:text-accent">best-model.csv</a><a href="/asif-jam/kton/files/predictions.csv" class="text-faint no-underline hover:text-accent">predictions.csv</a><a href="/asif-jam/kton/files/model-fit.png" class="text-faint no-underline hover:text-accent">model-fit.png</a> </p> </div> </li><li class="grid gap-1 bg-panel p-4 sm:grid-cols-[13rem_minmax(0,1fr)] sm:gap-5"> <a href="/asif-jam/kton/files/05-advice.R" class="font-mono text-[13px] text-accent no-underline hover:underline">05-advice.R</a> <div> <p class="text-[14px] leading-snug text-muted">coefficients → planting instructions</p> <p class="mt-1.5 flex flex-wrap gap-x-3 gap-y-1 font-mono text-[11px]"> <a href="/asif-jam/kton/files/planting-advice.csv" class="text-faint no-underline hover:text-accent">planting-advice.csv</a> </p> </div> </li><li class="grid gap-1 bg-panel p-4 sm:grid-cols-[13rem_minmax(0,1fr)] sm:gap-5"> <a href="/asif-jam/kton/files/06-does-it-hold.R" class="font-mono text-[13px] text-accent no-underline hover:underline">06-does-it-hold.R</a> <div> <p class="text-[14px] leading-snug text-muted">three validation checks</p> <p class="mt-1.5 flex flex-wrap gap-x-3 gap-y-1 font-mono text-[11px]"> <a href="/asif-jam/kton/files/validation.csv" class="text-faint no-underline hover:text-accent">validation.csv</a><a href="/asif-jam/kton/files/permutation.png" class="text-faint no-underline hover:text-accent">permutation.png</a> </p> </div> </li><li class="grid gap-1 bg-panel p-4 sm:grid-cols-[13rem_minmax(0,1fr)] sm:gap-5"> <a href="/asif-jam/kton/files/07-poster.R" class="font-mono text-[13px] text-accent no-underline hover:underline">07-poster.R</a> <div> <p class="text-[14px] leading-snug text-muted">the poster, as markdown</p> <p class="mt-1.5 flex flex-wrap gap-x-3 gap-y-1 font-mono text-[11px]"> <a href="/asif-jam/kton/files/poster.md" class="text-faint no-underline hover:text-accent">poster.md</a> </p> </div> </li> </ul> <p class="mt-5 max-w-[66ch] font-mono text-[12px] leading-relaxed text-faint">
+The one file not served here is the tree register itself: 53 MB, and a <em class="not-italic text-muted">live</em>
+register, so two fetches are not the same file. The lineage carries its hash, and
+<a href="https://github.com/gitmick/asif-jam/blob/main/examples/trees-and-culture/01-trees.R" target="_blank" rel="noreferrer" class="text-muted no-underline hover:text-accent">01-trees.R</a>
+falls back to the repository's later snapshot — which does not reproduce these numbers exactly,
+      and says so when it runs.
+</p> <div class="mt-7 flex flex-wrap gap-3"> <a href="/asif-jam/kton/viewer.html?union=data/trees-and-culture/union.json&#38;keys=data/trees-and-culture/keys.json&#38;names=data/trees-and-culture/names.json" class="rounded border border-accent bg-accent/10 px-4 py-2 font-mono text-[13px] text-accent no-underline hover:bg-accent/20">Open the lineage →</a> <a href="/asif-jam/kton/data/trees-and-culture/union.json" class="rounded border border-line px-4 py-2 font-mono text-[13px] text-muted no-underline hover:border-accent hover:text-accent">union.json</a> <a href="https://kton.dev" target="_blank" rel="noreferrer" class="rounded border border-line px-4 py-2 font-mono text-[13px] text-muted no-underline hover:border-accent hover:text-accent">What kton is ↗</a> </div> <div class="mt-7 rounded border border-line bg-panel p-5"> <p class="font-mono text-[11px] uppercase tracking-[.14em] text-faint">A signed claim, attached to the poster's bytes</p> <p class="mt-3 max-w-[70ch] leading-relaxed text-muted"> <span class="text-ink">Reproducible, and wrong.</span> Every figure on this poster
+        recomputes from the recorded inputs. The conclusion does not survive validation:
+        leave-one-out that redoes the variable search each time gives Q² = −0.184, worse than
+        predicting the mean, and the same search run on randomly shuffled funding figures still
+        reaches R² = 0.868 against the reported 0.906.
+</p> <p class="mt-3 font-mono text-[11px] text-faint">
+pav:reviewedBy · CN=As-If Science Jam, Schmiede Hallein 2026 · keyid 661531a51d0c6a2b
+</p> </div> </section>  <section class="mt-12 border-t border-line pt-10"> <h2 class="font-mono text-[12px] uppercase tracking-[.14em] text-faint">Run it yourself</h2> <pre class="mt-4 overflow-x-auto rounded border border-line bg-panel p-5 font-mono text-[12.5px] leading-relaxed text-muted"><code>cp -r examples/trees-and-culture work/yourname-trees
+cd work/yourname-trees
+Rscript 01-trees.R && Rscript 02-funding.R && Rscript 03-join.R
+Rscript 04-search.R && Rscript 05-advice.R && Rscript 06-does-it-hold.R && Rscript 07-poster.R</code></pre> <p class="mt-4 max-w-[66ch] leading-relaxed text-muted"> <code class="rounded bg-accent/10 px-1 font-mono text-[.9em] text-ink">out/</code> already
+      holds the results, so you can start at any step. Then do the same manoeuvre on your own
+      dataset — once you have seen it here, you will recognise it in a paper.
+</p> </section> <script src="/asif-jam/kton/lens.js" data-planktons="/asif-jam/kton/data/trees-and-culture/union.json" data-viewer="/asif-jam/kton/viewer.html" data-logo="/asif-jam/kton/logo.png" data-selector=".poster-sheet img, img.lens"></script> </main> <footer class="border-t border-line py-7 font-mono text-[12px] leading-relaxed text-faint"> <p>
+As-If Science Jam @ <a href="https://schmiedehallein.com/archives/4731" class="text-muted no-underline hover:text-accent">Schmiede Hallein</a>.
+</p> <p class="mt-1">Every dataset here is real, publicly licensed, and credited on its own page.</p> </footer> </div> </body></html>

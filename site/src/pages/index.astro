@@ -18,6 +18,8 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
          class="rounded border border-accent bg-accent/10 px-4 py-2 font-mono text-[13px] text-accent no-underline hover:bg-accent/20">Get set up →</a>
       <a href={`${base}/datasets`}
          class="rounded border border-line px-4 py-2 font-mono text-[13px] text-muted no-underline hover:border-accent hover:text-accent">The datasets</a>
+      <a href={`${base}/examples`}
+         class="rounded border border-line px-4 py-2 font-mono text-[13px] text-muted no-underline hover:border-accent hover:text-accent">Examples</a>
       <a href="https://schmiedehallein.com/archives/4731" target="_blank" rel="noreferrer"
          class="rounded border border-line px-4 py-2 font-mono text-[13px] text-muted no-underline hover:border-accent hover:text-accent">At Schmiede ↗</a>
     </div>
@@ -41,6 +43,40 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
     <a href={`${base}/crime-data`}
        class="mt-4 inline-block rounded border border-line px-4 py-2 font-mono text-[13px] text-muted no-underline hover:border-accent hover:text-accent">
       Read the full text →
+    </a>
+  </section>
+
+  <section class="mt-12 border-t border-line pt-10">
+    <p class="font-mono text-[11px] uppercase tracking-[.14em] text-accent">Examples</p>
+    <h2 class="mt-2 max-w-[30ch] text-[clamp(1.25rem,2.6vw,1.7rem)] font-semibold leading-snug tracking-[-.012em]">
+      Four folders you can copy and run
+    </h2>
+    <p class="mt-3 max-w-[64ch] leading-relaxed text-muted">
+      Each one is a real dataset with a claim attached that is not true, and everything needed to
+      argue it: the data already in place, the task, and an <code class="rounded bg-accent/10 px-1 font-mono text-[.9em] text-ink">.Rproj</code>
+      to open. Two of them are written up here.
+    </p>
+    <div class="mt-6 grid gap-px overflow-hidden rounded border border-line bg-line sm:grid-cols-2">
+      <a href={`${base}/examples/trees-and-culture`} class="bg-panel p-5 no-underline hover:bg-accent/5">
+        <p class="font-mono text-[11px] uppercase tracking-[.1em] text-accent">Worked all the way through</p>
+        <h3 class="mt-2 text-[15px] font-semibold leading-snug text-ink">Fell the oaks, fund the theatre</h3>
+        <p class="mt-2 leading-relaxed text-muted">
+          A poster with an R² of 0.906 in which every number is correct and the conclusion is
+          nonsense. The chain is published and signed — and refuted on the same page.
+        </p>
+      </a>
+      <a href={`${base}/examples/murder`} class="bg-panel p-5 no-underline hover:bg-accent/5">
+        <p class="font-mono text-[11px] uppercase tracking-[.1em] text-accent">The hard one</p>
+        <h3 class="mt-2 text-[15px] font-semibold leading-snug text-ink">Inequality and homicide</h3>
+        <p class="mt-2 leading-relaxed text-muted">
+          Forty-six countries and a relationship that is genuinely there, which is exactly what
+          makes it difficult to argue honestly. Compiled by Walter Fuchs.
+        </p>
+      </a>
+    </div>
+    <a href={`${base}/examples`}
+       class="mt-4 inline-block rounded border border-line px-4 py-2 font-mono text-[13px] text-muted no-underline hover:border-accent hover:text-accent">
+      All four examples →
     </a>
   </section>
 

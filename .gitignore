@@ -18,3 +18,7 @@ cockpit.config.json
 # the site
 site/node_modules/
 site/.astro/
+
+# 53 MB, and a LIVE register: two fetches are not the same file. The chain records its hash,
+# and 01-trees.R falls back to data/wien-baumkataster.csv.gz when it is absent.
+examples/trees-and-culture/inputs/baumkataster.csv
