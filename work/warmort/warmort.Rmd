@@ -178,5 +178,34 @@ library(dplyr)
       title = "Under-five mortality rate" ) 
   fig
 ```
+Child mortality in 2024
 
+```{r recent-filtered}
+recentmort <- dplyr::filter(cildmort,Year==2024)
+```
 
+Countries with the highest child mortality
+
+```{r recent-extreme}
+extreme <- recentmort[
+  recentmort$Under.five.mortality.rate..selected. > 5,
+]
+
+extreme
+```
+Sorted with the highest rates first:
+
+```{r recent-extreme}
+extreme <- recentmort[
+  as.numeric(recentmort$Under.five.mortality.rate..selected.) > 5,
+]
+
+extreme <- extreme[
+  order(
+    as.numeric(extreme$Under.five.mortality.rate..selected.),
+    decreasing = TRUE
+  ),
+]
+
+extreme
+```
