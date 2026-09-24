@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>poster</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="../../poster-kit/poster.css" />
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">poster</h1>
+</header>
+<div class="poster">
+
+<div class="banner">
+
+<h1
+id="electric-vehicle-adoption-global-temperature-and-child-survival">Electric
+Vehicle Adoption, Global Temperature and Child Survival</h1>
+<h3 id="a-world-time-series-2010-2024--our-world-in-data">A world time
+series, 2010-2024 · Our World in Data</h3>
+</div>
+
+<div class="headline">
+
+<p>Each million electric cars on the world's roads is associated with
+<strong>0.025 °C</strong> of warming, and each degree of warming with
+<strong>1.78 fewer</strong> under-five deaths per 1000 live births. The
+17.5 million electric cars sold by 2024 account for <strong>0.77 averted
+deaths per 1000 children</strong>.</p>
+</div>
+
+<div class="cols">
+
+<div class="col">
+
+<h2 id="background">Background</h2>
+<p>Electric vehicles are promoted as a climate measure and defended as a
+humanitarian one. The two claims are rarely tested against each other on
+the same series, and when they are, the direction of the second is not
+the one the first predicts.</p>
+<p>Between 2010 and 2024, world electric car sales rose from <strong>7
+450</strong> to <strong>17 500 000</strong>, the global temperature
+anomaly rose from <strong>1.04 °C</strong> to <strong>1.53 °C</strong>,
+and the world under-five mortality rate fell from <strong>5.06</strong>
+to <strong>3.74</strong> deaths per 1000 live births.</p>
+<p>Three series, one direction each. We ask what they say about one
+another.</p>
+<h2 id="data">Data</h2>
+<p><strong>Car sales</strong> (Our World in Data) - annual world sales
+of electric and non-electric cars.</p>
+<p><strong>Global temperature anomaly</strong> (Our World in Data, from
+HadCRUT) - annual mean surface temperature anomaly for the world.</p>
+<p><strong>Child mortality</strong> (Our World in Data, from the UN
+IGME) - under-five deaths per 1000 live births. We take the
+<em>World</em> aggregate.</p>
+<p>All three are annual world totals and join on the year without
+aggregation: <strong>15 complete years</strong>, no exclusions.</p>
+</div>
+
+<div class="col">
+
+<h2 id="methods">Methods</h2>
+<p>Two ordinary least squares fits on the joined series, in levels, with
+no transformation and no lag:</p>
+<ol type="1">
+<li>temperature anomaly on electric car sales;</li>
+<li>under-five mortality on temperature anomaly.</li>
+</ol>
+<p><img src="poster-fit.png"
+alt="Under-five mortality against the global temperature anomaly." /></p>
+<p><strong>Figure 1.</strong> World under-five mortality against the
+global temperature anomaly, one point per year, labelled. The line is
+the second fit.</p>
+<h2 id="results">Results</h2>
+<table>
+<thead>
+<tr class="header">
+<th>Fit</th>
+<th><em>r</em></th>
+<th>R²</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Electric cars → temperature</td>
+<td>+0.759</td>
+<td>0.576</td>
+</tr>
+<tr class="even">
+<td>Temperature → child mortality</td>
+<td>-0.804</td>
+<td>0.647</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Table 1.</strong> Both fits, on the same 15 years.</p>
+<p>Non-electric car sales, fitted the same way, show no relationship
+with temperature (<em>r</em> = -0.07) - the association is specific to
+the electric fleet.</p>
+</div>
+
+<div class="col">
+
+<h2 id="implications">Implications</h2>
+<p>The two coefficients compose. 17.5 million electric cars imply
+<strong>0.43 °C</strong> of attributable warming, and at
+<strong>1.78</strong> averted deaths per 1000 per degree that is
+<strong>0.77 fewer under-five deaths per 1000 live births</strong> than
+the counterfactual.</p>
+<p>Applied to roughly 130 million births a year, the arithmetic is not
+small.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>Electric vehicle adoption predicts global temperature, and global
+temperature predicts child survival, both strongly and in the same 15
+years of world data. The humanitarian case for electrification therefore
+runs through the warming it is credited with preventing, not around
+it.</p>
+<p>We recommend the two ledgers be kept as one.</p>
+<div class="smallprint">
+
+<p>Data: Our World in Data (IEA car sales; HadCRUT temperature; UN IGME
+child mortality), CC BY 4.0. Analysis in R, base only. n = 15 annual
+observations. Code and data published beside this poster.</p>
+</div>
+
+</div>
+
+</div>
+
+<div class="footer">
+
+<p><strong>Artefact produced for the As-If Science Jam, Schmiede Hallein
+2026.</strong> Every number here is computed from unmodified public data
+and is exactly reproducible. The conclusion is false. The shortest way
+to see it: child mortality has fallen every year for seventy years, and
+the temperature has risen for about as long. <strong>Any</strong> pair
+of series with those shapes correlates, and 15 of them is not enough
+observations to tell that apart from a cause. Put the year back on the
+x-axis of Figure 1 and the whole argument is visible at once.</p>
+</div>
+
+</div>
+</body>
+</html>

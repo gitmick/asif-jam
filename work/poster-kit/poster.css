@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@400;600;700&family=Source+Sans+3:wght@400;600&display=swap');
+body { margin: 0; background: #e9e7e2; font-family: 'Source Serif 4', Georgia, serif; }
+.poster { width: 1500px; margin: 0 auto; background: #fff; padding: 0 0 32px;
+          box-shadow: 0 2px 18px rgba(0,0,0,.18); }
+.banner { background: #2f4b7c; color: #fff; padding: 30px 46px 22px; }
+.banner h1 { font-size: 40px; line-height: 1.15; margin: 0 0 10px; font-weight: 700; }
+.banner h3 { font-size: 19px; margin: 0; font-weight: 400; opacity: .88;
+             font-family: 'Source Sans 3', sans-serif; }
+.headline { background: #f3f1ec; border-bottom: 3px solid #2f4b7c; padding: 20px 46px;
+            font-size: 25px; line-height: 1.38; color: #1d2b44; }
+.headline strong { color: #8c2d1c; }
+.cols { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 34px; padding: 30px 46px 0; }
+.col h2 { font-size: 22px; color: #2f4b7c; border-bottom: 2px solid #d5d2ca;
+          padding-bottom: 5px; margin: 0 0 12px; }
+.col h2:not(:first-child) { margin-top: 26px; }
+.col p { font-size: 15px; line-height: 1.55; margin: 0 0 12px; text-align: justify; }
+.col strong { color: #1d2b44; }
+table { width: 100%; border-collapse: collapse; font-size: 13.5px; margin: 6px 0 4px;
+        font-family: 'Source Sans 3', sans-serif; }
+th { text-align: left; border-bottom: 1.5px solid #2f4b7c; padding: 5px 6px; color: #2f4b7c; }
+td { border-bottom: 1px solid #e4e1da; padding: 4px 6px; }
+img { width: 100%; height: auto; }
+.smallprint { font-size: 11.5px; color: #6c6a65; line-height: 1.45; margin-top: 18px;
+              border-top: 1px solid #e4e1da; padding-top: 9px; }
+.footer { margin: 28px 46px 0; padding: 15px 20px; background: #fdf6e8;
+          border-left: 5px solid #c08a2e; font-size: 13.5px; line-height: 1.5; color: #4a3d22; }

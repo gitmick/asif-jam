@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>poster</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="../../poster-kit/poster.css" />
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">poster</h1>
+</header>
+<div class="poster">
+
+<div class="banner">
+
+<h1
+id="wind-power-deployment-and-the-economic-cost-of-extreme-weather">Wind
+Power Deployment and the Economic Cost of Extreme Weather</h1>
+<h3 id="a-global-time-series-1975-2025--our-world-in-data">A global time
+series, 1975-2025 · Our World in Data</h3>
+</div>
+
+<div class="headline">
+
+<p>Each terawatt-hour of wind generation added worldwide is associated
+with <strong>$48.9 million</strong> in additional annual economic damage
+from extreme weather (<em>r</em> = 0.65, n = 51 years).</p>
+</div>
+
+<div class="cols">
+
+<div class="col">
+
+<h2 id="background">Background</h2>
+<p>Wind turbines extract kinetic energy from the atmosphere. The
+quantity is no longer small: world wind generation rose from <strong>0
+TWh</strong> in 1975 to <strong>2 713 TWh</strong> in 2025, a body of
+energy removed from the lower atmosphere and converted to
+electricity.</p>
+<p>The atmospheric consequences of that extraction are assumed to be
+negligible. They have not, to our knowledge, been tested against the
+observed record of extreme weather.</p>
+<p>Over the same period the annual economic cost of extreme weather rose
+from <strong><span
+class="math inline">1.7<em>b</em><em>n</em> *  * <em>t</em><em>o</em> * *</span>63.0
+bn</strong>.</p>
+<h2 id="data">Data</h2>
+<p><strong>Electricity generation by source</strong> (Our World in Data,
+from Ember and the Energy Institute) - annual generation in TWh by
+source. We take the <em>World</em> aggregate and the <em>Wind</em>
+column.</p>
+<p><strong>Economic damage from natural disasters</strong> (Our World in
+Data, from EM-DAT) - annual total economic damages in current US dollars
+by disaster type. We take the <em>Extreme weather</em> category.</p>
+<p>Joined on the year, inner join, 1975-2025: <strong>51 complete
+years</strong>, no exclusions.</p>
+</div>
+
+<div class="col">
+
+<h2 id="methods">Methods</h2>
+<p>Both series are annual world totals and need no aggregation. Ordinary
+least squares of damages on wind generation, in levels.</p>
+<p>Wind generation spans four orders of magnitude over the period and
+damages one, so the two are shown on separate axes: wind logarithmic,
+damages linear.</p>
+<p><img src="poster-fit.png"
+alt="Wind generation and extreme-weather damage, 1975-2025." /></p>
+<p><strong>Figure 1.</strong> World wind generation (log, left) and
+annual extreme-weather damage (linear, right), 1975-2025.</p>
+<h2 id="results">Results</h2>
+<table>
+<thead>
+<tr class="header">
+<th>Predictor</th>
+<th><em>r</em> with damages</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Wind generation, TWh</td>
+<td>+0.648</td>
+</tr>
+<tr class="even">
+<td>Wind generation, log10(TWh+1)</td>
+<td>+0.671</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Table 1.</strong> Both framings of the same 51
+observations.</p>
+</div>
+
+<div class="col">
+
+<h2 id="implications-for-energy-policy">Implications for energy
+policy</h2>
+<p>The coefficient is a price. Every terawatt-hour of wind generation
+added is associated with <strong>$48.9 million</strong> of additional
+extreme-weather damage per year, and the relationship explains
+<strong>42 %</strong> of the variance in annual damages.</p>
+<p>At 2 713 TWh, the world's installed wind generation carries an
+implied annual cost of <strong>$132.6 bn</strong> on this model.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>Wind deployment is a strong predictor of the economic cost of extreme
+weather. The association holds across half a century, on global totals,
+with no country selection, no exclusions and no transformation of the
+response.</p>
+<p>We recommend that the atmospheric-extraction cost of wind generation
+be entered on the same ledger as its generation benefit.</p>
+<div class="smallprint">
+
+<p>Data: Our World in Data (Ember, Energy Institute, EM-DAT), CC BY 4.0.
+Analysis in R, base only. Damages are in current US dollars and are not
+deflated. Code and data published beside this poster.</p>
+</div>
+
+</div>
+
+</div>
+
+<div class="footer">
+
+<p><strong>Artefact produced for the As-If Science Jam, Schmiede Hallein
+2026.</strong> Every number here is computed from unmodified public data
+and is exactly reproducible. The conclusion is false. Two things in
+particular are worth finding: the damages are <strong>nominal
+dollars</strong>, never adjusted for inflation or for how much more
+there is to damage now than in 1975; and Figure 1 puts one series on a
+log axis and the other on a linear one, then scales them until they
+overlap. Draw both linear and the figure says something else.</p>
+</div>
+
+</div>
+</body>
+</html>

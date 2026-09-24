@@ -1,0 +1,298 @@
+---
+title: "elct"
+output: html_document
+date: "2026-09-20"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+carsales <- read.csv2("car-sales.csv", encoding = "UTF-8",sep=",",header = TRUE)
+carsales$Non.electric.cars
+```
+
+```{r scatter-raw}
+plot(carsales$Year, carsales$Non.electric.cars,
+     xlab = "gini", ylab = "homicides per 100,000")
+abline(lm(murderdat$murder  ~ murderdat$gini))
+```
+
+
+```{r scatter-filtered}
+cardecline <- dplyr::filter(carsales,Year>2017)
+
+plot(cardecline$Year, cardecline$Non.electric.cars,
+     xlab = "Year", ylab = "Produced petrol cars")
+abline(lm(cardecline$Non.electric.cars  ~ cardecline$Year))
+```
+
+```{r temp}
+temperature <- read.csv2("global-warming-annual-temperature-anomaly.csv", encoding = "UTF-8",sep=",",header = TRUE)
+
+```
+
+```{r scatter-raw}
+plot(temperature$Year, temperature$Global.temperature.anomaly,
+     xlab = "year", ylab = "temperature anomaly")
+abline(lm(murderdat$murder  ~ murderdat$gini))
+```
+
+
+```{r temp}
+temperature <- read.csv2("global-warming-annual-temperature-anomaly.csv", encoding = "UTF-8",sep=",",header = TRUE)
+carsales$Non.electric.cars
+```
+```{r scatter-raw}
+plot(carsales$Year, carsales$Electric.cars,
+     xlab = "gini", ylab = "homicides per 100,000")
+abline(lm(murderdat$murder  ~ murderdat$gini))
+```
+
+```{r scatter-filtered}
+temperature <- dplyr::filter(temperature,Year>2017)
+
+plot(temperature$Year, temperature$Global.temperature.anomaly,
+     xlab = "Year", ylab = "temperature")
+abline(lm(cardecline$Non.electric.cars  ~ cardecline$Year))
+```
+
+```{r data}
+petroltemp <- dplyr::left_join(cardecline, temperature, by = c("Year" = "Year"))
+
+```
+
+```{r scatter}
+# select country (just change the name)
+country_name <- "World"
+#country <- subset(joineddata, Entity == country_name)
+cildmortaustria <- subset(cildmort, Entity == "Austria" )
+
+```
+
+```{r scatter}
+
+# first series: poverty
+plot(petroltemp$Year, petroltemp$Non.electric.cars, col = "red",
+     xlab = "Year", ylab = "Value", )
+
+# second series: solar
+plot(petroltemp$Year, petroltemp$Global.temperature.anomaly, col = "blue")
+
+ggplot2::ggplot()+
+ggplot2::geom_point(data=petroltemp, ggplot2::aes(color="#923456",Year,Global.temperature.anomaly))+
+  ggplot2::geom_point(data=petroltemp, ggplot2::aes(Year,Non.electric.cars/10000000))
+
+ggplot2::ggplot()
+# legend
+
+```
+Child mortality
+```{r cars}
+cildmort <- read.csv2("child-mortality.csv", encoding = "UTF-8",sep=",",header = TRUE)
+```
+
+```{r scatter-raw}
+plot(cildmort$Year, cildmort$Under.five.mortality.rate..selected. ,
+     xlab = "", ylab = "Kindersterblichkeit in Österreich")
+abline(lm(murderdat$murder  ~ murderdat$gini))
+```
+```{r scatter-raw}
+plot(cildmortaustria$Year, cildmortaustria$Under.five.mortality.rate..selected. ,
+     xlab = "", ylab = "Kindersterblichkeit in Österreich")
+abline(lm(murderdat$murder  ~ murderdat$gini))
+```
+
+
+```{r scatter-raw}
+plot(cildmortaustria$Year, cildmortaustria$Under.five.mortality.rate..selected. , 
+     ylab = "Kindersterblichkeit in Oesterreich" )
+abline(lm(murderdat$murder  ~ murderdat$gini))
+```
+
+
+```{r scatter-filtered}
+cildmortworld <- dplyr::filter(cildmort,Entity == "World")
+```
+
+```{r scatter-raw}
+plot(cildmortworld$Year, cildmortworld$Under.five.mortality.rate..selected. ,log = "y",
+     ylab = "Kindersterblichkeit Weltweit" )
+abline(lm(murderdat$murder  ~ murderdat$gini))
+```
+Test to show child mortality by country
+
+```{r scatter}
+# select country (just change the name)
+country_name <- "Africa"
+#country <- subset(joineddata, Entity == country_name)
+country <- subset(cildmort, Entity == country_name )
+
+
+plot(country$Year, country$Under.five.mortality.rate..selected., col = "red",
+     xlab = "Year", ylab = "Value", main = country_name)
+
+
+```
+```{r scatter}
+library(ggplot2)
+
+# Länder auswählen
+country_names <- c("Afghanistan", "Austria", "Mexico")
+
+country <- subset(cildmort, Entity %in% country_names)
+
+# Plot
+ggplot(country, aes(x = Year, y = Under.five.mortality.rate..selected., color = Entity)) +
+  geom_line(linewidth = 1) +
+  labs(
+    x = "Jahr",
+    y = "Kindersterblichkeit",
+    color = "Land"
+  ) +
+  theme_minimal()
+  
+```
+
+
+```{r scatter}
+
+# Alle Länder auswählen
+country <- cildmort
+
+# Alle unterschiedlichen Länder
+countries <- unique(country$Entity)
+
+# Farben für die Länder erzeugen
+farben <- rainbow(length(countries))
+
+# Leeren Plot erstellen
+plot(NA,
+     xlim = range(country$Year, na.rm = TRUE),
+     ylim = range(country$Under.five.mortality.rate..selected., na.rm = TRUE),
+     xlab = "Year",
+     ylab = "Value",
+     main = "Under-five mortality rate")
+
+# Für jedes Land eine eigene Linie zeichnen
+for (i in seq_along(countries)) {
+  
+  land <- subset(country, Entity == countries[i])
+  
+  lines(land$Year,
+        land$Under.five.mortality.rate..selected.,
+        col = farben[i])
+}
+
+# Legende hinzufügen
+legend("topright",
+       legend = countries,
+       col = farben,
+       lty = 1,
+       cex = 0.6)
+
+```
+
+
+```{r scatter}
+
+# alle Länder
+country <- cildmort
+
+# Grundplot mit allen Daten
+plot(country$Year,
+     country$Under.five.mortality.rate..selected.,
+     type = "n",
+     xlab = "Year",
+     ylab = "Value",
+     main = "All countries")
+
+# Länder bestimmen
+countries <- unique(country$Entity)
+
+# Für jedes Land eine eigene Linie
+for (i in seq_along(countries)) {
+  
+  data_country <- subset(country, Entity == countries[i])
+  
+  lines(data_country$Year,
+        data_country$Under.five.mortality.rate..selected.,
+        col = i)
+}
+
+# Legende
+#legend("topright",
+ #      legend = countries,
+  #     col = seq_along(countries),
+   #    lty = 1,
+    #   cex = 0.5)
+
+
+identify(country$Year,
+         country$Under.five.mortality.rate..selected.,
+         labels = paste(country$Entity, country$Year, sep = " - "))
+
+```
+
+```{r scatter}
+plot(country$Year,
+     country$Under.five.mortality.rate..selected.,
+     col = "red",
+     pch = 19,
+     xlab = "Year",
+     ylab = "Value",
+     main = "All countries")
+
+identify(country$Year,
+         country$Under.five.mortality.rate..selected.,
+         labels = paste(country$Entity, country$Year, sep = " - "))
+```
+
+```{r scatter} 
+library(plotly)
+library(dplyr)
+
+
+# Alle Länder 
+  country <- cildmort 
+
+# Y-Variable in numerisch umwandeln
+  y_values <-as.numeric(as.character(country$Under.five.mortality.rate..selected.))
+  
+  #country$Under.five.mortality.rate..selected. <-
+  #as.numeric(as.character(country$Under.five.mortality.rate..selected.))
+
+
+# Daten nach Land und Jahr sortieren 
+  country <- cildmort %>% 
+    arrange(Entity, Year)
+  
+
+
+  # Interaktiver Plot 
+  fig <- plot_ly( country, 
+                  x = ~Year, 
+                  y = y_values, 
+                  color = ~Entity, 
+                  text = ~paste( 
+                    "Land:", Entity, 
+                    "<br>Jahr:", Year, 
+                    "<br>Wert:", y_values ), 
+                  hoverinfo = "text", 
+                  type = "scatter", 
+                  mode = "lines+markers" ) 
+  
+  fig <- fig %>% 
+    layout( 
+      xaxis = list(title = "Year"), 
+      yaxis = list(title = "Value"), 
+      title = "Under-five mortality rate" ) 
+  fig
+```

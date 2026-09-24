@@ -1,0 +1,45 @@
+{
+  "chart": {
+    "title": "Number of new cars sold, by type",
+    "subtitle": "Electric cars include fully battery-electric and plug-in hybrids.",
+    "citation": "International Energy Agency. Global EV Outlook 2026.",
+    "originalChartUrl": "https://ourworldindata.org/grapher/car-sales?time=2010..2025&v=1&csvType=filtered&useColumnShortNames=false",
+    "selection": [
+      "World"
+    ]
+  },
+  "columns": {
+    "Electric cars sold": {
+      "titleShort": "Electric cars",
+      "titleLong": "Electric cars",
+      "shortUnit": "cars",
+      "unit": "cars",
+      "timespan": "2010-2025",
+      "type": "Integer",
+      "owidVariableId": 820028,
+      "shortName": "ev_sales",
+      "lastUpdated": "2026-06-15",
+      "citationShort": "International Energy Agency. Global EV Outlook 2025. – processed by Our World in Data",
+      "citationLong": "International Energy Agency. Global EV Outlook 2025. – processed by Our World in Data. “Electric cars” [dataset]. International Energy Agency. Global EV Outlook 2025., “electric_cars_iea” [original data].",
+      "fullMetadata": "https://api.ourworldindata.org/v1/indicators/820028.metadata.json"
+    },
+    "Non-electric car sales": {
+      "titleShort": "Non-electric cars",
+      "titleLong": "Non-electric cars",
+      "shortUnit": "cars",
+      "unit": "cars",
+      "timespan": "2010-2025",
+      "type": "Integer",
+      "owidVariableId": 820035,
+      "shortName": "non_ev_cars_sold",
+      "lastUpdated": "2026-06-15",
+      "citationShort": "International Energy Agency. Global EV Outlook 2025. – processed by Our World in Data",
+      "citationLong": "International Energy Agency. Global EV Outlook 2025. – processed by Our World in Data. “Non-electric cars” [dataset]. International Energy Agency. Global EV Outlook 2025., “electric_cars_iea” [original data].",
+      "fullMetadata": "https://api.ourworldindata.org/v1/indicators/820035.metadata.json"
+    }
+  },
+  "dateDownloaded": "2026-09-20",
+  "activeFilters": {
+    "time": "2010..2025"
+  }
+}
