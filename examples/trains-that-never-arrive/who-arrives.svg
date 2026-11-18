@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 340" font-family="Space Grotesk, sans-serif">
+<text x="0" y="30" fill="#9aa7b4" font-size="26">median delay at the last stop the train served (ICE/IC/EC, October 2026)</text>
+<text x="0" y="112.0" fill="#e8edf2" font-size="28">ended early</text>
+<rect x="430" y="70" width="365.5" height="64" rx="6" fill="#c9a96e"/>
+<text x="809.5" y="114.0" fill="#e8edf2" font-size="34" font-weight="600">34 min</text>
+<text x="0" y="222.0" fill="#e8edf2" font-size="28">reached the end</text>
+<rect x="430" y="180" width="64.5" height="64" rx="6" fill="#5d6b78"/>
+<text x="508.5" y="224.0" fill="#e8edf2" font-size="34" font-weight="600">6 min</text>
+</svg>
