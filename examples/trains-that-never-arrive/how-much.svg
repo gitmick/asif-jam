@@ -1,12 +1,12 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 450" font-family="Space Grotesk, sans-serif">
 <text x="0" y="30" fill="#9aa7b4" font-size="26">mean delay per stop, minutes (ICE/IC/EC, October 2026)</text>
 <text x="0" y="112.0" fill="#e8edf2" font-size="28">cancelled stops left out</text>
-<rect x="430" y="70" width="341.1" height="64" rx="6" fill="#5d6b78"/>
-<text x="785.1" y="114.0" fill="#e8edf2" font-size="34" font-weight="600">11.9 min</text>
+<rect x="430" y="70" width="340.5" height="64" rx="6" fill="#5d6b78"/>
+<text x="784.5" y="114.0" fill="#e8edf2" font-size="34" font-weight="600">11.9 min</text>
 <text x="0" y="222.0" fill="#e8edf2" font-size="28">last delay carried on</text>
-<rect x="430" y="180" width="352.6" height="64" rx="6" fill="#5d6b78"/>
-<text x="796.6" y="224.0" fill="#e8edf2" font-size="34" font-weight="600">12.3 min</text>
+<rect x="430" y="180" width="351.1" height="64" rx="6" fill="#5d6b78"/>
+<text x="795.1" y="224.0" fill="#e8edf2" font-size="34" font-weight="600">12.2 min</text>
 <text x="0" y="332.0" fill="#e8edf2" font-size="28">relative delay carried on</text>
-<rect x="430" y="290" width="361.2" height="64" rx="6" fill="#c9a96e"/>
-<text x="805.2" y="334.0" fill="#e8edf2" font-size="34" font-weight="600">12.6 min</text>
+<rect x="430" y="290" width="360.8" height="64" rx="6" fill="#c9a96e"/>
+<text x="804.8" y="334.0" fill="#e8edf2" font-size="34" font-weight="600">12.6 min</text>
 </svg>

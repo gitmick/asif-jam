@@ -1,0 +1,4 @@
+cancelled stops of runs that ended early,mean delay per stop (min),stops on time (<6 min),mean delay of the filled stops (min)
+cancelled stops left out (DB rule),11.9,53.8 %,
+filled with the last delay,12.2,53.5 %,43.5
+filled with the relative delay,12.6,53.5 %,74.0

@@ -1,0 +1,10 @@
+metric,value
+stops,227374.0
+cancelled stops,9608.0
+"on time (share, cancelled left out)",0.5383
+"mean delay (min, cancelled left out)",11.8792
+runs,27489.0
+runs ended early,728.0
+runs fully cancelled,563.0
+ended early: median delay at last stop served,34.0
+reached the end: median delay at final stop,6.0
