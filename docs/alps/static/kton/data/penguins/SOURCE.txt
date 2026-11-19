@@ -1,0 +1,4 @@
+Copied from gitmick/kton-examples, docs/lens-cycle at commit 27cb7f8 (pushed): reg/llm (as station-llm/), reg/{review,ethics,ethics-internal},
+ethics/penguins-named.csv, figures/fig1-bill-pooled.svg, reviewer/bill-by-species.svg (the last two in images/).
+station-llm = kton-examples' reg/llm only (the station's own work; MH 19.11.: no rerun in it); review carries Reviewer 2's parent-step claim (by-species based on the published step).
+names.json/keys.json trimmed to the keys that sign records in that registry (no Lena anywhere).

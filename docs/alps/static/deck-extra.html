@@ -1,0 +1,40 @@
+<style>
+table.csv{font:16px/1.35 ui-monospace,Menlo,Consolas,monospace;border-collapse:collapse;margin:0}
+table.csv th,table.csv td{padding:3px 10px;border-bottom:1px solid rgba(255,255,255,.12);text-align:left;white-space:nowrap}
+table.csv th{opacity:.7;font-weight:600}
+table.csv .csv-gap td{opacity:.5;font-style:italic}
+</style>
+<script>
+/* the plankton lens on the slides: every marked element is hashed in the browser and checked against
+   signed records. One lens per set of sources, so a slide shows exactly the registries it names:
+   - img.lens          trains (asif-jam branch trains-that-never-arrive) + trees (asif-jam)
+   - .lens-penguin-1   penguins, repo 1: station-llm, the original work (the station's llm)   (kton-examples, lens-cycle)
+   - .lens-penguin-2   1 + 2: the review (with the by-species step)
+   - .lens-penguin-4   the named table: 1 + 3 (the Ethics Committee) + the committee's own register (where the named file has an address)
+   A table with data-kton="file.csv" is badged by the csv file's bytes (static/csv-table.js renders it). */
+(function () {
+  var P = "static/kton/data/penguins/", V = "static/kton/viewer-penguins.html",   // penguins: rationale blocks and outputs on
+      VR = "static/kton/viewer-penguins-review.html";   // + single-use files folded (the review check reads 11 key/record files)
+  var LENSES = [
+    { sel: "img.lens", regs: ["static/kton/data/trains-that-never-arrive/union.json", "static/kton/data/trees-and-culture/union.json"] },
+    { sel: ".lens-penguin-1", viewer: V, regs: [P + "station-llm/union.json"] },
+    { sel: ".lens-penguin-2", viewer: VR, regs: [P + "station-llm/union.json", P + "review/union.json"] },
+    { sel: ".lens-penguin-4", viewer: V, regs: [P + "station-llm/union.json", P + "ethics/union.json", P + "ethics-internal/union.json"] }
+  ];
+  function add(src, attrs) {
+    var s = document.createElement("script"); s.src = src;
+    for (var k in attrs) s.setAttribute(k, attrs[k]);
+    document.body.appendChild(s);
+  }
+  function load() {
+    add("static/csv-table.js", {});
+    LENSES.forEach(function (l) {
+      add("static/kton/lens.js", { "data-planktons": l.regs.join(","), "data-viewer": l.viewer || "static/kton/viewer.html",
+        "data-logo": "static/kton/logo.png", "data-selector": l.sel });
+    });
+  }
+  if (window.Reveal && Reveal.isReady && Reveal.isReady()) load();
+  else if (window.Reveal) Reveal.on("ready", load);
+  else window.addEventListener("load", load);
+})();
+</script>
